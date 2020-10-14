@@ -1,16 +1,22 @@
 @extends('layouts.test3app')
 
-@section('title','Index')
+@section('title','一覧')
 
 @section('menubar')
     @parent
-    インデックスページ
 @endsection
 
 @section('content')
     <table>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>mail</th>
+            <th>age</th>
+        </tr>
         @foreach ($items as $item)
             <tr>
+                <td>{{$item->id}}</td>
                 <td>{{$item->name}}</td>
                 <td>{{$item->mail}}</td>
                 <td>{{$item->age}}</td>
@@ -18,16 +24,6 @@
         @endforeach
     </table>
 
-    @component('components.message')
-        @slot('msg_title')
-            CAUTION!
-        @endslot
-
-        @slot('msg_content')
-            気をつけてね
-        @endslot
-        
-    @endcomponent
 
 @endsection
 

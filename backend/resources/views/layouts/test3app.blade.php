@@ -21,6 +21,10 @@
     @section('menubar')
     <h2 class="menutitle">※メニュー</h2>
     <ul>
+        <li><a href="show">show</a></li>
+        <li><a href="add">add</a></li>
+        <li><a href="edit">edit</a></li>
+        <li><a href="delete">delete</a></li>
         <li>@show</li>
     </ul>
     <hr size="1">
