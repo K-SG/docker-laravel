@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\Test4Middleware;
+use App\Http\Middleware\Test4_6Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +29,15 @@ Route::get('test3_1','App\Http\Controllers\Test3Controller@test3');
 Route::get('test3_14','App\Http\Controllers\Test3Controller@test3_14');
 Route::post('test3_14','App\Http\Controllers\Test3Controller@test3_14_post');
 Route::get('test3_27','App\Http\Controllers\Test3Controller@test3_27');
-Route::get('test4_5','App\Http\Controllers\Test3Controller@test3_27');
+
+Route::get('test4_5','App\Http\Controllers\Test4Controller@test4_5')
+    ->middleware(Test4Middleware::class);
+ Route::get('test4_6','App\Http\Controllers\Test4Controller@test4_6')
+    ->middleware('test4');
+Route::get('test4_14','App\Http\Controllers\Test4Controller@test4_14');
+Route::post('test4_14','App\Http\Controllers\Test4Controller@input_check');
+Route::get('test4_18','App\Http\Controllers\Test4Controller@test4_18');
+Route::post('test4_18','App\Http\Controllers\Test4Controller@input_check2');
 
 Route::get('show','App\Http\Controllers\Test5Controller@test5_5');
 Route::get('add','App\Http\Controllers\Test5Controller@add');
@@ -42,3 +52,5 @@ Route::get('test5_11','App\Http\Controllers\Test5Controller@edit');
 Route::post('test5_11','App\Http\Controllers\Test5Controller@update');
 Route::get('test5_14','App\Http\Controllers\Test5Controller@del');
 Route::post('test5_14','App\Http\Controllers\Test5Controller@remove');
+
+
