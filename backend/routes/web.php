@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,8 +13,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+
 });
 
-Route::get('hello', function () {
-    return view('hello');
-});
+Route::get('hello', 'App\Http\Controllers\HelloController@index');
+
+Route::get('/', 'App\Http\Controllers\PagesController@getHome');
+Route::get('/about', 'App\Http\Controllers\PagesController@getAbout');
+Route::get('/contact', 'App\Http\Controllers\PagesController@getContact');
+
+Route::post('hello', 'App\Http\Controllers\HelloController@post');
