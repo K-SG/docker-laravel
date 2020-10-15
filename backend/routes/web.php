@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+// namespace App\Http\Controllers;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,6 +31,10 @@ Route::get('test3_27','App\Http\Controllers\Test3Controller@test3_27');
 Route::get('test4_5','App\Http\Controllers\Test3Controller@test3_27');
 Route::get('test5_5','App\Http\Controllers\Test5Controller@test5_5');
     
-Route::get('hello','HelloController@index');
+Route::get('hello','App\Http\Controllers\HelloController@index');
 
-Route::post('hello','HelloController@post');
+Route::post('hello','App\Http\Controllers\HelloController@post');
+
+Route::get('hello/add','App\Http\Controllers\HelloController@add');
+
+Route::post('hello/add','App\Http\Controllers\HelloController@create');
