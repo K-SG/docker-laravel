@@ -17,10 +17,11 @@ class CalendarController extends Controller
     {
         $date1 = Carbon::createFromDate(2020, 10, 1);
         $date2 = Carbon::createFromDate(2020, 10, 31);
+        //$param = ['id'=>1];
         $param = ['id'=>1,'start_date'=>$date1,'end_date'=>$date2];
 
         $db_items = DB::select('select schedule_date,start_time,min(title) from k_schedule 
-        where user_id = ?id
+        where user_id = :id
         group by schedule_date,start_time'
         ,$param);
         
