@@ -20,3 +20,6 @@ Route::get('/', function () {
 Route::get('hello', function () {
     return view('hello');
 });
+
+
+Route::get('user/calendar','App\Http\Controllers\CalendarController@calendar');
