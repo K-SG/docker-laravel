@@ -14,9 +14,9 @@
 </head>
 <body>
 
-    <script>
+    {{-- <script>
         let array_test =  <?php echo $db_items; ?>;
-    </script>
+    </script> --}}
     
 
 @section('header')
@@ -25,10 +25,8 @@
 @endsection
 <article>
   <input type="hidden" id="list" value='{{$db_items}}' style="display:none">
-  @php
-  echo $db_items;
-  $json_array = json_encode($db_items);
-  @endphp
+  {{-- {{$db_items}} --}}
+
   <div class="calendar-container">
     <div class="calendar-container-inner">
       <div class="calendar-title">
