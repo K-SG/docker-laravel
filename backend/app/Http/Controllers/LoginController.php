@@ -13,7 +13,17 @@ class LoginController extends Controller
 
     public function post(Request $request)
     {
-        $items = DB::table('k_user')->get(['mail','password']);
+        $mail = $request->mail;
+        $password = $request->password;
+        $items = DB::select('select * from k_user where mail = :mail and password = :password', $mail,$password);
+        if (empty($items))
+        {
+            return view('login.login');
+        } else {
+            return view('calender.calender');
+        }
+
+
     }
 
 }
