@@ -1,3 +1,7 @@
+
+@extends('layouts.headerapp')
+@extends('layouts.footerapp')
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,12 +13,20 @@
 <title>予定確認</title>
 </head>
 <body>
-    @section('header')
+
+    {{-- <script>
+        let array_test =  <?php echo $db_items; ?>;
+    </script> --}}
+    
+
+@section('header')
     @parent
     {{--  インデックスページ  --}}
 @endsection
 <article>
-  <input type="hidden" id="list" value='${json}' style="display:none">
+  <input type="hidden" id="list" value='{{$db_items}}' style="display:none">
+  {{-- {{$db_items}} --}}
+
   <div class="calendar-container">
     <div class="calendar-container-inner">
       <div class="calendar-title">
@@ -26,10 +38,20 @@
           </div>
         </form>
         <div class="title-content">
-          <h2 id="month"><c:out value="${month}"/></h2>
+            <h2 id="month">
+                @php
+                    $month = date("m");
+                    print_r($month);
+                @endphp  
+            </h2>
         </div>
         <div class="title-content">
-          <h3 id="year"><c:out value="${year}"/></h3>
+            <h3 id="year">                
+                @php
+                    $year = date("Y");
+                    print_r($year);
+                @endphp 
+            </h3>
         </div>
         <form action="../user/calendar" method="post" id="right-form">
           <input type="hidden" name="flag" value="1">
@@ -67,8 +89,10 @@
   </div>
   <input type="hidden" id="date_servlet"  value='${date}' style="display:none">
 </article>
-<%@ include file="/WEB-INF/views/layout/common/footer.jsp" %>
-<script src="../js/common/common.js"></script>
+@section('footer')
+    @parent   
+@endsection
+<script src="{{ asset('js/common/common.js') }}"></script>
 <script src="{{ asset('js/calendar.js') }}"></script>
 <script src="{{ asset('js/calendar_event.js') }}"></script>
 </body>
