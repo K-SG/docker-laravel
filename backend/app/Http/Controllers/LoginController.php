@@ -13,7 +13,7 @@ class LoginController extends Controller
 
     public function post(Request $request)
     {
-        
+        $items = DB::table('k_user')->get(['mail','password']);
     }
 
 }
