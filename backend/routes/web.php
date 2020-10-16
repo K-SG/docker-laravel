@@ -23,3 +23,4 @@ Route::get('hello', function () {
 
 
 Route::get('user/calendar','App\Http\Controllers\CalendarController@calendar');
+Route::get('user/login','App\Http\Controllers\LoginController@login');
