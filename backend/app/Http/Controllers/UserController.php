@@ -16,13 +16,15 @@ class UserController extends Controller
             'mail' => $request->mail,
             'password'=> $request->password,
         ];
+        
         //入力されてきたメールを条件にユーザーをselect
         //userCount = SELECT COUNT(*) FROM k_user WHERE mail = ?
-        $userCount = DB::select('select count(*) from k_user where mail = :mail', $users->mail);
-        if($userCount){
-            dd($users);
-        }
-        dd($users);
+        // $userCount = DB::select('select count(*) from k_user where mail = :mail', $users);
+        // if($userCount){
+            
+        // }
+        // dd($userCount);
+        
         //if(userCount){popFlag=1(jsでポップアップの表示条件),redirect user_new}
         //if(userCount>=5){popFlag=3()}
 
