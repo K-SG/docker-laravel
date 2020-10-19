@@ -26,3 +26,4 @@ Route::get('user/calendar','App\Http\Controllers\CalendarController@calendar');
 Route::get('login','App\Http\Controllers\LoginController@login');
 Route::get('usernew','App\Http\Controllers\UserController@usernew');
 Route::post('usercreate', 'App\Http\Controllers\UserController@usercreate');
+Route::post('login','App\Http\Controllers\LoginController@post');
