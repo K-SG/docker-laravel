@@ -18,11 +18,13 @@ class LoginController extends Controller
         $db_pass = DB::select('select * from k_user where password = ?', [$request->password]);
         if (empty($db_mail))
         {
-            return view('login.login');
+            $popup_flag = 2;
+            return view('login.login', ['popFlag' => $popup_flag]);
         } else {
             if (empty($db_pass)) 
             {
-                return view('login.login');
+                $popup_flag = 2;
+                return view('login.login', ['popFlag' => $popup_flag]);
             } else {
                 return redirect('/user/calendar');
             }
