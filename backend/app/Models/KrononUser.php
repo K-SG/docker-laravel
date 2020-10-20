@@ -8,9 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class KrononUser extends Model
 {
     use HasFactory;
-    // protected $table = "kronon_user";
 
-    public function scopeMailEqual($query, $mail)
+    public function scopeSelectByMail($query, $mail)
     {
         return $query->where('mail', $mail);
     }

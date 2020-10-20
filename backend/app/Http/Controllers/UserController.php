@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Models\KrononUser;
 
 class UserController extends Controller
@@ -11,7 +10,7 @@ class UserController extends Controller
     public function add()
     {
         //ポップアップを表示しないためのフラグ
-        $popup_flag = 7;
+        $popup_flag = 2;
         return view('user.user_new', ['popFlag' => $popup_flag]);
     }
     public function register(Request $request)
