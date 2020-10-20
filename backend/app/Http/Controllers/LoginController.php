@@ -14,23 +14,21 @@ class LoginController extends Controller
 
     public function post(Request $request)
     {
-        $db_mail = DB::select('select * from k_user where mail = ?', [$request->mail]);
-        $db_pass = DB::select('select * from k_user where password = ?', [$request->password]);
-        if (empty($db_mail))
+        $mail = $request->mail;
+        $password = $request->password;
+        $items = DB::table('k_user')
+            ->where('mail', $mail)
+            ->where('password', $password)
+            ->get();
+
+        if ($items->isEmpty())
         {
-            $popup_flag = 2;
-            return view('login.login', ['popFlag' => $popup_flag]);
+            $popFlag = 2;
+            return view('login.login', ['popFlag' => $popFlag]);
         } else {
-            if (empty($db_pass)) 
-            {
-                $popup_flag = 2;
-                return view('login.login', ['popFlag' => $popup_flag]);
-            } else {
-                return redirect('/user/calendar');
-            }
+            return redirect('/user/calendar');
         }
-
-
+    
     }
 
 }
