@@ -4,37 +4,43 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
-use App\Models\K_User;
+use App\Models\KrononUser;
 
 class UserController extends Controller
 {
-
-    public function usernew(){
-        // $show_user_all = K_User::all();
-        // dd($show_user_all);
-        $popFlag = 7;
-        return view('user.user_new',['popFlag'=>$popFlag]);
+    public function add()
+    {
+        //ポップアップを表示しないためのフラグ
+        $popup_flag = 7;
+        return view('user.user_new', ['popFlag' => $popup_flag]);
     }
-    public function usercreate(Request $request){
-        $popFlag = 0;
-        $users = [
-            'user_name' => $request->userName,
-            'mail' => $request->mail,
-            'password'=> $request->password,
-        ];
-        $mailparam = ['mail' => $request->mail];
-        
-        //入力されてきたメールを条件にユーザーをselect
-        //userCount = SELECT COUNT(*) FROM k_user WHERE mail = ?
-        // $bookingUser = DB::select('select * from k_user where mail = :mail', $mailparam);
-        // $bookingUser = DB::table('k_user')->where('mail',$mailparam);
-        $booking_user = K_User::all()->where('mail',$mailparam);
-        if($booking_user != null){
-            $popFlag = 1;
-            return view('user.user_new',['popFlag'=> $popFlag]);
+    public function register(Request $request)
+    {
+        $popup_flag = 0;
+        // $users = [
+        //     'user_name' => $request->userName,
+        //     'mail' => $request->mail,
+        //     'password' => $request->password,
+        // ];
+        //データ取得
+        // $booking_user = KrononUser::where('mail',$mail)->get();
+        $booking_user = KrononUser::mailEqual($request->mail)->get();
+        // empty($booking_user)isset($booking_user[0])
+        if (count($booking_user) != 0) {
+            //メールアドレスと被った際のポップアップを出すためのフラグ
+            $popup_flag = 1;
+            return view('user.user_new', ['popFlag' => $popup_flag]);
         }
-        DB::table('k_user')->insert($users);
-        return view('user.user_new',['popFlag'=>$popFlag]);
+        // DB::table('kronon_users')->insert($users);
+        $krononUser = new KrononUser;
+        
+        $krononUser->user_name = $request->userName;
+        $krononUser->mail = $request->mail;
+        $krononUser->password = $request->password;
+        $krononUser->timestamps = false; 
+        unset($krononUser['_token']);
+        $krononUser->save();
+        
+        return view('user.user_new', ['popFlag' => $popup_flag]);
     }
 }

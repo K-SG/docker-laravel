@@ -88,7 +88,7 @@ $(function () {
 	});
 	/*登録完了ポップアップのOKボタン押下時の遷移先*/
 	$('.next-popup').click(function () {
-        location.href= "/kronon/user/calendar";
+        location.href= "user/calendar";
 	});
 	$('#submit-user').click(function(){
 		$('#id_create_form').submit();
