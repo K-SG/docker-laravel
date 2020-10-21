@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\KrononUser;
 
 class LoginController extends Controller
 {
@@ -16,10 +16,7 @@ class LoginController extends Controller
     {
         $mail = $request->mail;
         $password = $request->password;
-        $items = DB::table('k_user')
-            ->where('mail', $mail)
-            ->where('password', $password)
-            ->get();
+        $items = KrononUser::LoginCheck($mail, $password)->get();
 
         if ($items->isEmpty())
         {
