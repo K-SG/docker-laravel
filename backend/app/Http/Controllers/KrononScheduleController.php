@@ -38,7 +38,11 @@ class KrononScheduleController extends Controller
         $db_items = KrononSchedule::getFirstScheduleByUserIdWithPeriod($user_id, $period);
 
 
-        $items = ['schedule_list' => json_encode($db_items), 'period' => $period];
+        $items = [
+            'schedule_list' => json_encode($db_items), 
+            'period' => $period, 
+            'month_counter' => $month_counter
+        ];
         return view('calendar.calendar',$items);
     
     }

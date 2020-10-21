@@ -22,5 +22,8 @@ Route::get('hello', function () {
 });
 
 
-Route::get('user/calendar','App\Http\Controllers\CalendarController@calendar');
-Route::post('user/calendar','App\Http\Controllers\CalendarController@calendar');
+// Route::get('user/calendar','App\Http\Controllers\CalendarController@calendar');
+// Route::post('user/calendar','App\Http\Controllers\CalendarController@calendar');
+
+Route::get('user/calendar','App\Http\Controllers\KrononScheduleController@calendar');
+Route::post('user/calendar','App\Http\Controllers\KrononScheduleController@calendar');

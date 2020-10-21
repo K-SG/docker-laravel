@@ -17,8 +17,8 @@
     <script>
         //let array_test = {{$schedule_list}};
         // 表示する年月の取得
-        let year = {{$year}}; // 2020
-        let month = {{$month}} -1; // 7-1
+        let year = {{$period['year']}}; // 2020
+        let month = {{$period['month']}} -1; // 7-1
 
     </script>
     
@@ -33,7 +33,8 @@
   <div class="calendar-container">
     <div class="calendar-container-inner">
       <div class="calendar-title">
-        <form action="calendar" method="get" id="left-form">
+        <form action="calendar" method="post" id="left-form">
+          @csrf
           <input type="hidden" name="flag" value="0">
           <input type="hidden" name="month_counter" value={{$month_counter-1}}>
           <div class="title-content">
@@ -42,26 +43,16 @@
         </form>
         <div class="title-content">
             <h2 id="month">
-              {{$month}}
-                {{-- @php
-                    $month = date("m");
-                    print_r($month);
-                @endphp   --}}
+              {{$period['month']}}
             </h2>
         </div>
         <div class="title-content">
             <h3 id="year">
-              {{$year}}                
-                {{-- @php
-                    $year = date("Y");
-                    print_r($year);
-                @endphp  --}}
+              {{$period['year']}}                
             </h3>
         </div>
-        <form action="calendar" method="get" id="right-form">
-          {{-- <input type="hidden" name="flag" value="1">
-          <input type="hidden" name="month" value={{$month}}>
-          <input type="hidden" name="year" value={{$year}}> --}}
+        <form action="calendar" method="post" id="right-form">
+          @csrf
           <input type="hidden" name="month_counter" value={{$month_counter+1}}>
           <div class="title-content">
             <img src="{{ asset('img/right_button.png') }}" alt="right" id="right" class="right triangle-button">
