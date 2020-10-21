@@ -7,12 +7,12 @@ use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
-    public function login()
+    public function topPage()
     {
         return view('login.login');
     }
 
-    public function post(Request $request)
+    public function login(Request $request)
     {
         $mail = $request->mail;
         $password = $request->password;
