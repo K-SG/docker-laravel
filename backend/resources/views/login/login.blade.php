@@ -37,7 +37,6 @@
       </div>
 
       <form action="usernew" id="next-page">
-          @csrf
         <input type="hidden" id="preUserCount" value="">
         <input class="register-button" value="新規登録">
       </form>
