@@ -22,12 +22,12 @@ class KrononScheduleController extends Controller
         $month_counter = 0;
 
 
-        if(isset($request->month_counter)){
+        if (isset($request->month_counter)) {
             $month_counter = $request->month_counter;
         }
 
-        $user_id = 1;//最終的にはログイン情報に応じて変更
-        $string = $month_counter.' '.'month';
+        $user_id = 1; //最終的にはログイン情報に応じて変更
+        $string = $month_counter . ' ' . 'month';
         $period = [
             'date_first' => date('Y-m-01', strtotime($string)),
             'date_end' => date('Y-m-t', strtotime($string)),
@@ -39,11 +39,10 @@ class KrononScheduleController extends Controller
 
 
         $items = [
-            'schedule_list' => json_encode($db_items), 
-            'period' => $period, 
+            'schedule_list' => json_encode($db_items),
+            'period' => $period,
             'month_counter' => $month_counter
         ];
-        return view('calendar.calendar',$items);
-    
+        return view('calendar.calendar', $items);
     }
 }
