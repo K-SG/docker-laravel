@@ -24,6 +24,11 @@ Route::get('hello', function () {
 
 Route::get('user/calendar','App\Http\Controllers\CalendarController@calendar');
 Route::get('login','App\Http\Controllers\LoginController@login');
+<<<<<<< HEAD
 Route::get('usernew','App\Http\Controllers\UserController@usernew');
 Route::post('usercreate', 'App\Http\Controllers\UserController@usercreate');
 Route::post('login','App\Http\Controllers\LoginController@post');
+=======
+Route::get('usernew','App\Http\Controllers\UserController@add');
+Route::post('usercreate', 'App\Http\Controllers\UserController@register');
+>>>>>>> sugi-kronon

@@ -27,13 +27,21 @@ $(function () {
 	    let password2 = document.getElementById('create_password2').value;
 
 	    if(userName.trim() == '' || mail == '' || password1 == '' || password2 == ''){
-	    	popFlag = 2;
+	    	$('.create-msg').html('入力されていない<br>項目があるよ！');
+	        $('.create-popup').fadeIn();
+	        return;
 	    }else if(!mail.match(/^[A-Za-z0-9]+[\w\-_]+@[\w\._]+\.\w{2,}$/)){
-	    	popFlag = 3;
+			$('.create-msg').html('メールアドレスが<br>不正だよ！');
+	        $('.create-popup').fadeIn();
+	        return;
         }else if(password1.length < 8 || !(password1.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)&& password1.match(/([0-9])/)) || !(password1.match(/([a-zA-Z])/) && password1.match(/([0-9])/))){
-	        popFlag = 4;
+			$('.create-msg').html('パスワードの条件を<br>満たしていないよ！');
+	        $('.create-popup').fadeIn();
+	        return;
 	    }else if(password1 !== password2){
-	        popFlag = 5;
+			$('.create-msg').html('パスワードが<br>一致していないよ！');
+	        $('.create-popup').fadeIn();
+	        return;
 	    }else{
 	    	popFlag = 0;
 	    }
@@ -57,26 +65,6 @@ $(function () {
 	        $('user-create-form').submit();
 	        return;
 	      }
-	    if(popFlag == 2){
-	        $('.create-msg').html('入力されていない<br>項目があるよ！');
-	        $('.create-popup').fadeIn();
-	        return;
-	      }
-	    if(popFlag == 3){
-	        $('.create-msg').html('メールアドレスが<br>不正だよ！');
-	        $('.create-popup').fadeIn();
-	        return;
-	      }
-	    if(popFlag == 4){
-	        $('.create-msg').html('パスワードの条件を<br>満たしていないよ！');
-	        $('.create-popup').fadeIn();
-	        return;
-	      }
-	    if(popFlag == 5){
-	        $('.create-msg').html('パスワードが<br>一致していないよ！');
-	        $('.create-popup').fadeIn();
-	        return;
-	      }
 	  });
 
 	/*ポップアップを閉じる*/
@@ -88,7 +76,7 @@ $(function () {
 	});
 	/*登録完了ポップアップのOKボタン押下時の遷移先*/
 	$('.next-popup').click(function () {
-        location.href= "/kronon/user/calendar";
+        location.href= "user/calendar";
 	});
 	$('#submit-user').click(function(){
 		$('#id_create_form').submit();
