@@ -14,48 +14,55 @@
 </head>
 <body>
 
-    {{-- <script>
-        let array_test =  <?php echo $db_items; ?>;
-    </script> --}}
+    <script>
+        //let array_test = {{$schedule_list}};
+        // 表示する年月の取得
+        let year = {{$year}}; // 2020
+        let month = {{$month}} -1; // 7-1
+
+    </script>
     
 
 @section('header')
     @parent
-    {{--  インデックスページ  --}}
 @endsection
 <article>
-  <input type="hidden" id="list" value='{{$db_items}}' style="display:none">
+  <input type="hidden" id="list" value='{{$schedule_list}}' style="display:none">
   {{-- {{$db_items}} --}}
 
   <div class="calendar-container">
     <div class="calendar-container-inner">
       <div class="calendar-title">
-        <form action="../user/calendar" method="post" id="left-form">
+        <form action="calendar" method="get" id="left-form">
           <input type="hidden" name="flag" value="0">
-          <input type="hidden" name="date" value="${date}">
+          <input type="hidden" name="month_counter" value={{$month_counter-1}}>
           <div class="title-content">
             <img src="{{ asset('img/left_button.png') }}" alt="left"  id="left" class="left triangle-button">
           </div>
         </form>
         <div class="title-content">
             <h2 id="month">
-                @php
+              {{$month}}
+                {{-- @php
                     $month = date("m");
                     print_r($month);
-                @endphp  
+                @endphp   --}}
             </h2>
         </div>
         <div class="title-content">
-            <h3 id="year">                
-                @php
+            <h3 id="year">
+              {{$year}}                
+                {{-- @php
                     $year = date("Y");
                     print_r($year);
-                @endphp 
+                @endphp  --}}
             </h3>
         </div>
-        <form action="../user/calendar" method="post" id="right-form">
-          <input type="hidden" name="flag" value="1">
-          <input type="hidden" name="date" value="${date}">
+        <form action="calendar" method="get" id="right-form">
+          {{-- <input type="hidden" name="flag" value="1">
+          <input type="hidden" name="month" value={{$month}}>
+          <input type="hidden" name="year" value={{$year}}> --}}
+          <input type="hidden" name="month_counter" value={{$month_counter+1}}>
           <div class="title-content">
             <img src="{{ asset('img/right_button.png') }}" alt="right" id="right" class="right triangle-button">
           </div>
