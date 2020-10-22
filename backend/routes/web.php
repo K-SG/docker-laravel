@@ -32,10 +32,7 @@ Route::get('login','App\Http\Controllers\LoginController@topPage');
 Route::post('login','App\Http\Controllers\LoginController@login');
 Route::get('usernew','App\Http\Controllers\UserController@add');
 Route::post('usercreate', 'App\Http\Controllers\UserController@register');
-<<<<<<< HEAD
 // Auth::routes();
-=======
-//Auth::routes();
->>>>>>> nakane-kronon
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
