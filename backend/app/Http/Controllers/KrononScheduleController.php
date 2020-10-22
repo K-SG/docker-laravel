@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\KrononSchedule;
+use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
@@ -35,7 +35,7 @@ class KrononScheduleController extends Controller
             'month' => date("m", strtotime($string)),
         ];
 
-        $db_items = KrononSchedule::getFirstScheduleByUserIdWithPeriod($user_id, $period);
+        $db_items = Schedule::getFirstScheduleByUserIdWithPeriod($user_id, $period);
 
 
         $items = [
