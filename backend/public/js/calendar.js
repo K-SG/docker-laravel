@@ -33,9 +33,8 @@ console.log(json);
   // 表示する年月の取得
   // let year = document.getElementById("year").textContent; // 2020
   // let month = document.getElementById("month").textContent -1; ; // 7-1
-  let year = 2020;
-  let month = 9;
-
+  // let year = 2020;
+  // let month = 9;
 
 // 指定された3年間外にアクセスできないように、端では左右ボタンを表示しない
   if((start_month.getMonth() == month)&&(start_month.getYear()+1900 == year)){
