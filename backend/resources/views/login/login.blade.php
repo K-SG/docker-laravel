@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="{{ asset('css/login.css') }}">
   <link href="{{ asset('css/common/app.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ asset('css/common/common.css') }}" rel="stylesheet" type="text/css">
-  <link href="{{ asset('css/common/blackborad.css') }}" rel="stylesheet" type="text/css">
+  <!-- <link href="{{ asset('css/common/blackborad.css') }}" rel="stylesheet" type="text/css"> -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <title>ログイン</title>
@@ -37,7 +37,6 @@
       </div>
 
       <form action="usernew" id="next-page">
-          @csrf
         <input type="hidden" id="preUserCount" value="">
         <input class="register-button" value="新規登録">
       </form>

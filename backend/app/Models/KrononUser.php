@@ -13,4 +13,9 @@ class KrononUser extends Model
     {
         return $query->where('mail', $mail);
     }
+
+    public function scopeLoginCheck($query, $mail, $password)
+    {
+        return $query->where('mail', $mail)->where('password', $password);
+    }
 }
