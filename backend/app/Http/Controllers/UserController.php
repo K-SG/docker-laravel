@@ -18,6 +18,7 @@ class UserController extends Controller
         //登録完了ポップアップを表示するためのフラグ
         $popup_flag = 0;
         //バリデーション$request->mailformrequest
+        
         $booking_user = KrononUser::SelectByMail($request->mail)->get();
         if (count($booking_user) != 0) {
             //メールアドレスと被った際のポップアップを表示するためのフラグ
