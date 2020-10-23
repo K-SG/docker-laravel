@@ -42,7 +42,7 @@
       </form>
 
 
-  	  <!--エラーポップアップ------------------------------------------------------------------->
+	<!--エラーポップアップ------------------------------------------------------------------->
       <div class="popup-wrapper error-popup">
         <div class="pop-container">
           <div class="close-popup"> <img src="{{ asset('img/close_button_orange.png') }}" alt="閉じる" class="back-button"></div>
