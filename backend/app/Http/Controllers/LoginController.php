@@ -16,14 +16,24 @@ class LoginController extends Controller
     {
         $mail = $request->mail;
         $password = $request->password;
-        $items = KrononUser::LoginCheck($mail, $password)->get();
+//        $items = KrononUser::LoginCheck($mail, $password)->get();
 
-        if ($items->isEmpty())
+        // if ($items->isEmpty())
+        // {
+        //     $popFlag = 2;
+        //     return view('login.login', ['popFlag' => $popFlag]);
+        // } else {
+        //     return redirect('/user/calendar');
+        // }
+
+        if (Auth::attempt(['email' => $mail,
+                            'password' => $password])) 
         {
+            return redirect('/user/calendar');
+        } else {
+            $msg = 'ログインに失敗しました。';
             $popFlag = 2;
             return view('login.login', ['popFlag' => $popFlag]);
-        } else {
-            return redirect('/user/calendar');
         }
     
     }
