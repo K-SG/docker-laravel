@@ -25,6 +25,8 @@ class UserController extends Controller
             $popup_flag = 1;
             return view('user.user_new', ['popFlag' => $popup_flag]);
         }
+
+        
         $krononUser = new KrononUser;
         //バリデーション
         //値を保存formrequest
