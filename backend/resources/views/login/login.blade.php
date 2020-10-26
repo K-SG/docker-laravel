@@ -21,7 +21,7 @@
       <img class="logo_login" alt="ログインロゴ" src="{{ asset('img/star/logo_login.png') }}">
 
       <div class="login_company">
-      <p>{{$message ?? ''}}</p>
+      <p>{{$message}}</p>
         <!-- （株）くろ☆のす -->
       </div>
 
