@@ -18,13 +18,9 @@ class KrononScheduleController extends Controller
         //     throw new BadRequestException(); // こんな感じの例外を返す
         // }
 
-        //現在の年月を基準とした時の、表示する年月の差分        
-        $month_counter = 0;
-
-
-        if (isset($request->month_counter)) {
-            $month_counter = $request->month_counter;
-        }
+        //現在の年月を基準とした時の、表示する年月の差分  
+        //$request->month_counterがnullであれば0を格納          
+        $month_counter = $request->month_counter ?? 0;
 
         $user_id = 1; //最終的にはログイン情報に応じて変更
         $string = $month_counter . ' ' . 'month';
@@ -36,13 +32,13 @@ class KrononScheduleController extends Controller
         ];
 
         $db_items = Schedule::getFirstScheduleByUserIdWithPeriod($user_id, $period);
-
-
+        
         $items = [
             'schedule_list' => json_encode($db_items),
             'period' => $period,
             'month_counter' => $month_counter
         ];
+
         return view('calendar.calendar', $items);
     }
 }
