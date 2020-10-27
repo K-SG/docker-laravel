@@ -6,6 +6,8 @@ use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Validator;
+use App\Exceptions\BadRequestException;
 
 class KrononScheduleController extends Controller
 {
@@ -14,9 +16,9 @@ class KrononScheduleController extends Controller
     {
 
         // リクエストを検証を行う（後日書きます）
-        // if (!$this->isValidRequestForCalendar($request)) {
-        //     throw new BadRequestException(); // こんな感じの例外を返す
-        // }
+        if (!$this->isValidRequestForCalendar($request)) {
+            throw new BadRequestException($request,["CalendarRequestError"]); // こんな感じの例外を返す
+        }
 
         //現在の年月を基準とした時の、表示する年月の差分  
         //$request->month_counterがnullであれば0を格納          
@@ -40,5 +42,22 @@ class KrononScheduleController extends Controller
         ];
 
         return view('calendar.calendar', $items);
+    }
+
+    public function isValidRequestForCalendar($request){
+        if(isset($request->month_counter)){
+            $this->validate($request,['month_counter','numeric']);
+
+            $validator = Validator::make($request->all(), [
+                'month_counter' => 'numeric',
+            ]);
+
+            if ($validator->fails()) {
+                return false;
+                //throw new BadRequestException($request, $validator->errors()->all());
+            }
+
+        }
+        return true;
     }
 }
