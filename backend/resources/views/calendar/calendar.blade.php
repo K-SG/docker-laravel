@@ -30,7 +30,6 @@
         <div class="calendar-title">
             <form action="calendar" method="post" id="left-form">
             @csrf
-            <input type="hidden" name="flag" value="0">
             <input type="hidden" name="month_counter" value="{{$month_counter-1}}">
             <div class="title-content">
                 <img src="{{ asset('img/left_button.png') }}" alt="left" id="left" class="left triangle-button">

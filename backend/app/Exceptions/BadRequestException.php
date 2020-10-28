@@ -38,6 +38,7 @@ class BadRequestException extends Exception
     //レスポンスとして返したい内容を設定している
     public function render()
     {
+        //エラーメッセージは表示するべきだろうか
         // return response()->json(
         //     $this->message,
         //     422
