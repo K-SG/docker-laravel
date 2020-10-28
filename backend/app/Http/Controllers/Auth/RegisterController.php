@@ -2,12 +2,20 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Auth\Events\Registered;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Http\JsonResponse;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+
+const POPUP_FLAG_COMPLETED = 1;
+const POPUP_FLAG_MAIL_DUPLICATED = 2;
+const POPUP_FLAG_NONE = 0;
+
 
 class RegisterController extends Controller
 {
@@ -21,7 +29,7 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
+    //traitを読み込む
     use RegistersUsers;
 
     /**
@@ -70,5 +78,26 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function register(Request $request)
+    {
+        $booking_user = User::SelectByMail($request->email)->first();
+        if ($booking_user != null) {
+            return view('auth.register', ['popFlag' => POPUP_FLAG_MAIL_DUPLICATED]);
+        }
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+            ? new JsonResponse([], 201)
+            : redirect($this->redirectPath());
     }
 }
