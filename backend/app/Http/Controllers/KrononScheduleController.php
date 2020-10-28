@@ -14,8 +14,7 @@ class KrononScheduleController extends Controller
 
     public function calendar(Request $request)
     {
-
-        // リクエストを検証を行う（後日書きます）
+        // リクエストを検証を行う
         if (!$this->isValidRequestForCalendar($request)) {
             throw new BadRequestException($request,["CalendarRequestError"]); // こんな感じの例外を返す
         }

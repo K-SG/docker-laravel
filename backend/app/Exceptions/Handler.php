@@ -46,9 +46,9 @@ class Handler extends ExceptionHandler
      * @param  \Symfony\Component\HttpKernel\Exception\HttpException  $e
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    protected function renderHttpException(HttpExceptionInterface $e)
-    {
-        $status = $e->getStatusCode();
-        return response()->view("error.error", ['exception' => $e], $status);
-    }
+    // protected function renderHttpException(HttpExceptionInterface $e)
+    // {
+    //     $status = $e->getStatusCode();
+    //     return response()->view("error.error", ['exception' => $e], $status);
+    // }
 }
