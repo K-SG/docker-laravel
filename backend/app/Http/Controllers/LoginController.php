@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\KrononUser;
 use Illuminate\Support\Facades\Auth;
 
+const POPUP_FLAG_IMPUT_ERROR = 2;
+
 class LoginController extends Controller
 {
     public function topPage()
     {
-        $param = ['message' => 'ログイン'];
-        return view('auth.login', $param);
+        return view('auth.login');
     }
 
     public function login(Request $request)
@@ -31,9 +32,7 @@ class LoginController extends Controller
         {
             return redirect('/user/calendar');
         } else {
-            $msg = 'ログインに失敗しました。';
-            $popFlag = 2;
-            return view('auth.login', ['message' => $msg, 'popFlag' => $popFlag]);
+            return view('auth.login', ['popFlag' => POPUP_FLAG_IMPUT_ERROR]);
         }
     
     }

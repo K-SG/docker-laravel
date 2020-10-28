@@ -33,7 +33,7 @@
                        document.getElementById('logout-form').submit();">
                     ログアウト
                </a>
-
+               
                 <form id="logout-form" action="../mylogout" method="POST" class="d-none">
                 @csrf
                 </form>

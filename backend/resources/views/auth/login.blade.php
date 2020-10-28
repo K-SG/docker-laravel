@@ -25,25 +25,13 @@
         (株）くろ☆のす 
       </div>
 
-      <form action="login" method="post" class="login-form">
+      <form action="{{ route('login') }}" method="post" class="login-form">
         @csrf
         <input type="text" name="email" id="login_mail" class="login_textbox" placeholder="メールアドレス" maxlength = "100" value="{{old('mail')}}"><br>
         <input type="password" name="password" id="login_pass" class="login_textbox" placeholder="パスワード" maxlength = "20"><br>
-        <input type="hidden" id="flag" value="${popFlag}">
+        <input type="hidden" id="flag" value="{{$popFlag ?? '0'}}">
         <input type="button" class="login-button" value="ログイン">
-      </form>
-
-      <div class="login_account">
-        アカウントを持っていないかな？
-      </div>
-
-      <form action="register" id="next-page">
-        <input type="hidden" id="preUserCount" value="">
-        <input class="register-button" value="新規登録">
-      </form>
-
-
-  	  <!--エラーポップアップ------------------------------------------------------------------->
+        <!--エラーポップアップ------------------------------------------------------------------->
       <div class="popup-wrapper error-popup">
         <div class="pop-container">
           <div class="close-popup"> <img src="{{ asset('img/close_button_orange.png') }}" alt="閉じる" class="back-button"></div>
@@ -57,6 +45,17 @@
         </div>
       </div>
       <!--エラーポップアップここまで-------------------------------------------------------------->
+      </form>
+
+      <div class="login_account">
+        アカウントを持っていないかな？
+      </div>
+
+      <form action="register" id="next-page">
+        <input type="hidden" id="preUserCount" value="">
+        <input class="register-button" value="新規登録">
+      </form>
+  	  
     </div>
   </article>
 
