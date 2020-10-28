@@ -26,9 +26,7 @@
               <div class="nav-right-img">
                 <a type="button" class="logout-button"><img class="logout-icon" alt="ログアウト" src="{{ asset('img/logout_icon.png') }}"></a>
               </div>
-<<<<<<< HEAD
               <div class="nav-right-user">{{ Auth::user()->name }}としてログイン中</div>
-=======
               <div class="nav-right-user" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="../mylogout"
                    onclick="event.preventDefault();
@@ -40,8 +38,6 @@
                 @csrf
                 </form>
              </div>
-              {{-- <div class="nav-right-user"><c:out value="${userName}"></c:out>としてログイン中</div> --}}
->>>>>>> logout
             </div>
           </ul>
         </div>
