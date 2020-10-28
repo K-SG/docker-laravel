@@ -24,12 +24,8 @@ class LoginController extends Controller
         {
             return redirect('/user/calendar');
         } else {
-<<<<<<< HEAD
-            return view('auth.login', ['popFlag' => POPUP_FLAG_IMPUT_ERROR]);
-=======
             $popFlag = 2;
             return view('auth.login', ['email' => $email, 'popFlag' => $popFlag]);
->>>>>>> logout
         }
 
         // $items = KrononUser::LoginCheck($mail, $password)->get();

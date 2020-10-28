@@ -33,13 +33,8 @@ Route::get('user/scheduleshowall', 'App\Http\Controllers\KrononScheduleControlle
 Route::post('user/scheduleshowall', 'App\Http\Controllers\KrononScheduleController@scheduleshowall');
 
 //Route::get('user/calendar','App\Http\Controllers\CalendarController@calendar');
-<<<<<<< HEAD
-Route::get('login','App\Http\Controllers\LoginController@topPage');
-// Route::post('login','App\Http\Controllers\LoginController@login');
-=======
 Route::get('mylogin','App\Http\Controllers\LoginController@topPage');
 Route::post('mylogin','App\Http\Controllers\LoginController@login');
->>>>>>> logout
 // Route::get('usernew','App\Http\Controllers\UserController@add');
 // Route::post('usercreate', 'App\Http\Controllers\UserController@register');
 Auth::routes();
