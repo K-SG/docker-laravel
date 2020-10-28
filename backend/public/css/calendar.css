@@ -236,3 +236,7 @@ td .yotei {
 	top: 100%;
 	left: 50%;
 }
+
+#list{
+	display:none;
+}
