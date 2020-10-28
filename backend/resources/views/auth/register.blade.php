@@ -21,7 +21,7 @@
 				<input type="text" name="email" id="create_mail" class="create_textbox" placeholder="メールアドレス" maxlength="100" value={{old('email')}}><br>
 				<input type="password" name="password" id="create_password1" class="create_textbox" placeholder="パスワード" maxlength="20" value={{old('password')}}><br>
 				<input type="password" name="password_confirmation" id="create_password2" class="create_textbox" placeholder="パスワード確認" maxlength="20" value={{old('password')}}><br>
-				<input type="hidden" id="flag" value="{{$popFlag ?? ''}}"> 
+				<input type="hidden" id="flag" value="{{$popFlag ?? '0'}}"> 
 				<input type="button" class="user-create-button" value="新規登録">
 				<!--エラーポップアップ------------------------------------------------------------------->
 				<div class="popup-wrapper error-popup create-popup">
