@@ -78,6 +78,7 @@
             </div>
         </div>
         </div>
+
     </div>
     <input type="hidden" id="date_servlet"  value='${date}' style="display:none">
     </article>
