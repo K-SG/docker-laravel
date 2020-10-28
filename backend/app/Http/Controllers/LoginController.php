@@ -19,7 +19,20 @@ class LoginController extends Controller
     {
         $email = $request->email;
         $password = $request->password;
-//        $items = KrononUser::LoginCheck($mail, $password)->get();
+
+        if (Auth::attempt(['email' => $email, 'password' => $password])) 
+        {
+            return redirect('/user/calendar');
+        } else {
+<<<<<<< HEAD
+            return view('auth.login', ['popFlag' => POPUP_FLAG_IMPUT_ERROR]);
+=======
+            $popFlag = 2;
+            return view('auth.login', ['email' => $email, 'popFlag' => $popFlag]);
+>>>>>>> logout
+        }
+
+        // $items = KrononUser::LoginCheck($mail, $password)->get();
 
         // if (!KrononUser::existsUser($email,$password))
         // {
@@ -27,13 +40,6 @@ class LoginController extends Controller
         // }
         //
         // return view('login.login', ['popFlag' => $popFlag]);
-
-        if (Auth::attempt(['email' => $email, 'password' => $password])) 
-        {
-            return redirect('/user/calendar');
-        } else {
-            return view('auth.login', ['popFlag' => POPUP_FLAG_IMPUT_ERROR]);
-        }
     
     }
 

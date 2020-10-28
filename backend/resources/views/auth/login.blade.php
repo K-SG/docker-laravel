@@ -25,9 +25,13 @@
         (株）くろ☆のす 
       </div>
 
+<<<<<<< HEAD
       <form action="{{ route('login') }}" method="post" class="login-form">
+=======
+      <form action="mylogin" method="post" class="login-form">
+>>>>>>> logout
         @csrf
-        <input type="text" name="email" id="login_mail" class="login_textbox" placeholder="メールアドレス" maxlength = "100" value="{{old('mail')}}"><br>
+        <input type="text" name="email" id="login_mail" class="login_textbox" placeholder="メールアドレス" maxlength = "100" value="{{$email ?? ''}}"><br>
         <input type="password" name="password" id="login_pass" class="login_textbox" placeholder="パスワード" maxlength = "20"><br>
         <input type="hidden" id="flag" value="{{$popFlag ?? '0'}}">
         <input type="button" class="login-button" value="ログイン">
