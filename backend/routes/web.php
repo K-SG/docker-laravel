@@ -29,10 +29,10 @@ Route::get('hello', function () {
 Route::get('user/calendar', 'App\Http\Controllers\KrononScheduleController@calendar');
 Route::post('user/calendar', 'App\Http\Controllers\KrononScheduleController@calendar');
 //Route::get('user/calendar','App\Http\Controllers\CalendarController@calendar');
-Route::get('login','App\Http\Controllers\LoginController@topPage');
-Route::post('login','App\Http\Controllers\LoginController@login');
-Route::get('usernew','App\Http\Controllers\UserController@add');
-Route::post('usercreate', 'App\Http\Controllers\UserController@register');
+// Route::get('login','App\Http\Controllers\LoginController@topPage');
+// Route::post('login','App\Http\Controllers\LoginController@login');
+// Route::get('usernew','App\Http\Controllers\UserController@add');
+// Route::post('usercreate', 'App\Http\Controllers\UserController@register');
 Auth::routes();
 
 

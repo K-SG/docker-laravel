@@ -18,7 +18,8 @@ trait RegistersUsers
      */
     public function showRegistrationForm()
     {
-        return view('auth.register');
+        $popFlag = 2;
+        return view('auth.register', ['popFlag' => $popFlag]);
     }
 
     /**

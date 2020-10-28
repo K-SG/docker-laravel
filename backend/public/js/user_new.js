@@ -59,6 +59,7 @@ $(document).ready(function () {
 		$("user-create-form").submit();
 		return;
 	}
+	/*以下エラーチェック*/
     function isValidAllRequired(inputUserInformation) {
         if (
 			inputUserInformation.userName.trim() == "" ||
