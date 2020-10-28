@@ -10,15 +10,23 @@ class LoginController extends Controller
 {
     public function topPage()
     {
-        $param = ['message' => 'ログイン'];
-        return view('auth.login', $param);
+        return view('auth.login');
     }
 
     public function login(Request $request)
     {
         $email = $request->email;
         $password = $request->password;
-//        $items = KrononUser::LoginCheck($mail, $password)->get();
+
+        if (Auth::attempt(['email' => $email, 'password' => $password])) 
+        {
+            return redirect('/user/calendar');
+        } else {
+            $popFlag = 2;
+            return view('auth.login', ['email' => $email, 'popFlag' => $popFlag]);
+        }
+
+        // $items = KrononUser::LoginCheck($mail, $password)->get();
 
         // if (!KrononUser::existsUser($email,$password))
         // {
@@ -26,15 +34,6 @@ class LoginController extends Controller
         // }
         //
         // return view('login.login', ['popFlag' => $popFlag]);
-
-        if (Auth::attempt(['email' => $email, 'password' => $password])) 
-        {
-            return redirect('/user/calendar');
-        } else {
-            $msg = 'ログインに失敗しました。';
-            $popFlag = 2;
-            return view('auth.login', ['message' => $msg, 'popFlag' => $popFlag]);
-        }
     
     }
 

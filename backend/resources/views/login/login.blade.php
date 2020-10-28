@@ -25,7 +25,7 @@
         <!-- （株）くろ☆のす -->
       </div>
 
-      <form action="login" method="post" class="login-form">
+      <form action="mylogin" method="post" class="login-form">
         @csrf
         <input type="text" name="email" id="login_mail" class="login_textbox" placeholder="メールアドレス" maxlength = "100" value="{{old('mail')}}"><br>
         <input type="password" name="password" id="login_pass" class="login_textbox" placeholder="パスワード" maxlength = "20"><br>
