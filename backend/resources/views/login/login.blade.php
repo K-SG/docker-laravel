@@ -21,12 +21,13 @@
       <img class="logo_login" alt="ログインロゴ" src="{{ asset('img/star/logo_login.png') }}">
 
       <div class="login_company">
-        （株）くろ☆のす
+      <p>{{$message}}</p>
+        <!-- （株）くろ☆のす -->
       </div>
 
       <form action="login" method="post" class="login-form">
         @csrf
-        <input type="text" name="mail" id="login_mail" class="login_textbox" placeholder="メールアドレス" maxlength = "100" value="{{old('mail')}}"><br>
+        <input type="text" name="email" id="login_mail" class="login_textbox" placeholder="メールアドレス" maxlength = "100" value="{{old('mail')}}"><br>
         <input type="password" name="password" id="login_pass" class="login_textbox" placeholder="パスワード" maxlength = "20"><br>
         <input type="hidden" id="flag" value="${popFlag}">
         <input type="button" class="login-button" value="ログイン">
