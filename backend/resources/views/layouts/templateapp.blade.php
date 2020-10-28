@@ -26,6 +26,17 @@
               <div class="nav-right-img">
                 <a type="button" class="logout-button"><img class="logout-icon" alt="ログアウト" src="{{ asset('img/logout_icon.png') }}"></a>
               </div>
+              <div class="nav-right-user" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="../mylogout"
+                   onclick="event.preventDefault();
+                       document.getElementById('logout-form').submit();">
+                    ログアウト
+               </a>
+
+                <form id="logout-form" action="../mylogout" method="POST" class="d-none">
+                @csrf
+                </form>
+             </div>
               {{-- <div class="nav-right-user"><c:out value="${userName}"></c:out>としてログイン中</div> --}}
             </div>
           </ul>

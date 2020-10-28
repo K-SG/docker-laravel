@@ -21,8 +21,8 @@
       <img class="logo_login" alt="ログインロゴ" src="{{ asset('img/star/logo_login.png') }}">
 
       <div class="login_company">
-      
-        <!-- （株）くろ☆のす -->
+      {{--@php dd($param); @endphp --}}
+        (株）くろ☆のす 
       </div>
 
       <form action="login" method="post" class="login-form">

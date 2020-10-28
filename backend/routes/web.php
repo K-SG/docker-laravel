@@ -34,6 +34,8 @@ Route::post('user/calendar', 'App\Http\Controllers\KrononScheduleController@cale
 // Route::get('usernew','App\Http\Controllers\UserController@add');
 // Route::post('usercreate', 'App\Http\Controllers\UserController@register');
 Auth::routes();
+Route::post('mylogout', 'App\Http\Controllers\LogoutController@logout');
+
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
