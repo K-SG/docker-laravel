@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Schedule;
 use Illuminate\Http\Request;
-use App\Http\Requests\CalendarRequest;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
 use App\Exceptions\BadRequestException;
 
@@ -18,7 +15,6 @@ class KrononScheduleController extends Controller
         // リクエストを検証を行う
         // ユーザーが意図的に細工しないと起こらない結果の時は、BadRequestにする
         // ユーザーが入力するフォームのときはフォームリクエストを使う
-
         if (!$this->isValidRequestForCalendar($request)) {
             throw new BadRequestException($request,["CalendarRequestError"]); // こんな感じの例外を返す
         }
