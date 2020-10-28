@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,19 @@ Route::get('/', function () {
 Route::get('hello', function () {
     return view('hello');
 });
+
+
+// Route::get('user/calendar','App\Http\Controllers\CalendarController@calendar');
+// Route::post('user/calendar','App\Http\Controllers\CalendarController@calendar');
+
+Route::get('user/calendar', 'App\Http\Controllers\KrononScheduleController@calendar');
+Route::post('user/calendar', 'App\Http\Controllers\KrononScheduleController@calendar');
+//Route::get('user/calendar','App\Http\Controllers\CalendarController@calendar');
+Route::get('login','App\Http\Controllers\LoginController@topPage');
+Route::post('login','App\Http\Controllers\LoginController@login');
+Route::get('usernew','App\Http\Controllers\UserController@add');
+Route::post('usercreate', 'App\Http\Controllers\UserController@register');
+Auth::routes();
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
