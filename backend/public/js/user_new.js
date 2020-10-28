@@ -5,6 +5,18 @@ const POPUP_FLAG_NONE = 0;
 /*DBと照合した後のエラーポップアップ表示*/
 $(document).ready(function () {
 	let popFlag = document.getElementById("flag").value;
+	/*新規登録ボタンを押下した際のエラーチェックとポップアップ表示*/
+	$(".user-create-button").click(function () {
+		let userName = document.getElementById("create_name").value;
+		let mail = document.getElementById("create_mail").value;
+		let password1 = document.getElementById("create_password1").value;
+		let password2 = document.getElementById("create_password2").value;
+		let inputUserInformation = {userName:userName,mail:mail,password1:password1,password2:password2};
+		if (!isValid(inputUserInformation)) {
+			return;
+		}
+		showConfirmPopup();
+	});
     /*メールアドレスがすでに登録されていた場合*/
     if (popFlag == POPUP_FLAG_MAIL_DUPLICATED) {
 		$(".create-popup").fadeIn();
@@ -15,18 +27,6 @@ $(document).ready(function () {
 		$(".complete-popup").fadeIn();
 		return;
 	}	
-    /*新規登録ボタンを押下した際のエラーチェックとポップアップ表示*/
-    $(".user-create-button").click(function () {
-		let userName = document.getElementById("create_name").value;
-		let mail = document.getElementById("create_mail").value;
-		let password1 = document.getElementById("create_password1").value;
-		let password2 = document.getElementById("create_password2").value;
-		let inputUserInformation = {userName:userName,mail:mail,password1:password1,password2:password2};
-		if (!isValid(inputUserInformation)) {
-            return;
-        }
-        showConfirmPopup();
-    });
 	/*ポップアップを閉じる*/
 	$(".close-popup").click(function () {
 		$(".confirm-popup").fadeOut();
