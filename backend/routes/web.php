@@ -26,8 +26,12 @@ Route::get('hello', function () {
 // Route::get('user/calendar','App\Http\Controllers\CalendarController@calendar');
 // Route::post('user/calendar','App\Http\Controllers\CalendarController@calendar');
 
-Route::get('user/calendar', 'App\Http\Controllers\KrononScheduleController@calendar');
+Route::get('user/calendar', 'App\Http\Controllers\KrononScheduleController@calendar')->middleware('auth');
 Route::post('user/calendar', 'App\Http\Controllers\KrononScheduleController@calendar');
+
+Route::get('user/scheduleshowall', 'App\Http\Controllers\KrononScheduleController@scheduleshowall');
+Route::post('user/scheduleshowall', 'App\Http\Controllers\KrononScheduleController@scheduleshowall');
+
 //Route::get('user/calendar','App\Http\Controllers\CalendarController@calendar');
 // Route::get('login','App\Http\Controllers\LoginController@topPage');
 // Route::post('login','App\Http\Controllers\LoginController@login');
