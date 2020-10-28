@@ -28,7 +28,7 @@
     <div class="calendar-container">
         <div class="calendar-container-inner">
         <div class="calendar-title">
-            <form action="calendar" method="get" id="left-form">
+            <form action="calendar" method="post" id="left-form">
             @csrf
             <input type="hidden" name="flag" value="0">
             <input type="hidden" name="month_counter" value="{{$month_counter-1}}">
