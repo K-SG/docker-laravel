@@ -32,6 +32,8 @@ Route::post('user/calendar', 'App\Http\Controllers\KrononScheduleController@cale
 Route::get('user/scheduleshowall', 'App\Http\Controllers\KrononScheduleController@scheduleshowall');
 Route::post('user/scheduleshowall', 'App\Http\Controllers\KrononScheduleController@scheduleshowall');
 
+Route::get('user/scheduledetail', 'App\Http\Controllers\ScheduleDetailController@datail');
+
 //Route::get('user/calendar','App\Http\Controllers\CalendarController@calendar');
 Route::get('mylogin','App\Http\Controllers\LoginController@topPage');
 Route::post('mylogin','App\Http\Controllers\LoginController@login');
