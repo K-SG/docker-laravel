@@ -18,7 +18,7 @@ class KrononScheduleController extends Controller
         // ユーザーが意図的に細工しないと起こらない結果の時は、BadRequestにする
         // ユーザーが入力するフォームのときはフォームリクエストを使う
         if (!$this->isValidRequestForCalendar($request)) {
-            throw new BadRequestException($request,["CalendarRequestError"]); // こんな感じの例外を返す
+            throw new BadRequestException("CalendarRequestError"); 
         }
 
         //現在の年月を基準とした時の、表示する年月の差分  
@@ -35,6 +35,7 @@ class KrononScheduleController extends Controller
             'date_end' => date('Y-m-t', strtotime($string)),
             'year' => date("Y", strtotime($string)),
             'month' => date("m", strtotime($string)),
+            'date' => date('Y-m-d', strtotime($string)),
         ];
 
         $db_items = Schedule::getFirstScheduleByUserIdWithPeriod($user_id, $period);
@@ -49,19 +50,14 @@ class KrononScheduleController extends Controller
     }
 
     public function isValidRequestForCalendar($request){
-        if(isset($request->month_counter)){
-            $this->validate($request,['month_counter','numeric']);
 
-            $validator = Validator::make($request->all(), [
-                'month_counter' => 'numeric',
-            ]);
-
-            if ($validator->fails()) {
-                return false;
-                //throw new BadRequestException($request, $validator->errors()->all());
-            }
-
+        $validator = Validator::make($request->all(), [
+            'month_counter' => 'numeric',
+        ]);
+        if ($validator->fails()) {
+            return false;
         }
+
         return true;
     }
 

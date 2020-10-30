@@ -1,7 +1,7 @@
 
 $(function () {
 
-    const date_servlet = document.getElementById("date_servlet").value;
+    const date_servlet = document.getElementById("today").value;
     const year = document.getElementById("year").textContent; //2020
     const month = document.getElementById("month").textContent ; ; //7
     let holiday_flag = 0;//祝日だけホバーがきかないのでflagで対応
@@ -41,7 +41,7 @@ $(function () {
 			date_0 = date;
 		}
 		let date_submit = date_servlet.slice(0,-2) + date_0;
-		window.location.href=`../user/scheduleshowall?date=${date_submit}`;//calendar.html
+		window.location.href=`scheduleshowall?date=${date_submit}`;//calendar.html
 
 	})
 

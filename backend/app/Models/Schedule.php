@@ -22,6 +22,28 @@ class Schedule extends Model
         return $db_items;
     }
 
+    public static function getScheduleByUserIdWithPeriod($userId, $period)
+    {
+
+         $db_items = DB::select('select * from schedules inner join users on users.id = schedules.user_id 
+         where delete_flag = 0 and schedules.user_id = ? and schedule_date = ? order by start_time;
+         ', [$userId, $period['date']]);
+
+        return $db_items;
+    }
+
+    public static function getUserInfoMax4ExcludeMe($userId)
+    {
+
+         $db_items = DB::select('select id, name from users where id <> ? order by id limit 4;
+         ', [$userId]);
+
+         //$db_items = self::select(['id','name'])->where('id','<>',$userId)->orderBy('id','desc')->limit(4)->get();
+
+
+        return $db_items;
+    }
+
 
 //これ参考にできそう？
 // https://qiita.com/Cesaroshun/items/8a4ac1ea85ca7b86ec8d

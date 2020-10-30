@@ -29,8 +29,8 @@ Route::get('hello', function () {
 Route::get('user/calendar', 'App\Http\Controllers\KrononScheduleController@calendar')->middleware('auth');
 Route::post('user/calendar', 'App\Http\Controllers\KrononScheduleController@calendar');
 
-Route::get('user/scheduleshowall', 'App\Http\Controllers\KrononScheduleController@scheduleshowall');
-Route::post('user/scheduleshowall', 'App\Http\Controllers\KrononScheduleController@scheduleshowall');
+Route::get('user/scheduleshowall', 'App\Http\Controllers\ScheduleController@show_all');
+Route::post('user/scheduleshowall', 'App\Http\Controllers\ScheduleController@show_all');
 
 //Route::get('user/calendar','App\Http\Controllers\CalendarController@calendar');
 Route::get('login','App\Http\Controllers\LoginController@topPage');
@@ -39,7 +39,6 @@ Route::get('login','App\Http\Controllers\LoginController@topPage');
 // Route::post('usercreate', 'App\Http\Controllers\UserController@register');
 Auth::routes();
 Route::post('mylogout', 'App\Http\Controllers\LogoutController@logout');
-
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
