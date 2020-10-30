@@ -15,8 +15,7 @@ class ScheduleDetailController extends Controller
 {
     public function datail(Request $request)
     {
-        $schedule_id = 2;
-        $db_items = Schedule::getScheduleByScheduleId($schedule_id)->first();
+        $db_items = Schedule::getScheduleByScheduleId($request->schedule_id)->first();
         if (!isset($db_items)) {
             throw new BadRequestException();
         }
