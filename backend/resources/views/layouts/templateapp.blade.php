@@ -2,11 +2,9 @@
 <head>
     <title>@yield('title')</title>
     @section('link')
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href="{{ asset('css/common/app.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/common/common.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/common/blackboard.css') }}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     @show
 </head>
@@ -28,15 +26,6 @@
               </div>
               <div class="nav-right-user">{{ Auth::user()->name }}としてログイン中</div>
               <div class="nav-right-user" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="../mylogout"
-                   onclick="event.preventDefault();
-                       document.getElementById('logout-form').submit();">
-                    ログアウト
-               </a>
-               
-                <form id="logout-form" action="../mylogout" method="POST" class="d-none">
-                @csrf
-                </form>
              </div>
             </div>
           </ul>
@@ -49,7 +38,15 @@
                 <p> </p><br>
                 <h2 class="message-title">本当にログアウトする？</h2>
               </div>
-              <a href="../logout"><span class="ok-button">OK</span></a>
+              <a href="../mylogout"
+                   onclick="event.preventDefault();
+                       document.getElementById('logout-form').submit();">
+                <span class="ok-button">OK</span>
+
+                <form id="logout-form" action="../mylogout" method="POST" class="d-none">
+                @csrf
+                </form>
+              </a>
               <div class="ng-button close-popup">キャンセル</div>
               <img src="{{ asset('img/star/star_angry.png') }}" class="pop-img-top">
             </div>
