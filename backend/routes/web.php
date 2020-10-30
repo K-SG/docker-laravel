@@ -32,7 +32,8 @@ Route::post('user/calendar', 'App\Http\Controllers\KrononScheduleController@cale
 Route::get('user/scheduleshowall', 'App\Http\Controllers\KrononScheduleController@scheduleshowall');
 Route::post('user/scheduleshowall', 'App\Http\Controllers\KrononScheduleController@scheduleshowall');
 
-Route::get('user/scheduledetail', 'App\Http\Controllers\ScheduleDetailController@datail');
+Route::get('user/scheduledetail', 'App\Http\Controllers\ScheduleDetailController@datail')->middleware('auth');
+Route::post('user/scheduledelete', 'App\Http\Controllers\ScheduleDetailController@delete');
 
 //Route::get('user/calendar','App\Http\Controllers\CalendarController@calendar');
 Route::get('mylogin','App\Http\Controllers\LoginController@topPage');

@@ -4,9 +4,9 @@
 @section('title','予定詳細')
 @section('link')
     @parent
+    <link rel="stylesheet" href="{{ asset('css/common/blackboard.css') }}">ß
     <link rel="stylesheet" href="{{ asset('css/calendar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/scheduledetail.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/common/blackboard.css') }}">
     @endsection
 
 
@@ -22,7 +22,7 @@
         <table class=schedule_detail>
           <tr>
             <td>名前 : {{ Auth::user()->name }}</td>
-            <td id = "actual-time-z">実績時間：</td>
+            <td id = "actual-time-z"></td>
           </tr>
           <tr>
             <td>日時：{{$db_items->schedule_date}}
@@ -56,40 +56,17 @@
     <div class="kronon-banzai"><img alt="banzai" src={{ asset('img/kronon/kronon_banzai.png')}}></div>
   
     <!-- 戻るボタン -->
-    <div><a href="scheduleshowall?date=${scheduleBean.scheduleDate}"><img src={{ asset('img/back_buttom.png')}} alt="戻る" class="back-btn"></a></div>
-  
-    <!-- sesseionスコープのuserIDとスケジュールのIDを比較.一致したときのみ表示 -->
-    {{-- <c:set var="loginUserId" value="${sessionScope.userId}" /> --}}
-    {{-- {{ Auth::user()->id }}//
-    <c:set var="scheduleUserId" value="${scheduleBean.userId}" /> --}}
-  
-    @if (Auth::user()->id == 1)
+  <div><a href="scheduleshowall?date={{$db_items->schedule_date}}"><img src={{ asset('img/back_buttom.png')}} alt="戻る" class="back-btn"></a></div>
+    @if (Auth::user()->id == $db_items->id)
         <div class="flex_test-box">
         <div class="flex_test-item">
-          <a href="scheduleedit?scheduleId=${scheduleBean.scheduleId}"><div class="ok-button">修正</div></a>
+        <a href="scheduleedit?scheduleId={{$db_items->id}}"><div class="ok-button">修正</div></a>
         </div>
         <div class="flex_test-item">
-          <a href="actualnew?scheduleId=${scheduleBean.scheduleId}"><div class="ok-button">実績入力</div></a>
-        </div>
-        <div class="flex_test-item">
-          <div class="ok-button large-popup-button" id="${popFlag}">削除</div>
+          <div class="ok-button large-popup-button" id="{{$popFlag ?? '0'}}">削除</div>
         </div>
       </div>   
-    @endif
-    {{-- <c:if test="${loginUserId == scheduleUserId }">
-      <div class="flex_test-box">
-        <div class="flex_test-item">
-          <a href="scheduleedit?scheduleId=${scheduleBean.scheduleId}"><div class="ok-button">修正</div></a>
-        </div>
-        <div class="flex_test-item">
-          <a href="actualnew?scheduleId=${scheduleBean.scheduleId}"><div class="ok-button">実績入力</div></a>
-        </div>
-        <div class="flex_test-item">
-          <div class="ok-button large-popup-button" id="${popFlag}">削除</div>
-        </div>
-      </div>
-    </c:if> --}}
-  
+    @endif  
     <!--内容確認ポップアップ----------------------------------------------------------------->
     <div class="popup-wrapper confirm-popup">
       <div class="pop-container pop-container-large">
@@ -104,39 +81,38 @@
               </tr>
               <tr>
                 <th>予定日時：</th>
-                <td>{{$db_items->schedule_date}}/>
-                  <span id="startTimee">{{$db_items->start_time}} /></span>～
-                  <span id="endTimee">{{$db_items->end_time}} /></span>
+                <td>{{$db_items->schedule_date}}
+                  <span id="startTimee">{{$db_items->start_time}} </span>～
+                  <span id="endTimee">{{$db_items->end_time}}</span>
                 </td>
               </tr>
               <tr>
                 <th>タイトル：</th>
-                <td class="new-line"><span class="actual-input-area-4">{{$db_items->title}}/></span></td>
+                <td class="new-line"><span class="actual-input-area-4">{{$db_items->title}}</span></td>
               </tr>
               <tr>
                 <th class="last-table">内容：</th>
                 <td class="last-table new-line">
-                  <span class="actual-input-area-4">{{$db_items->content}} /></span>
+                  <span class="actual-input-area-4">{{$db_items->content}}</span>
                 </td>
               </tr>
             </table>
           </div>
-          {{-- <form action="http://localhost:8080/kronon/user/scheduledelete" method="post" id="schedule-delete-form">
+          <form action="scheduledelete" method="post" id="schedule-delete-form">
+            @csrf
             <input type="hidden" id="flag" value="{{$popFlag ?? '0'}}">
-            <input type="hidden" name="scheduleId" value="{{$scheduleBean.scheduleId}}">
-            <input type="hidden" name="userName" value="{{$scheduleBean.userName}}">
-            <input type="hidden" name="actualTimeStr" value="{{$scheduleBean.actualTimeStr}}">
-            <input type="hidden" name="scheduleDateActual" value="{{$scheduleBean.scheduleDateActual}}">
-            <input type="hidden" name="startTime" value="{{$scheduleBean.startTime}}">
-            <input type="hidden" name="endTime" value="{{$scheduleBean.endTime}}">
-            <input type="hidden" name="place" value="{{$scheduleBean.place}}">
-            <input type="hidden" name="title" value="{{$scheduleBean.title}}">
-            <input type="hidden" name="content" value="{{$scheduleBean.content}}">
-            <input type="hidden" name = "scheduleDate" value="{{$scheduleBean.scheduleDate}}">
+            <input type="hidden" name="scheduleId" value="{{$db_items->id}}">
+            <input type="hidden" name="userName" value="{{$db_items->name}}">
+            <input type="hidden" name="startTime" value="{{$db_items->start_time}}">
+            <input type="hidden" name="endTime" value="{{$db_items->end_time}}">
+            <input type="hidden" name="place" value="{{$db_items->place}}">
+            <input type="hidden" name="title" value="{{$db_items->title}}">
+            <input type="hidden" name="content" value="{{$db_items->content}}">
+            <input type="hidden" name = "scheduleDate" value="{{$db_items->schedule_date}}">
             <div class="ok-button" id="schedule-delete-action">OK</div>
             <div class="ng-button close-popup">キャンセル</div>
             <img src="{{asset('img/star/star_nomal.png')}}" class="pop-large-img-top star-nomal">
-          </form> --}}
+          </form>
         </div>
       </div>
     </div>
@@ -149,7 +125,7 @@
           <div class="message-container">
             <p class=create-msg>削除が完了したよ！</p>
           </div>
-          <a href="scheduleshowall?date=${scheduleBean.scheduleDate}"><div class="ok-button next-popup">OK</div></a>
+          <a href="scheduleshowall?date={{$db_items->schedule_date}}"><div class="ok-button next-popup">OK</div></a>
           <img src="{{asset('img/kronon/kronon_star.png')}}" class="pop-img kronon-star">
         </div>
       </div>
