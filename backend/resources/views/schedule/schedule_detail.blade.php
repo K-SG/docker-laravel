@@ -5,8 +5,9 @@
 @section('link')
     @parent
     <link rel="stylesheet" href="{{ asset('css/calendar.css') }}">
-    <link rel="stylesheet"　href="{{ asset('css/scheduledetail.css') }}">
-@endsection
+    <link rel="stylesheet" href="{{ asset('css/scheduledetail.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/common/blackboard.css') }}">
+    @endsection
 
 
 @section('header')
@@ -21,32 +22,32 @@
         <table class=schedule_detail>
           <tr>
             <td>名前 : {{ Auth::user()->name }}</td>
-            {{-- <td id = "actual-time-z">実績時間：{{$scheduleBean.actualTimeStr}}" /></td> --}}
+            <td id = "actual-time-z">実績時間：</td>
           </tr>
           <tr>
-            <td>日時：{{$scheduleBean.scheduleDateActual}}" />
-              <span id="startTime">{{$scheduleBean.startTime}}" /></span>～
-              <span id="endTime">{{$scheduleBean.endTime}}" /></span>
+            <td>日時：{{$db_items->schedule_date}}
+              <span id="startTime">{{$db_items->start_time}} </span>～
+              <span id="endTime">{{$db_items->end_time}} </span>
             </td>
   
             <!-- 作業場所に応じて色変化 -->
-            @if ($scheduleBean.place=='0')
+            @if ($db_items->place == '0')
                 <td class=show-place1>場所：オフィス</td>
             @endif
-            @if ($scheduleBean.place=='1')
+            @if ($db_items->place =='1')
                 <td class=show-place2>場所：在宅</td>
             @endif
-            @if ($scheduleBean.place=='2')
+            @if ($db_items->place =='2')
                 <td class=show-place3>場所：外出</td>
             @endif  
           </tr>
   
           <tr>
-            <td class="new-line" colspan="2">タイトル：{{$scheduleBean.title}}</td>
+            <td class="new-line" colspan="2">タイトル：{{$db_items->title}}</td>
           </tr>
   
           <tr>
-            <td class="new-line" colspan="2">内容：{{$scheduleBean.content}}</td>
+            <td class="new-line" colspan="2">内容：{{$db_items->content}}</td>
           </tr>
         </table>
       </div>
@@ -62,7 +63,7 @@
     {{-- {{ Auth::user()->id }}//
     <c:set var="scheduleUserId" value="${scheduleBean.userId}" /> --}}
   
-    @if (Auth::user()->id == Auth::schedule()->id)
+    @if (Auth::user()->id == 1)
         <div class="flex_test-box">
         <div class="flex_test-item">
           <a href="scheduleedit?scheduleId=${scheduleBean.scheduleId}"><div class="ok-button">修正</div></a>
@@ -99,29 +100,29 @@
             <table class="popup-table">
               <tr>
                 <th class="th">名前：</th>
-                <td>{{$scheduleBean.userName}}</td>
+                <td>{{$db_items->name}}</td>
               </tr>
               <tr>
                 <th>予定日時：</th>
-                <td>{{$scheduleBean.scheduleDateActual}}/>
-                  <span id="startTimee">{{$scheduleBean.startTime}} /></span>～
-                  <span id="endTimee">{{$scheduleBean.endTime}} /></span>
+                <td>{{$db_items->schedule_date}}/>
+                  <span id="startTimee">{{$db_items->start_time}} /></span>～
+                  <span id="endTimee">{{$db_items->end_time}} /></span>
                 </td>
               </tr>
               <tr>
                 <th>タイトル：</th>
-                <td class="new-line"><span class="actual-input-area-4">{{$scheduleBean.title}}/></span></td>
+                <td class="new-line"><span class="actual-input-area-4">{{$db_items->title}}/></span></td>
               </tr>
               <tr>
                 <th class="last-table">内容：</th>
                 <td class="last-table new-line">
-                  <span class="actual-input-area-4">{{$scheduleBean.content}} /></span>
+                  <span class="actual-input-area-4">{{$db_items->content}} /></span>
                 </td>
               </tr>
             </table>
           </div>
-          <form action="http://localhost:8080/kronon/user/scheduledelete" method="post" id="schedule-delete-form">
-            <input type="hidden" id="flag" value="{{$popFlag}}">
+          {{-- <form action="http://localhost:8080/kronon/user/scheduledelete" method="post" id="schedule-delete-form">
+            <input type="hidden" id="flag" value="{{$popFlag ?? '0'}}">
             <input type="hidden" name="scheduleId" value="{{$scheduleBean.scheduleId}}">
             <input type="hidden" name="userName" value="{{$scheduleBean.userName}}">
             <input type="hidden" name="actualTimeStr" value="{{$scheduleBean.actualTimeStr}}">
@@ -135,7 +136,7 @@
             <div class="ok-button" id="schedule-delete-action">OK</div>
             <div class="ng-button close-popup">キャンセル</div>
             <img src="{{asset('img/star/star_nomal.png')}}" class="pop-large-img-top star-nomal">
-          </form>
+          </form> --}}
         </div>
       </div>
     </div>

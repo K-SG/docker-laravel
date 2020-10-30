@@ -21,6 +21,26 @@ class Schedule extends Model
 
         return $db_items;
     }
+    
+    public function scopegetScheduleByScheduleId($query,$schedule_id)
+    {   
+        // dd($schedule_id);
+        // return $query->where('schedule_id',$schedule_id);
+        $query = self::select(['user_id',
+            'schedule_date',
+            'start_time',
+            'end_time',
+            'place',
+            'title',
+            'content',
+            'name',])
+            ->where('schedules.id',$schedule_id)
+            ->join('users','users.id','=','schedules.user_id')
+            ->get();
+        // dd($query);
+        return $query;
+
+    }
 
 
 //これ参考にできそう？
