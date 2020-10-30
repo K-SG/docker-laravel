@@ -14,24 +14,25 @@
 
 @section('body')
 <article>
-  <form action="calendar" method="post" class="schedule-new-form" name="form">
+  <form action="schedulecreate" method="post" class="schedule-new-form" name="form">
+    @csrf
     <input type="hidden" value="{{$popFlag ?? ''}}" id="flag">
 	<div class="schedule-regist-area">
 	  <div class="loose-leaf"><img src="{{ asset('img/loose_leaf.svg') }}" alt="loose-leaf" id="loose-leaf"></div>
 	  <div class="schedule-regist-area-inner">
 	    <div class="schedule-regist-font-lev0">予定登録</div>
-		<input type="hidden" name="scheduleId" value="${scheduleId}" id="set-schedule-id">
+		<input type="hidden" name="scheduleId" value="{{$scheduleId ?? ''}}" id="set-schedule-id">
 		<div class="schedule-regist-border"></div>
 		<div class="schedule-regist-area-1">
 		  <div class="schedule-regist-area-1-block">
 			<div class="schedule-regist-font-lev1">日付<span>*</span></div>
 			<input type="hidden" value="${scheduleDate}" id="set-date">
-			<div class="schedule-regist-date-area"><input name="scheduleDate" id="date" value="${scheduleDate}" type="date"/></div>
+			<div class="schedule-regist-date-area"><input name="scheduleDate" id="date" value="{{$scheduleDate ?? ''}}" type="date"/></div>
 		  </div>
 		  <div class="schedule-regist-area-1-block">
 		    <div class="schedule-regist-font-lev1">開始時刻<span>*</span></div>
 			<div class="schedule-regist-time">
-			  <input type="hidden" value="${startTime}" id="set-start-time">
+			  <input type="hidden" value="{{$startTime ?? ''}}" id="set-start-time">
 			  <select name="startTimeHour" id="starthour">
 				<option value="8">8</option>
 				<option value="9">9</option>
@@ -62,7 +63,7 @@
 		  <div class="schedule-regist-area-1-block">
 		    <div class="schedule-regist-font-lev1">終了時刻<span>*</span></div>
 			<div class="schedule-regist-time">
-			  <input type="hidden" value="${endTime}" id="set-end-time">
+			  <input type="hidden" value="{{$endTime ?? ''}}" id="set-end-time">
 			  <select name="endTimeHour" id="endhour"  onchange="selectboxChange();">
 				<option value="8">8</option>
 				<option value="9">9</option>
@@ -96,7 +97,7 @@
 	    <div class="schedule-regist-area-2">
 		  <div class="schedule-regist-font-lev1">場所<span>*</span></div>
 		  <div class="schedule-regist-place">
-			<input type="hidden" value="${scheduleBean.place}" id="set-place">
+			<input type="hidden" value="{{$place ?? ''}}" id="set-place">
 			<select name="place" id="new-place">
 			  <option value="0">オフィス</option>
 		      <option value="1">在宅</option>
@@ -150,7 +151,7 @@
     </div>
   </div>
   <!--エラーまたは完了ポップアップここまで-------------------------------------------------------------->
-  </form>
+  
 
   <!--本当に戻りますかポップアップ------------------------------------------------------------------->
   <div class="popup-wrapper cancel-popup">
@@ -202,6 +203,7 @@
 	</div>
   </div>
   <!--内容確認ポップアップここまで----------------------------------------------------------------->
+  </form>
 
   <!--登録完了ポップアップ------------------------------------------------------------------->
   <div class="popup-wrapper complete-popup">
@@ -227,5 +229,5 @@
 @section('js_link')
     @parent
     <script src="{{ asset('js/schedule_new.js') }}"></script>
-    <script src="{{ asset('js/common.js') }}"></script>
+    <script src="{{ asset('js/common/common.js') }}"></script>
 @endsection

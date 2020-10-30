@@ -41,7 +41,7 @@ Auth::routes();
 Route::post('mylogout', 'App\Http\Controllers\LogoutController@logout');
 
 Route::get('user/inputschedule', 'App\Http\Controllers\InputScheduleController@inputschedule')->middleware('auth');
-Route::post('user/calendar', 'App\Http\Controllers\InputScheduleController@schedulecreate')->middleware('auth');
+Route::post('user/schedulecreate', 'App\Http\Controllers\InputScheduleController@schedulecreate')->middleware('auth');
 
 
 
