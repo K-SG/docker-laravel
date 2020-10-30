@@ -22,10 +22,23 @@ class Schedule extends Model
         return $db_items;
     }
 
+    public static function isBooking($schedule_date, $user_id, $start_time, $end_time)
+    {
+
+        $param = DB::select('select * from schedules 
+                                where schedule_date = ? 
+                                and user_id = ? 
+                                and delete_flag = 0 
+                                and not ((? <= start_time) or (end_time <= ?))', [$schedule_date, $user_id, $end_time, $start_time]);
+
+        return $param;
+
+    }
+
 
 //これ参考にできそう？
 // https://qiita.com/Cesaroshun/items/8a4ac1ea85ca7b86ec8d
-//
+
 // public static function get_address(&$query)
 // {
 //    $address = Input::post['address'];
