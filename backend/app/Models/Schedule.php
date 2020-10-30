@@ -34,11 +34,13 @@ class Schedule extends Model
             'content',
             'name',])
             ->where('schedules.id',$schedule_id)
+            ->where('delete_flag',0)
             ->join('users','users.id','=','schedules.user_id')
             ->get();
         return $query;
     }
-    public function scopescheduleDelete($query,$schedule_id){
+    public function scopescheduleDelete($query,$schedule_id)
+    {
         $query
         ->where('id', $schedule_id)
         ->update([
@@ -46,34 +48,4 @@ class Schedule extends Model
         ]);
         return $query;
     }
-
-
-//これ参考にできそう？
-// https://qiita.com/Cesaroshun/items/8a4ac1ea85ca7b86ec8d
-//
-// public static function get_address(&$query)
-// {
-//    $address = Input::post['address'];
-//    $sub_query = DB::select()->from(array('staffs', 'st'))
-//                     ->where('st.address', 'like', '%'.$address.'%')
-//                     ->where(DB::expr('staff.id'), 'st.id');
-//    $query->where_open();
-//    $query->where(DB::expr(''), DB::expr('EXISTS'), $sub_query);
-//    $query->where_close();
-
-//    $query->execute();
-// }
-
-    //     // $sub_query = DB::table(DB::expr('schedules as s'))
-    //     // ->where('user_id',$userId)
-    //     // ->where('delete_flag','0')
-    //     // ->where(DB::expr('schedules.user_id'),'s.user_id')
-    //     // ;
-
-//これのWhereExistのところとか
-//https://readouble.com/laravel/5.7/ja/queries.html
-
-//ORMのよさ
-//https://qiita.com/niisan-tokyo/items/156eb35c6eeaf07b9b65
-
 }
