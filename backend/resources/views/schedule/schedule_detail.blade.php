@@ -4,9 +4,7 @@
 @section('title','予定詳細')
 @section('link')
     @parent
-    <link rel="stylesheet" href="{{ asset('css/common/blackboard.css') }}">ß
-    <link rel="stylesheet" href="{{ asset('css/calendar.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/scheduledetail.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/scheduledetail.css') }}" type="text/css">
     @endsection
 
 
@@ -21,8 +19,8 @@
       <div class=blackboard>
         <table class=schedule_detail>
           <tr>
-            <td>名前 : {{ Auth::user()->name }}</td>
-            <td id = "actual-time-z"></td>
+            <td>名前 : {{ $db_items->name }}</td>
+            <td id = "actual-time-z"> - </td>
           </tr>
           <tr>
             <td>日時：{{$db_items->schedule_date}}
@@ -57,7 +55,7 @@
   
     <!-- 戻るボタン -->
   <div><a href="scheduleshowall?date={{$db_items->schedule_date}}"><img src={{ asset('img/back_buttom.png')}} alt="戻る" class="back-btn"></a></div>
-    @if (Auth::user()->id == $db_items->id)
+    @if (Auth::user()->id == $db_items->user_id)
         <div class="flex_test-box">
         <div class="flex_test-item">
         <a href="scheduleedit?scheduleId={{$db_items->id}}"><div class="ok-button">修正</div></a>
@@ -142,6 +140,5 @@
 
 @section('js_link')
     @parent
-    <script src="{{ asset('js/common/common.js') }}"></script>
     <script src="{{ asset('js/schedule_detail.js') }}"></script>
 @endsection

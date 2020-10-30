@@ -15,8 +15,7 @@ class ScheduleDetailController extends Controller
 {
     public function datail(Request $request)
     {
-        $user = Auth::user();
-        $schedule_id = 1;
+        $schedule_id = 2;
         $db_items = Schedule::getScheduleByScheduleId($schedule_id)->first();
         if (!isset($db_items)) {
             throw new BadRequestException();
@@ -25,7 +24,6 @@ class ScheduleDetailController extends Controller
     }
     public function delete(Request $request)
     {
-
         Schedule::scheduleDelete($request->scheduleId);
         return redirect('/user/scheduleshowall');
     }

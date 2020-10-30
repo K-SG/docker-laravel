@@ -24,7 +24,8 @@ class Schedule extends Model
     
     public function scopegetScheduleByScheduleId($query,$schedule_id)
     {   
-        $query = self::select(['user_id',
+        $query = self::select([
+            'user_id',
             'schedules.id',
             'schedule_date',
             'start_time',
