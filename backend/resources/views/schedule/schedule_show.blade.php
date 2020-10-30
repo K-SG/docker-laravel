@@ -14,13 +14,6 @@
 
 @section('body')
 
-{{-- echo({{ $schedule_list }});
-    <script type="text/javascript">
-        // 表示する年月の取得
-        let schedule_list = {{ $schedule_list }}; 
-        console.log(schedule_list);
-    </script> --}}
-
     <article class="article">
 
         <form action="scheduleshowall" method="post" id="left-form">

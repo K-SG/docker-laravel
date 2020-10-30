@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Schedule;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Exceptions\BadRequestException;
@@ -38,13 +39,13 @@ class ScheduleController extends Controller
         $my_id = Auth::user()->id;
         $my_name = Auth::user()->name;
 
-        $user_list = Schedule::getUserInfoMax4ExcludeMe($my_id);
+        $user_list = User::getUserInfoMax4ExcludeMe($my_id);
 
-        array_unshift($user_list, (object)array('id' => $my_id, 'name' => $my_name));//先頭に追加
-
-        $schedule_list = [];
+        array_unshift($user_list, array('id' => $my_id, 'name' => $my_name));//先頭に追加
+        
+        $schedule_list = [];   
         for($i = 0; $i < count($user_list); $i++){
-            $db_items = Schedule::getScheduleByUserIdWithPeriod($user_list[$i]->id, $period);
+            $db_items = Schedule::getScheduleByUserIdWithPeriod($user_list[$i]['id'], $period);
             array_push($schedule_list, $db_items);
         }
 
@@ -60,6 +61,7 @@ class ScheduleController extends Controller
         return view('schedule.schedule_show', $items);
     }
 
+    
     public function isValidRequestForShowAll($request){
 
         $validator = Validator::make($request->all(), [

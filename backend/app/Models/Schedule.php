@@ -29,20 +29,13 @@ class Schedule extends Model
          where delete_flag = 0 and schedules.user_id = ? and schedule_date = ? order by start_time;
          ', [$userId, $period['date']]);
 
-        return $db_items;
-    }
-
-    public static function getUserInfoMax4ExcludeMe($userId)
-    {
-
-         $db_items = DB::select('select id, name from users where id <> ? order by id limit 4;
-         ', [$userId]);
-
-         //$db_items = self::select(['id','name'])->where('id','<>',$userId)->orderBy('id','desc')->limit(4)->get();
-
+         //クエリビルダに移行中
+         //$db_items = self::select(['schedules.id as schedule_id'])->where('delete_flag',0)->where()
+         //$db_items = self::select(['id','name'])->where('id','<>',$userId)->orderBy('id','asc')->limit(4)->get()->toArray();
 
         return $db_items;
     }
+
 
 
 //これ参考にできそう？

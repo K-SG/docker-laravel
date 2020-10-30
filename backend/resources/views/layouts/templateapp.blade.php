@@ -2,7 +2,7 @@
 <head>
     <title>@yield('title')</title>
     @section('link')
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> --}}
     <link href="{{ asset('css/common/app.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/common/common.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/common/blackboard.css') }}" rel="stylesheet" type="text/css">
@@ -55,8 +55,6 @@
             </div>
             </div>
         </div>
-        <script src="{{ asset('js/logout.js') }}"></script>
-        <script src="{{ asset('js/common/common.js') }}"></script>
     </header>
     @show
 
@@ -72,7 +70,9 @@
     @show
 
     @section('js_link')    
-        <script src="{{ asset('js/common/common.js') }}"></script>
+      <script src="{{ asset('js/logout.js') }}"></script>    
+      <script src="{{ asset('js/common/common.js') }}"></script>
+        
     @show
 
 </body>
