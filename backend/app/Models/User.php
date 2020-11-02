@@ -50,7 +50,7 @@ class User extends Authenticatable
     public static function getUserInfoMax4ExcludeMe($userId)
     {
 
-         $db_items = self::select(['id','name'])->where('id','<>',$userId)->orderBy('id','asc')->limit(4)->get()->toArray();
+         $db_items = self::select(['id', 'name'])->where('id', '<>', $userId)->orderBy('id', 'asc')->limit(4)->get()->toArray();
 
         return $db_items;
     }

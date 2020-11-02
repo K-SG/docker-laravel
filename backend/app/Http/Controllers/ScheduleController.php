@@ -43,11 +43,15 @@ class ScheduleController extends Controller
 
         array_unshift($user_list, array('id' => $my_id, 'name' => $my_name));//先頭に追加
         
-        $schedule_list = [];   
-        for($i = 0; $i < count($user_list); $i++){
-            $db_items = Schedule::getScheduleByUserIdWithPeriod($user_list[$i]['id'], $period);
+        $schedule_list = [];  
+        foreach($user_list as $user){
+            $db_items = Schedule::getScheduleByUserIdWithPeriod($user['id'], $period);
             array_push($schedule_list, $db_items);
-        }
+        } 
+        // for($i = 0; $i < count($user_list); $i++){
+        //     $db_items = Schedule::getScheduleByUserIdWithPeriod($user_list[$i]['id'], $period);
+        //     array_push($schedule_list, $db_items);
+        // }
 
         $schedule_list = json_encode($schedule_list);
         $user_list = json_encode($user_list);
@@ -61,7 +65,7 @@ class ScheduleController extends Controller
         return view('schedule.schedule_show', $items);
     }
 
-    
+
     public function isValidRequestForShowAll($request){
 
         $validator = Validator::make($request->all(), [

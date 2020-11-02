@@ -17,39 +17,44 @@
     <article class="article">
 
         <form action="scheduleshowall" method="post" id="left-form">
-            @csrf
-            <input type="hidden" name="date" value="{{ $period['date'] }}">
-            <input type="hidden" name="flag" value="left">
-        <div class="left-button-container">
-            <img src="{{ asset('img/left_button.png') }}" alt="left" id="left" class="left triangle-button">
-        </div>
+          @csrf
+          <input type="hidden" name="date" value="{{ $period['date'] }}">
+          <input type="hidden" name="flag" value="left">
+          <div class="left-button-container">
+              <img src="{{ asset('img/left_button.png') }}" alt="left" id="left" class="left triangle-button">
+          </div>
         </form>
+
         <div class="blackboard-container">
-        <div class="blackboard-inner">
-            <div class="blackboard-head">
-            <div class="today-list">{{ $period['date_display'] }}の予定</div>
-            <div class="hanrei">
-                <div class="hanrei-item hanrei-item1"></div>: オフィス
-                <div class="hanrei-item hanrei-item2"></div>: 在宅
-                <div class="hanrei-item hanrei-item3"></div>: 外出
-            </div>
-            </div>
-            <div id="blackboard-table">
-            <div id="name-container"></div>
-            </div>
+          <div class="blackboard-inner">
+              <div class="blackboard-head">
+              <div class="today-list">{{ $period['date_display'] }}の予定</div>
+              <div class="hanrei">
+                  <div class="hanrei-item hanrei-item1"></div>: オフィス
+                  <div class="hanrei-item hanrei-item2"></div>: 在宅
+                  <div class="hanrei-item hanrei-item3"></div>: 外出
+              </div>
+              </div>
+              <div id="blackboard-table">
+              <div id="name-container"></div>
+              </div>
+          </div>
         </div>
 
-        </div>
         <form action="scheduleshowall" method="post" id="right-form">
-        @csrf
-        <input type="hidden" name="date" value="{{ $period['date'] }}">
-        <input type="hidden" name="flag" value="right">
-        <div class="title-content">
-            <img src="{{ asset('img/right_button.png') }}" alt="right" id="right" class="right triangle-button">
-        </div>
+          @csrf
+          <input type="hidden" name="date" value="{{ $period['date'] }}">
+          <input type="hidden" name="flag" value="right">
+          <div class="title-content">
+              <img src="{{ asset('img/right_button.png') }}" alt="right" id="right" class="right triangle-button">
+          </div>
         </form>
 
-        <div><a href="calendar"><img src="{{ asset('img/back_buttom.png') }}" alt="back-buttom" class="back-btn"></a></div>
+        <div>
+          <a href="calendar">
+            <img src="{{ asset('img/back_buttom.png') }}" alt="back-buttom" class="back-btn">
+          </a>
+        </div>
 
         <input type="hidden" id="list" value="{{ $schedule_list }}" style="display:none">
         <input type="hidden" id="name-list" value='{{ $user_list }}' style="display:none">
