@@ -21,13 +21,13 @@ class InputScheduleController extends Controller
         $schedule_date = $request->scheduleDate;
         $start_time = $request->startTimeHour . ":" . $request->startTimeMin . ":" . "00";
         $end_time = $request->endTimeHour . ":" . $request->endTimeMin . ":" . "00";
+        $user = Auth::user();
+        $user_id = $user->id;
         //予定が重複していないか確認
-        $isEmpty = Schedule::isBooking($schedule_date, $user_id, $start_time, $end_time);
+        $schedule = Schedule::isBooking($schedule_date, $user_id, $start_time, $end_time);
 
-        if ($isEmpty) {
+        if (empty($schedule)) {
             $schedule = new Schedule;
-            $user = Auth::user();
-            $user_id = $user->id;
             //データベースに値を送信
             $schedule->user_id = $user_id;
             $schedule->schedule_date = $schedule_date;

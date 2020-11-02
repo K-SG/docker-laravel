@@ -18,7 +18,7 @@
           </ul>
           <ul class="nav">
             <li><a href="calendar">予定確認</a></li>
-            <li><a href="inputsShedule">予定登録</a></li>
+            <li><a href="input_schedule">予定登録</a></li>
             <li><a href="actualindex">実績確認</a></li>
             <div class="nav-right">
               <div class="nav-right-img">
