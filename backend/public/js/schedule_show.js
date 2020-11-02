@@ -8,14 +8,15 @@ const end_day = "2023-07-31";
 
 
 //スケジュールリストの取得
-let json = document.getElementById("list");
-let json_replace = (json.value).toString().replace(/krnooon/g,'"');
-let array_json = JSON.parse(json_replace);
+let json = document.getElementById("list").value;
+//let json_replace = (json.value).toString().replace(/krnooon/g,'"');
+console.log(json);
+let array_json = JSON.parse(json);
 
 //名前リストの取得
-let json2 = document.getElementById("name-list");
-let json_replace2 = (json2.value).toString().replace(/krnooon/g,'"');
-let array_json_name = JSON.parse(json_replace2);
+let json2 = document.getElementById("name-list").value;
+//let json_replace2 = (json2.value).toString().replace(/krnooon/g,'"');
+let array_json_name = JSON.parse(json2);//JSON.parse(json_replace2);
 
 //表示人数の取得
 let user_num = array_json_name.length;
@@ -121,7 +122,7 @@ $(function () {
 		const class_name = "name" + counter;
 		$(div).addClass(class_name);
 		//名前を追加
-		$(div).text(array_json_name[i]);
+		$(div).text(array_json_name[i].name);
 		//座標指定
 		$("."+class_name).css("left",((margin_width+schedule_width) * i + margin_width) + "%");
 		//幅指定
@@ -152,18 +153,18 @@ $(function () {
 			div.appendChild(title);
 			//スケジュールID追加（表示はしない）
 			const schedule_id = document.createElement("p");
-			$(schedule_id).text(array_json[i][j].scheduleId);
+			$(schedule_id).text(array_json[i][j].id);
 			schedule_id.setAttribute("class", "schedule_id");
 			div.appendChild(schedule_id);
 
 
 			//見積時間を分換算
-			let estimateTimeArray = array_json[i][j].startTime.split(/\D/g);//\Dは文字の正規表現
+			let estimateTimeArray = array_json[i][j].start_time.split(/\D/g);//\Dは文字の正規表現
 			let estimateHour = Number(estimateTimeArray[0]);
 			let estimateMinute = Number(estimateTimeArray[1]);
 			let startTimeMinute = 60*estimateHour + estimateMinute;
 
-			estimateTimeArray = array_json[i][j].endTime.split(/\D/g);//\Dは文字の正規表現
+			estimateTimeArray = array_json[i][j].end_time.split(/\D/g);//\Dは文字の正規表現
 			estimateHour = Number(estimateTimeArray[0]);
 			estimateMinute = Number(estimateTimeArray[1]);
 			let endTimeMinute = 60*estimateHour + estimateMinute;

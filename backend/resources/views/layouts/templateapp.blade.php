@@ -66,9 +66,9 @@
     </footer>   
     @show
 
-    @section('js_link')    
-        <script src="{{ asset('js/logout.js') }}"></script>
-        <script src="{{ asset('js/common/common.js') }}"></script>
+    @section('js_link')
+      <script src="{{ asset('js/logout.js') }}"></script>    
+      <script src="{{ asset('js/common/common.js') }}"></script>
     @show
 
 </body>

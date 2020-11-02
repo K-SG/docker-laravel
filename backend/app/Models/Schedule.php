@@ -33,6 +33,20 @@ class Schedule extends Model
 
         return $schedule;
     }
+                               
+   public static function getScheduleByUserIdWithPeriod($userId, $period)
+   {
+
+        $db_items = DB::select('select * from schedules inner join users on users.id = schedules.user_id
+        where delete_flag = 0 and schedules.user_id = ? and schedule_date = ? order by start_time;
+        ', [$userId, $period['date']]);
+
+        //クエリビルダに移行中
+        //$db_items = self::select(['schedules.id as schedule_id'])->where('delete_flag',0)->where()
+        //$db_items = self::select(['id','name'])->where('id','<>',$userId)->orderBy('id','asc')->limit(4)->get()->toArray();
+
+       return $db_items;
+   }
     
     public static function isBooking($schedule_date, $user_id, $start_time, $end_time)
     {

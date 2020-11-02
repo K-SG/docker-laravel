@@ -79,8 +79,9 @@
         </div>
         </div>
 
+        <input type="hidden" id="today" value="{{$period['date']}}">
+
     </div>
-    <input type="hidden" id="date_servlet"  value='${date}' style="display:none">
     </article>
     
 @endsection
