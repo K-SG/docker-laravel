@@ -18,7 +18,7 @@
           </ul>
           <ul class="nav">
             <li><a href="calendar">予定確認</a></li>
-            <li><a href="inputSchedule">予定登録</a></li>
+            <li><a href="inputschedule">予定登録</a></li>
             <li><a href="actualindex">実績確認</a></li>
             <div class="nav-right">
               <div class="nav-right-img">
@@ -26,15 +26,6 @@
               </div>
               <div class="nav-right-user">{{ Auth::user()->name }}としてログイン中</div>
               <div class="nav-right-user" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="../mylogout"
-                   onclick="event.preventDefault();
-                       document.getElementById('logout-form').submit();">
-                    ログアウト
-               </a>
-               
-                <form id="logout-form" action="../mylogout" method="POST" class="d-none">
-                @csrf
-                </form>
              </div>
             </div>
           </ul>
@@ -47,7 +38,15 @@
                 <p> </p><br>
                 <h2 class="message-title">本当にログアウトする？</h2>
               </div>
-              <a href="../logout"><span class="ok-button">OK</span></a>
+              <a href="../mylogout"
+                   onclick="event.preventDefault();
+                       document.getElementById('logout-form').submit();">
+                <span class="ok-button">OK</span>
+
+                <form id="logout-form" action="../mylogout" method="POST" class="d-none">
+                @csrf
+                </form>
+              </a>
               <div class="ng-button close-popup">キャンセル</div>
               <img src="{{ asset('img/star/star_angry.png') }}" class="pop-img-top">
             </div>

@@ -38,7 +38,7 @@ Route::post('mylogin','App\Http\Controllers\LoginController@login');
 // Route::get('usernew','App\Http\Controllers\UserController@add');
 // Route::post('usercreate', 'App\Hsttp\Controllers\UserController@register');
 Auth::routes();
-Route::post('mylogout', 'App\Http\Controllers\LogoutController@logout');
+Route::post('mylogout', 'App\Http\Controllers\LogoutController@logout')->middleware('auth');
 
 Route::get('user/inputschedule', 'App\Http\Controllers\InputScheduleController@inputschedule')->middleware('auth');
 Route::post('user/schedulecreate', 'App\Http\Controllers\InputScheduleController@schedulecreate')->middleware('auth');

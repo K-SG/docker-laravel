@@ -18,6 +18,12 @@ class InputScheduleController extends Controller
 
     public function schedulecreate(Request $request)
     {
+        $user = Auth::user();
+        $user_id = $user->id;
+
+
+        $schedule = new Schedule;
+
         $schedule_date = $request->scheduleDate;
         $start_time = $request->startTimeHour . ":" . $request->startTimeMin . ":" . "00";
         $end_time = $request->endTimeHour . ":" . $request->endTimeMin . ":" . "00";
@@ -26,20 +32,21 @@ class InputScheduleController extends Controller
         $param = Schedule::isBooking($schedule_date, $user_id, $start_time, $end_time);
 
         if (empty($param)) {
-            $user = Auth::user();
-            $user_id = $user->id;
-            $schedule = new Schedule;
-            //データベースに値を送信
-            $schedule->user_id = $user_id;
-            $schedule->schedule_date = $schedule_date;
-            $schedule->start_time = $start_time;
-            $schedule->end_time = $end_time;
-            $schedule->place = $request->place;
-            $schedule->title = $request->title;
-            $schedule->content = $request->content;
-            $schedule->delete_flag = 0;
-            $schedule->save();
-            return redirect('/user/calendar');
+        //データベースに値を送信
+        $schedule->user_id = $user_id;
+        $schedule->schedule_date = $schedule_date;
+        $schedule->start_time = $start_time;
+        $schedule->end_time = $end_time;
+        $schedule->place = $request->place;
+        $schedule->title = $request->title;
+        $schedule->content = $request->content;
+        $schedule->delete_flag = 0;
+        $schedule->save();
+
+        $user = Auth::user();
+
+        return redirect('/user/calendar');
+            
         } else {
             return view('schedule.inputschedule');
         }

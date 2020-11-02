@@ -13,7 +13,7 @@ class Schedule extends Model
     public static function getFirstScheduleByUserIdWithPeriod($userId, $period)
     {
 
-        $db_items = DB::select('select schedule_date as jsonDate,start_time,min(title) as title from schedules
+         $db_items = DB::select('select schedule_date as jsonDate,start_time,min(title) as title from schedules
         where user_id = ? and delete_flag = 0 
         and schedule_date between ? and ? and (schedule_date,start_time) in (
         select schedule_date,min(start_time) from schedules where user_id = ? 
@@ -22,20 +22,17 @@ class Schedule extends Model
         return $db_items;
     }
 
-    public static function bookingSchedule($schedule_date, $user_id, $start_time, $end_time)
+    public static function isBooking($schedule_date, $user_id, $start_time, $end_time)
     {
-        $schedule = DB::select('select * from schedules 
+
+        $param = DB::select('select * from schedules 
                                 where schedule_date = ? 
                                 and user_id = ? 
                                 and delete_flag = 0 
                                 and not ((? <= start_time) or (end_time <= ?))', [$schedule_date, $user_id, $end_time, $start_time]);
 
-        return $schedule;
-    }
+        return $param;
 
-    public static function isBooking($schedule_date, $user_id, $start_time, $end_time)
-    {
-        return !is_null(self::bookingSchedule($schedule_date, $user_id, $start_time, $end_time));
     }
 
 
