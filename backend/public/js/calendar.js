@@ -16,25 +16,15 @@ const holidays =
 
 // 予定リストの取得
 const json = document.getElementById("list").value;
-// 「kronooon」を「"」に置換。全置換の場合は正規表現で//で挟みgをつける
-//const json_replace = (json.value).toString().replace(/krnooon/g,'"');
-// jsonライブラリの関数を使って、文字列を扱いやすい形に
 let array = JSON.parse(json);
-//let array = JSON.parse('<?php echo $db_items; ?>');
-//let array =  <?php echo $json_array; ?>;
 
-//console.log($array_test[0].schedule_date);
 console.log(json);
-
-//let array = json;
 
 {
 
   // 表示する年月の取得
   // let year = document.getElementById("year").textContent; // 2020
   // let month = document.getElementById("month").textContent -1; ; // 7-1
-  // let year = 2020;
-  // let month = 9;
 
 // 指定された3年間外にアクセスできないように、端では左右ボタンを表示しない
   if((start_month.getMonth() == month)&&(start_month.getYear()+1900 == year)){

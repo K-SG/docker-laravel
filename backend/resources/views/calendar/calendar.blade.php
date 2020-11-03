@@ -28,13 +28,9 @@
     <div class="calendar-container">
         <div class="calendar-container-inner">
         <div class="calendar-title">
-            <form action="calendar" method="post" id="left-form">
-            @csrf
-            <input type="hidden" name="month_counter" value="{{$month_counter-1}}">
             <div class="title-content">
                 <img src="{{ asset('img/left_button.png') }}" alt="left" id="left" class="left triangle-button">
             </div>
-            </form>
             <div class="title-content">
                 <h2 id="month">
                 {{$period['month']}}
@@ -45,13 +41,9 @@
                 {{$period['year']}}                
                 </h3>
             </div>
-            <form action="calendar" method="post" id="right-form">
-            @csrf
-            <input type="hidden" name="month_counter" value="{{$month_counter+1}}">
             <div class="title-content">
                 <img src="{{ asset('img/right_button.png') }}" alt="right" id="right" class="right triangle-button">
             </div>
-            </form>
             <div class="clear"></div>
         </div>
         <table class="calendar">
