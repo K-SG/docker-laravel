@@ -11,14 +11,15 @@ use App\Models\Schedule;
 
 class ScheduleDetailController extends Controller
 {
-    public function datail(Request $request)
+    public function detail(Request $request)
     {
-        $db_items = Schedule::getScheduleByScheduleId($request->schedule_id)->first();
-        if (!isset($db_items)) {
+        $schedule = Schedule::getScheduleByScheduleId($request->id)->first();
+        if (is_null($schedule)) {
             throw new BadRequestException();
         }
-        return view('schedule.schedule_detail', ['db_items' => $db_items]);
+        return view('schedule.schedule_detail', ['schedule' => $schedule]);
     }
+
     public function delete(Request $request)
     {
         Schedule::scheduleDelete($request->scheduleId);
