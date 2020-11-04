@@ -13,7 +13,7 @@ class ScheduleDetailController extends Controller
 {
     public function detail(Request $request)
     {
-        $schedule = Schedule::getScheduleByScheduleId($request->id)->first();
+        $schedule = Schedule::getScheduleByScheduleId($request->schedule_id)->first();
         if (is_null($schedule)) {
             throw new BadRequestException();
         }
@@ -22,7 +22,7 @@ class ScheduleDetailController extends Controller
 
     public function delete(Request $request)
     {
-        Schedule::scheduleDelete($request->scheduleId);
-        return redirect('/user/scheduleshowall');
+        Schedule::scheduleDelete($request->schedule_id);
+        return redirect('/user/calendar');
     }
 }
