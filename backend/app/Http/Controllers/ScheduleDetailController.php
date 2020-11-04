@@ -14,7 +14,6 @@ class ScheduleDetailController extends Controller
     public function detail(Request $request)
     {
         $schedule = Schedule::getScheduleByScheduleId($request->schedule_id)->first();
-        dd($schedule);
         if (is_null($schedule)) {
             throw new BadRequestException();
         }
@@ -23,7 +22,6 @@ class ScheduleDetailController extends Controller
 
     public function delete(Request $request)
     {
-        dd($request->scheduleId);
         Schedule::scheduleDelete($request->scheduleId);
         return redirect('/user/calendar');
     }
