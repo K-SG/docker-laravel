@@ -56,6 +56,7 @@ class Schedule extends Model
                                 and not ((? <= start_time) or (end_time <= ?))', [$schedule_date, $user_id, $end_time, $start_time]);
 
         return $schedule;
+    }
     
     public function scopegetScheduleByScheduleId($query,$schedule_id)
     {   
