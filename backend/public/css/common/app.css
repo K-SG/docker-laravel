@@ -193,7 +193,7 @@ padding-top:1vh;
 }
 
 .nav .nav-right-img a:hover:after{
-  background: url(/kronon/img/star/star_hyoko.png); /* 表示する画像 */
+  background: url(../img/star/star_hyoko.png); /* 表示する画像 */
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center top;
