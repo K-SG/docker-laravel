@@ -21,7 +21,6 @@ class Schedule extends Model
 
         return $db_items;
     }
-
     //かぶっている予定を取得したい
     public static function bookingSchedule($schedule_date, $user_id, $start_time, $end_time)
     {
@@ -57,5 +56,23 @@ class Schedule extends Model
                                 and not ((? <= start_time) or (end_time <= ?))', [$schedule_date, $user_id, $end_time, $start_time]);
 
         return $schedule;
+    
+    public function scopegetScheduleByScheduleId($query,$schedule_id)
+    {   
+        $query
+        ->where('schedules.id', $schedule_id)
+        ->where('delete_flag',0)
+        ->join('users','users.id','=','schedules.user_id')
+        ->get();
+        return $query;
+    }
+    public function scopescheduleDelete($query,$schedule_id)
+    {
+        $query
+        ->where('id', $schedule_id)
+        ->update([
+            'delete_flag' => '1',
+        ]);
+        return $query;
     }
 }

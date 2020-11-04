@@ -63,7 +63,7 @@ class KrononScheduleController extends Controller
 
     public function scheduleshowall(Request $request)
     {
-
+        $user = Auth::user();
         // // リクエストを検証を行う（後日書きます）
         // if (!$this->isValidRequestForCalendar($request)) {
         //     throw new BadRequestException($request,["CalendarRequestError"]); // こんな感じの例外を返す
