@@ -22,7 +22,7 @@ class ScheduleDetailController extends Controller
 
     public function delete(Request $request)
     {
-        Schedule::scheduleDelete($request->scheduleId);
+        Schedule::scheduleDelete($request->schedule_id);
         return redirect('/user/calendar');
     }
 }

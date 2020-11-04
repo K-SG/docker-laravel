@@ -11,7 +11,7 @@ $(function () {
 
 	$('.schedule-item').click(function(){
 		var id = $(this).children('.schedule_id').text();
-		window.location.href = '../user/scheduledetail?schedule_id=' + id;
+		window.location.href = '../user/schedule_detail?schedule_id=' + id;
 	})
 
 	//前日へ
@@ -22,7 +22,7 @@ $(function () {
 		const return_date = display_date.getFullYear() 
 		+ '-' + ('00' + (display_date.getMonth()+1)).slice(-2)
 		+ '-' + ('00' + display_date.getDate()).slice(-2); 
-		window.location.href=`scheduleshowall?date=${return_date}`;
+		window.location.href=`schedule_show_all?date=${return_date}`;
 	})
 
 	//翌日へ
@@ -33,7 +33,7 @@ $(function () {
 		const return_date = display_date.getFullYear() 
 		+ '-' + ('00' + (display_date.getMonth()+1)).slice(-2)
 		+ '-' + ('00' + display_date.getDate()).slice(-2); 
-		window.location.href=`scheduleshowall?date=${return_date}`;
+		window.location.href=`schedule_show_all?date=${return_date}`;
 	})
 
 });

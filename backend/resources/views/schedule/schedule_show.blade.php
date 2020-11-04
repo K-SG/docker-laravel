@@ -16,7 +16,7 @@
 
     <article class="article">
 
-        <form action="scheduleshowall" method="post" id="left-form">
+        <form action="schedule_show_all" method="post" id="left-form">
           @csrf
           <input type="hidden" name="date" value="{{ $period['date'] }}">
           <input type="hidden" name="flag" value="left">
@@ -41,7 +41,7 @@
           </div>
         </div>
 
-        <form action="scheduleshowall" method="post" id="right-form">
+        <form action="schedule_show_all" method="post" id="right-form">
           @csrf
           <input type="hidden" name="date" value="{{ $period['date'] }}">
           <input type="hidden" name="flag" value="right">

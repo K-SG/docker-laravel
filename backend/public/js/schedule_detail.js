@@ -9,8 +9,8 @@ $(function () {
     $("#endTime").text(endTimeEllipsis);
     const startTimePopupEllipsis = startTimePopup.substring(0, 5);
     const endTimePopupEllipsis = endTimePopup.substring(0, 5);
-    $("#startTimee").text(startTimePopupEllipsis);
-	$("#endTimee").text(endTimePopupEllipsis);
+    $("#startTimePopup").text(startTimePopupEllipsis);
+	$("#endTimePopup").text(endTimePopupEllipsis);
 	
     /*ポップアップを閉じる*/
     $(".close-popup").click(function () {

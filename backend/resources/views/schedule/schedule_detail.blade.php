@@ -54,7 +54,7 @@
     <div class="kronon-banzai"><img alt="banzai" src={{ asset('img/kronon/kronon_banzai.png')}}></div>
   
     <!-- 戻るボタン -->
-  <div><a href="scheduleshowall?date={{$schedule->schedule_date}}"><img src={{ asset('img/back_buttom.png')}} alt="戻る" class="back-btn"></a></div>
+  <div><a href="schedule_show_all?date={{$schedule->schedule_date}}"><img src={{ asset('img/back_buttom.png')}} alt="戻る" class="back-btn"></a></div>
     @if (Auth::user()->id == $schedule->user_id)
         <div class="flex_test-box">
         <div class="flex_test-item">
@@ -96,10 +96,10 @@
               </tr>
             </table>
           </div>
-          <form action="scheduledelete" method="post" id="schedule-delete-form">
+          <form action="schedule_delete" method="post" id="schedule-delete-form">
             @csrf
             <input type="hidden" id="flag" value="{{$popFlag ?? '0'}}">
-            <input type="hidden" name="scheduleId" value="{{$schedule->id}}">
+            <input type="hidden" name="schedule_id" value="{{$schedule->id}}">
             <input type="hidden" name="userName" value="{{$schedule->name}}">
             <input type="hidden" name="startTime" value="{{$schedule->start_time}}">
             <input type="hidden" name="endTime" value="{{$schedule->end_time}}">

@@ -29,11 +29,11 @@ Route::get('hello', function () {
 Route::get('user/calendar', 'App\Http\Controllers\CalendarController@calendar')->middleware('auth');
 //Route::post('user/calendar', 'App\Http\Controllers\CalendarController@calendar')->middleware('auth');
 
-Route::get('user/scheduleshowall', 'App\Http\Controllers\ScheduleController@show_all')->middleware('auth');
+Route::get('user/schedule_show_all', 'App\Http\Controllers\ScheduleController@show_all')->middleware('auth');
 //Route::post('user/scheduleshowall', 'App\Http\Controllers\ScheduleController@show_all');
     
-Route::get('user/scheduledetail', 'App\Http\Controllers\ScheduleDetailController@detail')->middleware('auth');
-Route::post('user/scheduledelete', 'App\Http\Controllers\ScheduleDetailController@delete');
+Route::get('user/schedule_detail', 'App\Http\Controllers\ScheduleDetailController@detail')->middleware('auth');
+Route::post('user/schedule_delete', 'App\Http\Controllers\ScheduleDetailController@delete');
 
 //Route::get('user/calendar','App\Http\Controllers\CalendarController@calendar');
 Route::get('mylogin','App\Http\Controllers\LoginController@topPage');

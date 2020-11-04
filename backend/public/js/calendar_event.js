@@ -41,7 +41,7 @@ $(function () {
 			date_0 = date;
 		}
 		let date_submit = date_display.slice(0,-2) + date_0;
-		window.location.href=`scheduleshowall?date=${date_submit}`;//calendar.html
+		window.location.href=`schedule_show_all?date=${date_submit}`;//calendar.html
 
 	})
 
