@@ -17,16 +17,21 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $email = $request->email;
-        $password = $request->password;
+        $email = $_POST['login_mail'];
+        $password = $_POST['login_pass'];
+
+        $result =['result'=>'error'];
 
         if (Auth::attempt(['email' => $email, 'password' => $password])) 
         {
-            return redirect('/user/calendar');
-        } else {
-            $popFlag = 2;
-            return view('auth.login', ['email' => $email, 'popFlag' => $popFlag]);
+            //return redirect('/user/calendar');
+            $result =['result'=>'success'];
         }
+
+        // ヘッダーの設定
+        header('Content-type:application/json; charset=utf8');
+        // JSON形式にして返却
+        echo json_encode($result);
 
         // $items = KrononUser::LoginCheck($mail, $password)->get();
 

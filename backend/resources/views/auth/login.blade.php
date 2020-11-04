@@ -9,6 +9,7 @@
   <!-- <link href="{{ asset('css/common/blackborad.css') }}" rel="stylesheet" type="text/css"> -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>ログイン</title>
 </head>
 <body>
@@ -60,6 +61,7 @@
   </article>
 
   <script src="{{ asset('js/common/common.js') }}"></script>
+  <script src="{{ asset('js/login_ajax.js') }}"></script>
   <script src="{{ asset('js/login.js') }}"></script>
 </body>
 </html>
