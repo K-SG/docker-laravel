@@ -24,12 +24,6 @@ class ScheduleController extends Controller
         $input_date_str = $request->date ?? 'now';
         $input_date = new DateTime($input_date_str);
 
-        if($request->flag == 'left'){
-            $input_date->modify('-1 days');
-        }else if($request->flag == 'right'){
-            $input_date->modify('+1 days');
-        }
-
         $period = [
             'date' => $input_date->format('Y-m-d'),
             'date_display' => $input_date->format('Y年m月d日'),
@@ -48,10 +42,6 @@ class ScheduleController extends Controller
             $db_items = Schedule::getScheduleByUserIdWithPeriod($user['id'], $period);
             array_push($schedule_list, $db_items);
         } 
-        // for($i = 0; $i < count($user_list); $i++){
-        //     $db_items = Schedule::getScheduleByUserIdWithPeriod($user_list[$i]['id'], $period);
-        //     array_push($schedule_list, $db_items);
-        // }
 
         $schedule_list = json_encode($schedule_list);
         $user_list = json_encode($user_list);
@@ -70,7 +60,6 @@ class ScheduleController extends Controller
 
         $validator = Validator::make($request->all(), [
             'date' => 'date_format:Y-m-d',
-            'flag' => 'in:left,right',
         ]);
         if ($validator->fails()) {
             return false;

@@ -47,11 +47,23 @@ $(function () {
 
 	//先月へ
 	$('.left').click(function(){
-		$('#left-form').submit();
+		const display_date_str = document.getElementById("today").value;
+		const display_date = new Date(display_date_str);
+		display_date.setMonth(display_date.getMonth() - 1);
+		const return_date = display_date.getFullYear() 
+		+ '-' + ('00' + (display_date.getMonth()+1)).slice(-2)
+		+ '-' + ('00' + display_date.getDate()).slice(-2); 
+		window.location.href=`calendar?date=${return_date}`;
 	})
 	//翌月へ
 	$('.right').click(function(){
-		$('#right-form').submit();
+		const display_date_str = document.getElementById("today").value;
+		const display_date = new Date(display_date_str);
+		display_date.setMonth(display_date.getMonth() + 1);
+		const return_date = display_date.getFullYear() 
+		+ '-' + ('00' + (display_date.getMonth()+1)).slice(-2)
+		+ '-' + ('00' + display_date.getDate()).slice(-2); 
+		window.location.href=`calendar?date=${return_date}`;
 	})
 
 });
