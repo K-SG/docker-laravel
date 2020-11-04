@@ -44,7 +44,7 @@ Auth::routes();
 Route::post('mylogout', 'App\Http\Controllers\LogoutController@logout')->middleware('auth');
 
 Route::get('user/input_schedule', 'App\Http\Controllers\InputScheduleController@inputSchedule')->middleware('auth');
-Route::post('user/schedule_create', 'App\Http\Controllers\InputScheduleController@scheduleCreate')->middleware('auth');
+Route::post('user/schedule_create', 'App\Http\Controllers\InputScheduleController@scheduleCreateAjax')->middleware('auth');
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
