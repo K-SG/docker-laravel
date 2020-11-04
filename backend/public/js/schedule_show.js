@@ -153,7 +153,7 @@ $(function () {
 			div.appendChild(title);
 			//スケジュールID追加（表示はしない）
 			const schedule_id = document.createElement("p");
-			$(schedule_id).text(array_json[i][j].id);
+			$(schedule_id).text(array_json[i][j].schedule_id);
 			schedule_id.setAttribute("class", "schedule_id");
 			div.appendChild(schedule_id);
 

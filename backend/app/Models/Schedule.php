@@ -36,7 +36,8 @@ class Schedule extends Model
    public static function getScheduleByUserIdWithPeriod($userId, $period)
    {
 
-        $db_items = DB::select('select * from schedules inner join users on users.id = schedules.user_id
+        $db_items = DB::select('select schedules.id as schedule_id, users.id as user_id, title, schedule_date, start_time, end_time, place
+          from schedules inner join users on users.id = schedules.user_id
         where delete_flag = 0 and schedules.user_id = ? and schedule_date = ? order by start_time;
         ', [$userId, $period['date']]);
 
@@ -60,13 +61,23 @@ class Schedule extends Model
     
     public function scopegetScheduleByScheduleId($query,$schedule_id)
     {   
-        $query
-        ->where('schedules.id', $schedule_id)
-        ->where('delete_flag',0)
-        ->join('users','users.id','=','schedules.user_id')
-        ->get();
+        $query = self::select([
+            'user_id',
+            'schedules.id',
+            'schedule_date',
+            'start_time',
+            'end_time',
+            'place',
+            'title',
+            'content',
+            'name',])
+            ->where('schedules.id',$schedule_id)
+            ->where('delete_flag',0)
+            ->join('users','users.id','=','schedules.user_id')
+            ->get();
         return $query;
     }
+    
     public function scopescheduleDelete($query,$schedule_id)
     {
         $query
