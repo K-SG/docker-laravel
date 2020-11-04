@@ -1,65 +1,10 @@
 $(function() {
 
-	/* 日付に今日の日付が挿入されるようにする */
-	window.onload = function() {
-		/* 予定がかぶっていた時などは日付が保持されるようにするための処理 */
-		if (document.getElementById("date").value == "") {
-			let date = new Date();
-			date.setDate(date.getDate());
-			let yyyy = date.getFullYear();
-			let mm = ("0" + (date.getMonth() + 1)).slice(-2);
-			let dd = ("0" + date.getDate()).slice(-2);
-			document.getElementById("date").value = yyyy + '-' + mm + '-' + dd;
-		}
-
-		/* DBと照合した後のポップアップフラグ */
-		var popFlag = document.getElementById('flag').value;
-
-		/* ScheduleCreateServlet返ってきたとき、値の保存をする */
-		if (popFlag === '0' || popFlag === '1') {
-			let date = document.getElementById('set-date').value;
-			let startTime = document.getElementById('set-start-time').value;
-			let endTime = document.getElementById('set-end-time').value;
-			let startHour = startTime.substring(0, 2);
-			let startMin = startTime.substring(3, 5);
-			let endHour = endTime.substring(0, 2);
-			let endMin = endTime.substring(3, 5);
-			let place = document.getElementById('set-place').value;
-
-
-			/* すべての初期選択を外す */
-			$('select option').attr('selected', false);
-			/* 開始時間と終了時間を09→9に変換 */
-			if (startHour.slice(0, 1) == 0) {
-				startHour = startHour.substring(1, 2);
-			}
-			if (endHour.slice(0, 1) == 0) {
-				endHour = endHour.substring(1, 2);
-			}
-			/* 初期選択がされるようにselectedをつける */
-			$('#starthour').val(startHour);
-			$('#startminutes').val(startMin);
-			$('#endhour').val(endHour);
-			$('#endminutes').val(endMin);
-			$('#new-place').val(place);
-		}
-
-		/* 登録が完了した場合 */
-		if (popFlag === '0') {
-			$('.create-msg').html('登録が完了したよ！');
-			$('.complete-popup').fadeIn();
-			return;
-		}
-		if (popFlag === '1') {
-			$('.new-msg').html('予定がかぶってるよ！');
-			$('.error-popup').fadeIn();
-			return;
-		}
-	}
-
 	/* 登録ボタンを押した際のエラーチェックとポップアップ表示 */
 	$('#ok-button').click(
+
 		function() {
+
 			let date = document.getElementById('date').value;
 			let startHour = document.getElementById('starthour').value;
 			let startMin = document.getElementById('startminutes').value;
@@ -95,35 +40,35 @@ $(function() {
 			// ポッププラグ変数作成
 			var popFlag;
 			if (startHour == '' || startMin == '' || endHour == '' || endMin == '' || place == '' || title == '') {
-				popFlag = '3';
+				popFlag = 'brank';
 			} else if (date == "") {
 			// 存在しない日付にした場合（2020/2/31）など
-				popFlag = '4';
+				popFlag = 'time-error';
 			} else if ((startHour * 60 + startMin) - (endHour * 60 + endMin) >= 0) {
 			// 終了時間よりも開始時間のほうが遅かったら
-				popFlag = '4';
+				popFlag = 'time-error';
 			} else if (!(firstDayOfMonth <= day && day <= lastDayOfMonth)) {
 			// 存在しない日付を入力したら（2/31など）
-				popFlag = '4';
+				popFlag = 'time-error';
 			} else if (year < releaseYear || (year == releaseYear && month < releaseMonth)) {
 			// リリース前の日付を選択したら
-				popFlag = '4';
+				popFlag = 'time-error';
 			} else if (year > releaseLastYear || (year == releaseLastYear && month > releaseLastMonth)) {
 			// サービス終了後の日付を選択したら
-				popFlag = '4';
+				popFlag = 'time-error';
 			} else {
-				popFlag = '5';
+				popFlag = 'ok';
 			}
 
-			if (popFlag === '3') {
+			if (popFlag === 'brank') {
 				$('.new-msg').html('入力されていない<br>項目があるよ！');
 				$('.error-popup').fadeIn();
 				return;
-			} else if (popFlag === '4') {
+			} else if (popFlag === 'time-error') {
 				$('.new-msg').html('日付や時間の入力が<br>おかしいよ！');
 				$('.error-popup').fadeIn();
 				return;
-			} else if (popFlag === '5') {
+			} else if (popFlag === 'ok') {
 				$('#time-msg').html(year + '/' + month + '/' + day + '('+ weekday + ')' + startHour + ':'+ startMin + '～' + endHour + ':'+ endMin);
 				$('#title-msg').html(title);
 				$('#content-msg').html(content);
@@ -134,8 +79,9 @@ $(function() {
 
 	/* 確認ポップアップのOKを押した際の動き */
 	$('#confirm-ok').click(function() {
-		$('.schedule-new-form').submit();
-		return;
+		schedule_insert();
+		// $('.schedule-new-form').submit();
+		// return;
 	});
 
 	/* 登録完了ポップアップのOKボタン押下時の遷移先 */
