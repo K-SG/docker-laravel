@@ -25,13 +25,13 @@ class Schedule extends Model
     public static function isBooking($schedule_date, $user_id, $start_time, $end_time)
     {
 
-        $param = DB::select('select * from schedules 
+        $schedule = DB::select('select * from schedules 
                                 where schedule_date = ? 
                                 and user_id = ? 
                                 and delete_flag = 0 
                                 and not ((? <= start_time) or (end_time <= ?))', [$schedule_date, $user_id, $end_time, $start_time]);
 
-        return $param;
+        return $schedule;
 
     }
 

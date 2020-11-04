@@ -40,8 +40,8 @@ Route::post('mylogin','App\Http\Controllers\LoginController@login');
 Auth::routes();
 Route::post('mylogout', 'App\Http\Controllers\LogoutController@logout')->middleware('auth');
 
-Route::get('user/inputschedule', 'App\Http\Controllers\InputScheduleController@inputschedule')->middleware('auth');
-Route::post('user/schedulecreate', 'App\Http\Controllers\InputScheduleController@schedulecreate')->middleware('auth');
+Route::get('user/input_schedule', 'App\Http\Controllers\InputScheduleController@inputSchedule')->middleware('auth');
+Route::post('user/schedule_create', 'App\Http\Controllers\InputScheduleController@scheduleCreate')->middleware('auth');
 
 
 

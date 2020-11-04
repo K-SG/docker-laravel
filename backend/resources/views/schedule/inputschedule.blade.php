@@ -14,7 +14,7 @@
 
 @section('body')
 <article>
-  <form action="schedulecreate" method="post" class="schedule-new-form" name="form">
+  <form action="schedule_create" method="post" class="schedule-new-form" name="form">
   @csrf
   <input type="hidden" value="{{$popFlag ?? ''}}" id="flag">
 	<div class="schedule-regist-area">
