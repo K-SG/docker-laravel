@@ -19,7 +19,6 @@
           <ul class="nav">
             <li><a href="calendar">予定確認</a></li>
             <li><a href="input_schedule">予定登録</a></li>
-            <li><a href="actualindex">実績確認</a></li>
             <div class="nav-right">
               <div class="nav-right-img">
                 <a type="button" class="logout-button"><img class="logout-icon" alt="ログアウト" src="{{ asset('img/logout_icon.png') }}"></a>
