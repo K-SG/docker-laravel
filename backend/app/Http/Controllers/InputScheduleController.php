@@ -11,6 +11,7 @@ class InputScheduleController extends Controller
     public function inputSchedule()
     {
         $user = Auth::user();
+        $schedule = new Schedule;
 
         return view('schedule.inputschedule');
     }
@@ -29,7 +30,7 @@ class InputScheduleController extends Controller
         $user_id = $user->id;
 
         //予定が重複していないか確認
-        $schedule = Schedule::isBooking($schedule_date, $user_id, $start_time, $end_time);
+        $schedule = Schedule::isBooking($schedule_date, $user_id, 0, $start_time, $end_time);
 
         if (empty($schedule)) {
             $schedule = new Schedule;
