@@ -24,7 +24,7 @@ function schedule_insert() {
     //ajaxでservletにリクエストを送信
     $.ajax({
       type    : "POST",          //GETかPOSTか
-      url     : "schedule_create2",  //送信先のURL
+      url     : "schedule_create",  //送信先のURL
       data    : request,        
       async   : true,           //true:非同期(デフォルト), false:同期
       headers: {
