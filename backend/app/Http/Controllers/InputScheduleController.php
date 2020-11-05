@@ -37,8 +37,8 @@ class InputScheduleController extends Controller
         $schedule->start_time = $start_time;
         $schedule->end_time = $end_time;
         $schedule->place = $request->place;
-        $schedule->title = $request->title;
-        $schedule->content = $request->content;
+        $schedule->title = e($request->title);
+        $schedule->content = e($request->content);
         $schedule->delete_flag = 0;
         $schedule->save();
 

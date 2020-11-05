@@ -110,14 +110,14 @@
 		      <div class="schedule-regist-area-3">
 		        <div class="schedule-regist-font-lev1">タイトル<span>*</span></div>
 		        <div class="schedule-regist-title">
-		          <textarea name="title" id="title" rows="1" cols="40" maxlength="100" placeholder="予定のタイトルを100字以内で入力してください" value="{{$title ?? ''}}"></textarea>
+		          <textarea name="title" id="title" rows="1" cols="40" maxlength="100" placeholder="予定のタイトルを100字以内で入力してください" value={{ $title ?? '' }}></textarea>
 		        </div>
 		      </div>
 
 		      <div class="schedule-regist-area-4">
 		        <div class="schedule-regist-font-lev1">内容</div>
 		        <div class="schedule-regist-content">
-			        <textarea name="content" id="content" rows="13" cols="40" maxlength="1440" placeholder="予定の内容を1440字以内で入力してください" value="{{$content ?? ''}}"></textarea>
+			        <textarea name="content" id="content" rows="13" cols="40" maxlength="1440" placeholder="予定の内容を1440字以内で入力してください" value={{ $content ?? '' }}></textarea>
 		        </div>
 		      </div>
 	      </div>
