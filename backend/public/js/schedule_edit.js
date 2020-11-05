@@ -52,14 +52,23 @@ $(function() {
 	/* 修正ボタンを押した際のエラーチェックとポップアップ表示 */
 	$('#ok-button').click(
 		function() {
+			
+			function escapeHTML(string){
+				return string.replace(/\&/g, '&amp;')
+				  .replace(/\</g, '&lt;')
+				  .replace(/\>/g, '&gt;')
+				  .replace(/\"/g, '&quot;')
+				  .replace(/\'/g, '&#x27');
+			  }
+
 			let date = document.getElementById('date').value;
 			let startHour = document.getElementById('starthour').value;
 			let startMin = document.getElementById('startminutes').value;
 			let endHour = document.getElementById('endhour').value;
 			let endMin = document.getElementById('endminutes').value;
 			let place = document.getElementById('edit-place').value;
-			let title = document.getElementById('title').value;
-			let content = document.getElementById('content').value;
+			let title = escapeHTML(document.getElementById('title').value);
+			let content = escapeHTML(document.getElementById('content').value);
 			let popFlag;
 			title = title.trim();
 			let d = new Date(date);
