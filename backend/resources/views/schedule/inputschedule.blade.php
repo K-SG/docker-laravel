@@ -14,7 +14,7 @@
 
 @section('body')
 <article>
-  <form action="schedule_create" method="post" class="schedule-new-form" name="form">
+  <form action="schedulecreate" method="post" class="schedule-new-form" name="form">
   @csrf
   <input type="hidden" value="{{$popFlag ?? ''}}" id="flag">
 	<div class="schedule-regist-area">
@@ -69,7 +69,7 @@
 				        <option value="8">8</option>
 				        <option value="9">9</option>
 				        <option value="10">10</option>
-		     	      <option value="11">11</option>
+		     	        <option value="11">11</option>
 				        <option value="12">12</option>
 				        <option value="13">13</option>
 				        <option value="14">14</option>

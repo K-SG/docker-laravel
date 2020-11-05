@@ -21,7 +21,6 @@ class InputScheduleController extends Controller
         $user = Auth::user();
         $user_id = $user->id;
 
-
         $schedule = new Schedule;
 
         $schedule_date = $request->scheduleDate;
