@@ -20,8 +20,8 @@ $(function () {
 		const display_date = new Date(display_date_str);
 		display_date.setDate(display_date.getDate() - 1);
 		const return_date = display_date.getFullYear() 
-		+ '-' + ('00' + (display_date.getMonth()+1)).slice(-2)
-		+ '-' + ('00' + display_date.getDate()).slice(-2); 
+			+ '-' + ('00' + (display_date.getMonth()+1)).slice(-2)
+			+ '-' + ('00' + display_date.getDate()).slice(-2); 
 		window.location.href=`schedule_show_all?date=${return_date}`;
 	})
 
@@ -31,8 +31,8 @@ $(function () {
 		const display_date = new Date(display_date_str);
 		display_date.setDate(display_date.getDate() + 1);
 		const return_date = display_date.getFullYear() 
-		+ '-' + ('00' + (display_date.getMonth()+1)).slice(-2)
-		+ '-' + ('00' + display_date.getDate()).slice(-2); 
+			+ '-' + ('00' + (display_date.getMonth()+1)).slice(-2)
+			+ '-' + ('00' + display_date.getDate()).slice(-2); 
 		window.location.href=`schedule_show_all?date=${return_date}`;
 	})
 
