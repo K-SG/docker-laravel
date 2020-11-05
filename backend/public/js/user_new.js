@@ -7,10 +7,19 @@ $(document).ready(function () {
 	let popFlag = document.getElementById("flag").value;
 	/*新規登録ボタンを押下した際のエラーチェックとポップアップ表示*/
 	$(".user-create-button").click(function () {
-		let userName = document.getElementById("create_name").value;
-		let mail = document.getElementById("create_mail").value;
-		let password1 = document.getElementById("create_password1").value;
-		let password2 = document.getElementById("create_password2").value;
+
+        function escapeHTML(string){
+            return string.replace(/\&/g, '&amp;')
+              .replace(/\</g, '&lt;')
+              .replace(/\>/g, '&gt;')
+              .replace(/\"/g, '&quot;')
+              .replace(/\'/g, '&#x27');
+          }
+
+		let userName = escapeHTML(document.getElementById("create_name").value);
+		let mail = escapeHTML(document.getElementById("create_mail").value);
+		let password1 = escapeHTML(document.getElementById("create_password1").value);
+		let password2 = escapeHTML(document.getElementById("create_password2").value);
 		let inputUserInformation = {userName:userName,mail:mail,password1:password1,password2:password2};
 		if (!isValid(inputUserInformation)) {
 			return;
