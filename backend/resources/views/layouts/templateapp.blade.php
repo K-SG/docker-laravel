@@ -29,6 +29,8 @@
             </div>
           </ul>
         </div>
+        <form id="logout-form" action="../mylogout" method="POST" class="d-none">
+        @csrf
         <div class="popup-wrapper back-popup">
           <div class="pop-container">
             <div class="close-popup"> <img src="{{ asset('img/close_button_orange.png') }}" alt="閉じる" class="back-button"> </div>
@@ -42,15 +44,14 @@
                        document.getElementById('logout-form').submit();">
                 <span class="ok-button">OK</span>
 
-                <form id="logout-form" action="../mylogout" method="POST" class="d-none">
-                @csrf
-                </form>
+
               </a>
               <div class="ng-button close-popup">キャンセル</div>
               <img src="{{ asset('img/star/star_angry.png') }}" class="pop-img-top">
             </div>
             </div>
         </div>
+        </form>
     </header>
     @show
 
