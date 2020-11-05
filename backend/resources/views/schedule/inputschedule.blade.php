@@ -32,7 +32,7 @@
 		          <div class="schedule-regist-font-lev1">開始時刻<span>*</span></div>
 			        <div class="schedule-regist-time">
 			          <select name="startTimeHour" id="starthour">
-                <option value="8">8</option>
+                	<option value="8">8</option>
 			          <option value="9">9</option>
 			          <option value="10">10</option>
 			          <option value="11">11</option>
@@ -65,7 +65,7 @@
 				        <option value="8">8</option>
 				        <option value="9">9</option>
 				        <option value="10">10</option>
-		     	      <option value="11">11</option>
+		     			<option value="11">11</option>
 				        <option value="12">12</option>
 				        <option value="13">13</option>
 				        <option value="14">14</option>
@@ -94,28 +94,28 @@
 	        <div class="schedule-regist-area-2">
 		        <div class="schedule-regist-font-lev1">場所<span>*</span></div>
 		        <div class="schedule-regist-place">
-		          <select name="place" id="new-place">
-			        <option value="0">オフィス</option>
-		          <option value="1">在宅</option>
-		          <option value="2">外出</option>
-		          </select>
-	          </div>
-		      </div>
+		        	<select name="place" id="new-place">
+			    		<option value="0">オフィス</option>
+		        		<option value="1">在宅</option>
+		        		<option value="2">外出</option>
+		        	</select>
+	        	</div>
+		    </div>
 
-		      <div class="schedule-regist-area-3">
+		    <div class="schedule-regist-area-3">
 		        <div class="schedule-regist-font-lev1">タイトル<span>*</span></div>
 		        <div class="schedule-regist-title">
-		          <textarea name="title" id="title" rows="1" cols="40" maxlength="100" placeholder="予定のタイトルを100字以内で入力してください" value="{{$title ?? ''}}"></textarea>
+		        	<textarea name="title" id="title" rows="1" cols="40" maxlength="100" placeholder="予定のタイトルを100字以内で入力してください" value="{{$title ?? ''}}"></textarea>
 		        </div>
-		      </div>
+		    </div>
 
-		      <div class="schedule-regist-area-4">
+		    <div class="schedule-regist-area-4">
 		        <div class="schedule-regist-font-lev1">内容</div>
 		        <div class="schedule-regist-content">
 			        <textarea name="content" id="content" rows="13" cols="40" maxlength="1440" placeholder="予定の内容を1440字以内で入力してください" value="{{$content ?? ''}}"></textarea>
 		        </div>
-		      </div>
-	      </div>
+		    </div>
+	    </div>
 
 	      <div class=schedule-regist-button>
 	        <!--登録ボタン---->
@@ -123,7 +123,7 @@
 	          <div class="ok-button large-popup-button" id="ok-button" >登録</div>
 	        </div>
 
-  	      <!--キャンセルボタン----->
+  	    	<!--キャンセルボタン----->
 	        <div class=schedule-regist-button-right>
 	          <div class="ok-button large-popup-button cancel-button" id="cancel-button" >キャンセル</div>
   	      </div>

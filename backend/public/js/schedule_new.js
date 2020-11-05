@@ -4,6 +4,13 @@ $(function() {
 	$('#ok-button').click(
 
 		function() {
+			function escapeHTML(string){
+				return string.replace(/\&/g, '&amp;')
+				  .replace(/\</g, '&lt;')
+				  .replace(/\>/g, '&gt;')
+				  .replace(/\"/g, '&quot;')
+				  .replace(/\'/g, '&#x27');
+			  }
 
 			let date = document.getElementById('date').value;
 			let startHour = document.getElementById('starthour').value;
@@ -11,8 +18,8 @@ $(function() {
 			let endHour = document.getElementById('endhour').value;
 			let endMin = document.getElementById('endminutes').value;
 			let place = document.getElementById('new-place').value;
-			let title = document.getElementById('title').value;
-			let content = document.getElementById('content').value;
+			let title = escapeHTML(document.getElementById('title').value);
+			let content = escapeHTML(document.getElementById('content').value);
 			title = title.trim();
 
 			let d = new Date(date);
