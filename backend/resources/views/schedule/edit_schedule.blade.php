@@ -164,7 +164,7 @@
 		  <p>内容は保存されないよ！</p>
 		  <h2 class="message-title">本当に戻る？</h2>
 	    </div>
-	    <a href="scheduledetail?schedule_id={{$schedule->id}}"><div class="ok-button">OK</div></a>
+	    <a href="schedule_detail?schedule_id={{$schedule->id}}"><div class="ok-button">OK</div></a>
 	    <div class="ng-button close-popup">キャンセル</div>
 	    <img src="{{ asset('img/star/star_angry.png') }}" class="pop-img-top star-angry">
 	  </div>
