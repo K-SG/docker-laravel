@@ -31,17 +31,13 @@ class EditScheduleController extends Controller
         $schedule = Schedule::isBooking($schedule_date, $user_id, $schedule_id, $start_time, $end_time);
 
         if (empty($schedule)) {
+            $place = $request->place;
+            $title = $request->title;
+            $content = $request->content;
             $schedule = new Schedule;
             //データベースに値を送信
-            $schedule->user_id = $user_id;
-            $schedule->schedule_date = $schedule_date;
-            $schedule->start_time = $start_time;
-            $schedule->end_time = $end_time;
-            $schedule->place = $request->place;
-            $schedule->title = $request->title;
-            $schedule->content = $request->content;
-            $schedule->delete_flag = 0;
-            $schedule->save();
+            Schedule::editSchedule($schedule_id, $schedule_date, $start_time, $end_time, $place, $title, $content);
+
             return redirect('/user/calendar');
         } else {
             return view('schedule.edit_schedule');

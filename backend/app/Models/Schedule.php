@@ -88,4 +88,19 @@ class Schedule extends Model
         ]);
         return $query;
     }
+
+    public function scopeEditschedule($query, $schedule_id, $schedule_date, $start_time, $end_time, $place, $title, $content)
+    {
+        $query
+        ->where('id', $schedule_id)
+        ->update([
+            'schedule_date' => $schedule_date,
+            'start_time' => $start_time,
+            'end_time' => $end_time,
+            'place' => $place,
+            'title' => $title,
+            'content'=> $content,
+        ]);
+        return $query;
+    }
 }
