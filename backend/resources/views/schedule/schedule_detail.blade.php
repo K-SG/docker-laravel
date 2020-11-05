@@ -58,7 +58,7 @@
     @if (Auth::user()->id == $schedule->user_id)
         <div class="flex_test-box">
         <div class="flex_test-item">
-        <a href="scheduleedit?scheduleId={{$schedule->id}}"><div class="ok-button">修正</div></a>
+        <a href="edit_schedule?id={{$schedule->id}}"><div class="ok-button">修正</div></a>
         </div>
         <div class="flex_test-item">
           <div class="ok-button large-popup-button" id="{{$popFlag ?? '0'}}">削除</div>

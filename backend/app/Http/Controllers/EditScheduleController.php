@@ -7,25 +7,28 @@ use App\Models\KrononUser;
 use App\Models\Schedule;
 use Illuminate\Support\Facades\Auth;
 
-class InputScheduleController extends Controller
+class EditScheduleController extends Controller
 {
-    public function inputSchedule()
+    public function editSchedule(Request $request)
     {
-        $user = Auth::user();
-        $schedule = new Schedule;
+        $schedule = Schedule::getScheduleByScheduleId($request->input('id'))->first();
+        if (is_null($schedule)) {
+            throw new BadRequestException();
+        }
 
-        return view('schedule.inputschedule');
+        return view('schedule.edit_schedule', ['schedule' => $schedule, 'title' => $schedule->title]);
     }
 
-    public function scheduleCreate(Request $request)
+    public function editComplete(Request $request)
     {
+        $schedule_id = $request->scheduleId;
         $schedule_date = $request->scheduleDate;
         $start_time = $request->startTimeHour . ":" . $request->startTimeMin . ":" . "00";
         $end_time = $request->endTimeHour . ":" . $request->endTimeMin . ":" . "00";
         $user = Auth::user();
         $user_id = $user->id;
         //予定が重複していないか確認
-        $schedule = Schedule::isBooking($schedule_date, $user_id, 0, $start_time, $end_time);
+        $schedule = Schedule::isBooking($schedule_date, $user_id, $schedule_id, $start_time, $end_time);
 
         if (empty($schedule)) {
             $schedule = new Schedule;
@@ -41,7 +44,7 @@ class InputScheduleController extends Controller
             $schedule->save();
             return redirect('/user/calendar');
         } else {
-            return view('schedule.inputschedule');
+            return view('schedule.edit_schedule');
         }
         
     }

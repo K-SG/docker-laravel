@@ -48,13 +48,14 @@ class Schedule extends Model
        return $db_items;
    }
     
-    public static function isBooking($schedule_date, $user_id, $start_time, $end_time)
+    public static function isBooking($schedule_date, $user_id, $schedule_id, $start_time, $end_time)
     {
         $schedule = DB::select('select * from schedules 
                                 where schedule_date = ? 
                                 and user_id = ? 
                                 and delete_flag = 0 
-                                and not ((? <= start_time) or (end_time <= ?))', [$schedule_date, $user_id, $end_time, $start_time]);
+                                and id <> ?
+                                and not ((? <= start_time) or (end_time <= ?))', [$schedule_date, $user_id, $schedule_id, $end_time, $start_time]);
 
         return $schedule;
     }

@@ -46,5 +46,8 @@ Route::post('mylogout', 'App\Http\Controllers\LogoutController@logout')->middlew
 Route::get('user/input_schedule', 'App\Http\Controllers\InputScheduleController@inputSchedule')->middleware('auth');
 Route::post('user/schedule_create', 'App\Http\Controllers\InputScheduleController@scheduleCreate')->middleware('auth');
 
+Route::get('user/edit_schedule', 'App\Http\Controllers\EditScheduleController@editSchedule')->middleware('auth');
+Route::post('user/edit_schedule', 'App\Http\Controllers\EditScheduleController@editComplete')->middleware('auth');
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
