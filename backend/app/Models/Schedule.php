@@ -48,13 +48,14 @@ class Schedule extends Model
        return $db_items;
    }
     
-    public static function isBooking($schedule_date, $user_id, $start_time, $end_time)
+    public static function isBooking($schedule_date, $user_id, $schedule_id, $start_time, $end_time)
     {
         $schedule = DB::select('select * from schedules 
                                 where schedule_date = ? 
                                 and user_id = ? 
                                 and delete_flag = 0 
-                                and not ((? <= start_time) or (end_time <= ?))', [$schedule_date, $user_id, $end_time, $start_time]);
+                                and id <> ?
+                                and not ((? <= start_time) or (end_time <= ?))', [$schedule_date, $user_id, $schedule_id, $end_time, $start_time]);
 
         return $schedule;
     }
@@ -84,6 +85,21 @@ class Schedule extends Model
         ->where('id', $schedule_id)
         ->update([
             'delete_flag' => '1',
+        ]);
+        return $query;
+    }
+
+    public function scopeeditSchedule($query, $schedule_id, $schedule_date, $start_time, $end_time, $place, $title, $content)
+    {
+        $query
+        ->where('id', $schedule_id)
+        ->update([
+            'schedule_date' => $schedule_date,
+            'start_time' => $start_time,
+            'end_time' => $end_time,
+            'place' => $place,
+            'title' => $title,
+            'content'=> $content,
         ]);
         return $query;
     }
