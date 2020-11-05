@@ -89,11 +89,7 @@ class Schedule extends Model
         return $query;
     }
 
-<<<<<<< HEAD
-    public function scopeeditSchedule($query, $schedule_id, $schedule_date, $start_time, $end_time, $place, $title, $content)
-=======
     public function scopeEditschedule($query, $schedule_id, $schedule_date, $start_time, $end_time, $place, $title, $content)
->>>>>>> editschedule
     {
         $query
         ->where('id', $schedule_id)
