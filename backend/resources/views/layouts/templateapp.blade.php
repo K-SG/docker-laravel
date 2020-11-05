@@ -41,11 +41,7 @@
               </div>
               <a href="../mylogout"
                    onclick="event.preventDefault();
-                       document.getElementById('logout-form').submit();">
-                <span class="ok-button">OK</span>
-
-
-              </a>
+                       document.getElementById('logout-form').submit();" class="ok-button">OK</a>
               <div class="ng-button close-popup">キャンセル</div>
               <img src="{{ asset('img/star/star_angry.png') }}" class="pop-img-top">
             </div>
