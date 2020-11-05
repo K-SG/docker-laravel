@@ -20,6 +20,10 @@ article{
 	white-space: pre-wrap;
 }
 
+.a {
+  text-decoration: none;
+}
+
 /********************************************************************/
 /*ここからポップアップ関連のCSS*/
 
@@ -132,6 +136,7 @@ article{
   cursor: pointer;
   text-align: center;
   font-size: 1.5vw;
+  text-decoration: none;
 }
 
 /* okボタン内側 */
@@ -139,7 +144,8 @@ article{
 	background-color: #DE9B50;
   border: none;
 	color: white;
-	font-size: 1.5vw;
+  font-size: 1.5vw;
+  text-decoration: none;
 }
 
 /*NGボタン*/

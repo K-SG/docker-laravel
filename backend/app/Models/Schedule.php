@@ -12,13 +12,11 @@ class Schedule extends Model
 
     public static function getFirstScheduleByUserIdWithPeriod($userId, $period)
     {
-
         $db_items = DB::select('select schedule_date as jsonDate,start_time,min(title) as title from schedules
         where user_id = ? and delete_flag = 0 
         and schedule_date between ? and ? and (schedule_date,start_time) in (
         select schedule_date,min(start_time) from schedules where user_id = ? 
         and delete_flag = 0 group by schedule_date) group by schedule_date,start_time', [$userId, $period['date_first'], $period['date_end'], $userId]);
-
         return $db_items;
     }
     //かぶっている予定を取得したい
@@ -29,13 +27,11 @@ class Schedule extends Model
                                 and user_id = ? 
                                 and delete_flag = 0 
                                 and not ((? <= start_time) or (end_time <= ?))', [$schedule_date, $user_id, $end_time, $start_time]);
-
         return $schedule;
     }
                                
    public static function getScheduleByUserIdWithPeriod($userId, $period)
    {
-
         $db_items = DB::select('select schedules.id as schedule_id, users.id as user_id, title, schedule_date, start_time, end_time, place
           from schedules inner join users on users.id = schedules.user_id
         where delete_flag = 0 and schedules.user_id = ? and schedule_date = ? order by start_time;
@@ -56,7 +52,6 @@ class Schedule extends Model
                                 and delete_flag = 0 
                                 and id <> ?
                                 and not ((? <= start_time) or (end_time <= ?))', [$schedule_date, $user_id, $schedule_id, $end_time, $start_time]);
-
         return $schedule;
     }
     

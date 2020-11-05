@@ -12,6 +12,10 @@ body {
 	padding:0;
 	background-color: #FFD5A8;
 }
+
+.a {
+	text-decoration: none;
+}
 /*ヘッダー部分*/
 header{
 	width:100vw;

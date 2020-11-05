@@ -38,16 +38,15 @@
                 <p> </p><br>
                 <h2 class="message-title">本当にログアウトする？</h2>
               </div>
+              <form id="logout-form" action="../mylogout" method="POST" class="d-none">
+              @csrf
               <a href="../mylogout"
                    onclick="event.preventDefault();
                        document.getElementById('logout-form').submit();">
                 <span class="ok-button">OK</span>
-
-                <form id="logout-form" action="../mylogout" method="POST" class="d-none">
-                @csrf
-                </form>
               </a>
               <div class="ng-button close-popup">キャンセル</div>
+              </form>
               <img src="{{ asset('img/star/star_angry.png') }}" class="pop-img-top">
             </div>
             </div>
