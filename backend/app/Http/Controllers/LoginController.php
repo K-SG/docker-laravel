@@ -27,16 +27,6 @@ class LoginController extends Controller
             $popFlag = 2;
             return view('auth.login', ['email' => $email, 'popFlag' => $popFlag]);
         }
-
-        // $items = KrononUser::LoginCheck($mail, $password)->get();
-
-        // if (!KrononUser::existsUser($email,$password))
-        // {
-        //     return redirect('/user/calendar');
-        // }
-        //
-        // return view('login.login', ['popFlag' => $popFlag]);
-    
     }
 
 }
