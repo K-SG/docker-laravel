@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\KrononUser;
 use App\Models\Schedule;
 use Illuminate\Support\Facades\Auth;
+use App\Exceptions\BadRequestException;
 
 class EditScheduleController extends Controller
 {
