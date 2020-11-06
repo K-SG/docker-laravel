@@ -13,11 +13,19 @@ class Schedule extends Model
     public static function getFirstScheduleByUserIdWithPeriod($userId, $period)
     {
 
-        $db_items = DB::select('select schedule_date as jsonDate,start_time,min(title) as title from schedules
-        where user_id = ? and delete_flag = 0 
-        and schedule_date between ? and ? and (schedule_date,start_time) in (
-        select schedule_date,min(start_time) from schedules where user_id = ? 
-        and delete_flag = 0 group by schedule_date) group by schedule_date,start_time', [$userId, $period['date_first'], $period['date_end'], $userId]);
+        $db_items = DB::select('select schedule_date as jsonDate, start_time, min(title) as title 
+                                from schedules
+                                where user_id = ? 
+                                and delete_flag = 0 
+                                and schedule_date between ? and ? 
+                                and (schedule_date,start_time) in (
+                                    select schedule_date,min(start_time) 
+                                    from schedules 
+                                    where user_id = ? 
+                                    and delete_flag = 0 
+                                    group by schedule_date) 
+                                group by schedule_date,start_time', 
+                                [$userId, $period['date_first'], $period['date_end'], $userId]);
 
         return $db_items;
     }
@@ -36,14 +44,25 @@ class Schedule extends Model
    public static function getScheduleByUserIdWithPeriod($userId, $period)
    {
 
-        $db_items = DB::select('select schedules.id as schedule_id, users.id as user_id, title, schedule_date, start_time, end_time, place
-          from schedules inner join users on users.id = schedules.user_id
-        where delete_flag = 0 and schedules.user_id = ? and schedule_date = ? order by start_time;
-        ', [$userId, $period['date']]);
+        // $db_items = DB::select('select schedules.id as schedule_id, users.id as user_id, title, schedule_date, start_time, end_time, place
+        //   from schedules inner join users on users.id = schedules.user_id
+        // where delete_flag = 0 and schedules.user_id = ? and schedule_date = ? order by start_time;
+        // ', [$userId, $period['date']]);
 
-        //クエリビルダに移行中
-        //$db_items = self::select(['schedules.id as schedule_id'])->where('delete_flag',0)->where()
-        //$db_items = self::select(['id','name'])->where('id','<>',$userId)->orderBy('id','asc')->limit(4)->get()->toArray();
+        $db_items = self::select([
+            'schedules.id as schedule_id', 
+            'user_id', 'title', 
+            'schedule_date', 
+            'start_time', 
+            'end_time', 
+            'place'])
+        ->where('user_id','=',$userId)
+        ->where('schedule_date','=',$period['date'])
+        ->where('delete_flag','=',0)
+        ->orderBy('start_time','asc')
+        ->join('users','users.id','=','schedules.user_id')
+        ->get()->toArray();
+        
 
        return $db_items;
    }
