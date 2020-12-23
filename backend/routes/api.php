@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+Route::get('/auth/token', 'App\Http\Controllers\Api\AuthTokenController@index');
+
+Route::get('mylogin','App\Http\Controllers\LoginController@topPage');
+
+//Route::get('user/calendar', 'App\Http\Controllers\CalendarController@calendar')->middleware('auth');

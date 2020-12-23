@@ -30,3 +30,7 @@ Route::post('user/schedule_create', 'App\Http\Controllers\InputScheduleControlle
 Route::get('user/edit_schedule', 'App\Http\Controllers\EditScheduleController@editSchedule')->middleware('auth');
 Route::post('user/edit_schedule', 'App\Http\Controllers\EditScheduleController@editComplete')->middleware('auth');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/hoge', 'App\Http\Controllers\HogeController@index');
+Route::get('/hoge2', 'App\Http\Controllers\Hoge\HogeController@index');
+
+Route::get('auth/token','App\Http\Controllers\Api\AuthTokenController@index');

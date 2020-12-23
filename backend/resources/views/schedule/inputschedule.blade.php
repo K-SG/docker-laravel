@@ -20,14 +20,14 @@
 	<div class="schedule-regist-area">
 	  <div class="loose-leaf"><img src="{{ asset('img/loose_leaf.svg') }}" alt="loose-leaf" id="loose-leaf"></div>
 	  <div class="schedule-regist-area-inner">
-	    　<div class="schedule-regist-font-lev0">予定登録</div>
+	      <div class="schedule-regist-font-lev0">予定登録</div>
 		    <div class="schedule-regist-border"></div>
 	      <div class="schedule-regist-area-1">
 	        <div class="schedule-regist-area-1-block">
 		        <div class="schedule-regist-font-lev1">日付<span>*</span></div>
 		        <div class="schedule-regist-date-area">
               <input name="scheduleDate" id="date" value="{{$scheduleDate ?? '' ?? ''}}" type="date"/></div>
-		    　  </div>
+		      </div>
 		        <div class="schedule-regist-area-1-block">
 		          <div class="schedule-regist-font-lev1">開始時刻<span>*</span></div>
 			        <div class="schedule-regist-time">
