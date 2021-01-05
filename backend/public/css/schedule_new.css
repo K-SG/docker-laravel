@@ -27,6 +27,7 @@ textarea::placeholder {
 	top: 0vw;
 	left: 2.0vw;
 	z-index: 11;
+	padding-top: 1.5vw;
 }
 
 #loose-leaf {

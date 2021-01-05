@@ -156,9 +156,9 @@ ul.nav li:last-child {
 	width:2.5vw;
 	height: auto;
 }
-.nav .nav-right-img img {
+/* .nav .nav-right-img img {
 	padding-top:0.5vh;
-}
+} */
 
 .nav .nav-right {
 	float: right;
@@ -202,7 +202,7 @@ padding-top:1vh;
 
 
 img.logout-icon {
-	padding-top:1vh;
+	padding-top:1.5vh;
 	width: 100%;
 	cursor:pointer;
 }
