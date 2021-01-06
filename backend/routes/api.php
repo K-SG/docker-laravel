@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 Route::get('/auth/token', 'App\Http\Controllers\Api\AuthTokenController@index');
+Route::post('/users', 'App\Http\Controllers\Api\CreateUserController@index');
 
 Route::get('mylogin','App\Http\Controllers\LoginController@topPage');
 

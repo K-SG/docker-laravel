@@ -24,7 +24,7 @@ class AuthTokenController extends ApiController
      */
     public function index(Request $request)
     {
-        dd($request->hoge);
+        dd($request->hoges);
 
         return response()->json([
             'users' => User::all()
