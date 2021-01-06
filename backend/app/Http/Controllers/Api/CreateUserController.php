@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\CalendarRequest;
+use App\Http\Requests\CreateUserRequest;
 use App\Models\User;
 use CreateUsersTable;
 use Illuminate\Http\Request;
@@ -25,25 +26,21 @@ class CreateUserController extends ApiController
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(CreateUserController $request)
+    public function index(CreateUserRequest $request)
     {
-        // dd($request -> name);
-        //r
-
-
-        // return response()->json([
-        //     'name' => $request -> name,
-        //     'email' => $request -> email
-        // ]);
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        return response()->json($user);
-
-        // return response()->json([
-        //     'users' => User::all()
-        // ]);
+        return response()->json([
+            'success' => true,
+            'code' => 201,
+            'data' => 
+                    [
+                        'name' => $user->name,
+                        'email' => $user->email
+                    ]
+        ],201);
     }
 }
