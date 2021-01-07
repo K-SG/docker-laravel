@@ -32,5 +32,3 @@ Route::post('user/edit_schedule', 'App\Http\Controllers\EditScheduleController@e
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/hoge', 'App\Http\Controllers\HogeController@index');
 Route::get('/hoge2', 'App\Http\Controllers\Hoge\HogeController@index');
-
-Route::get('auth/token','App\Http\Controllers\Api\AuthTokenController@index');
