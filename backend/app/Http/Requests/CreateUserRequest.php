@@ -59,6 +59,6 @@ class CreateUserRequest extends FormRequest
             'success' => false,
             'code' => 400,
             'message' => $validator->errors()->toArray(),
-        ], 404));
+        ], 400));
     }
 }

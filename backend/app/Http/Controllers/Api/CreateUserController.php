@@ -6,8 +6,10 @@ use App\Http\Requests\CalendarRequest;
 use App\Http\Requests\CreateUserRequest;
 use App\Models\User;
 use CreateUsersTable;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class CreateUserController extends ApiController
 {
@@ -28,19 +30,28 @@ class CreateUserController extends ApiController
      */
     public function index(CreateUserRequest $request)
     {
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-        return response()->json([
-            'success' => true,
-            'code' => 201,
-            'data' => 
-                    [
-                        'name' => $user->name,
-                        'email' => $user->email
-                    ]
-        ],201);
+
+        try{
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+            return response()->json([
+                'success' => true,
+                'code' => 201,
+                'data' => 
+                        [
+                            'name' => $user->name,
+                            'email' => $user->email
+                        ]
+            ],201);
+        }catch(Exception $e){
+            throw new HttpResponseException(response()->json([
+                'success' => false,
+                'code' => 500,
+                'message' => 'エラーが発生したよ',
+            ], 500));
+        }
     }
 }
