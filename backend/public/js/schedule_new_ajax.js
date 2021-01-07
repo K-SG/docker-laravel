@@ -38,12 +38,12 @@ function schedule_insert() {
 
         response = data.result;
        
-        if (response === 'success') {
+        if (response == 'success') {
             console.log('success');
             $('.create-msg').html('登録が完了したよ！');
 			$('.complete-popup').fadeIn();
 			return;
-        } else if (response === 'booking') {
+        } else if (response == 'booking') {
             console.log('booking');
             $('.new-msg').html('予定がかぶってるよ！');
 			$('.error-popup').fadeIn();
