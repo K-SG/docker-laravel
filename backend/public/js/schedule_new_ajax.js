@@ -50,7 +50,7 @@ function schedule_insert() {
 			return;
         } else {
             console.log('error');
-            $('.new-msg').html('エラーが発生したよ。');
+            $('.new-msg').html(data);//'エラーが発生したよ。'
 			$('.error-popup').fadeIn();
 			return;
         }
