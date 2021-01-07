@@ -30,7 +30,6 @@ class CreateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'month_counter' => 'numeric',
             'name' => 'required|max:15',
             'email' => 'required|email:strict|unique:users,email',
             'password' => 'required|min:8|max:20|regex:/\A(?=.?[a-z])(?=.?[A-Z])(?=.*?\d)[a-zA-Z\d]+\z/',
