@@ -112,6 +112,7 @@ class Schedule extends Model
     {
         $query
         ->where('id', $schedule_id)
+        ->where('delete_flag',0)
         ->update([
             'schedule_date' => $schedule_date,
             'start_time' => $start_time,
