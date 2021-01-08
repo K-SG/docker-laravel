@@ -33,14 +33,21 @@ class EditScheduleController extends ApiController
     public function update(EditScheduleRequest $request,int $id)
     {
         try {
-            $schedule = Schedule::editSchedule([
-                // 'schedule_id' => $id,
+            $schedule = Schedule::editSchedule(
+                $id,
+                $request->schedule_date,
+                $request->start_time,
+                $request->end_time,
+                $request->place,
+                $request->title,
+                $request->content
+                // ['schedule_id' => $id,
                 // 'schedule_date' => $request->schedule_date,
                 // 'start_time' => $request->start_time,
                 // 'end_time' => $request->end_time,
                 // 'place' => $request->place,
                 // 'title' => $request->title,
-                // 'content' => $request->content,
+                // 'content' => $request->content,]
                 // 'schedule_id' => 30,
                 // 'schedule_date' => '2021-01-02',
                 // 'start_time' => '13:00:00',
@@ -48,7 +55,7 @@ class EditScheduleController extends ApiController
                 // 'place' => 2,
                 // 'title' => 'お腹減った',
                 // 'content' => 'お腹減ったったったったったったった',
-            ]);
+            );
             return response()->json([
                 'success' => true,
                 'code' => 200,
@@ -67,7 +74,7 @@ class EditScheduleController extends ApiController
             throw new HttpResponseException(response()->json([
                 'success' => false,
                 'code' => 500,
-                'message' => 'エラーが発生したよ',
+                'message' => $e,//'エラーが発生したよ',
             ], 500));
         }
     }
