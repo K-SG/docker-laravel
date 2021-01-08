@@ -56,18 +56,21 @@ class EditScheduleController extends ApiController
                 // 'title' => 'お腹減った',
                 // 'content' => 'お腹減ったったったったったったった',
             );
+            $schedule = Schedule::getScheduleByScheduleId($id);
+
+            //return response()->json(["schedule" => $schedule]);
             return response()->json([
                 'success' => true,
                 'code' => 200,
                 'data' =>
                 [
-                    'id' => $schedule->schedule_id,
-                    'title' => $schedule->title,
-                    'schedule_date' => $schedule->schedule_date,
-                    'place' => $schedule->place,
-                    'start_time' => $schedule->start_time,
-                    'end_time' => $schedule->end_time,
-                    'content' => $schedule->content,
+                    //'id' => $schedule->schedule_id,
+                    // 'title' => $schedule->title,
+                    // 'schedule_date' => $schedule->schedule_date,
+                    // 'place' => $schedule->place,
+                    // 'start_time' => $schedule->start_time,
+                    // 'end_time' => $schedule->end_time,
+                    // 'content' => $schedule->content,
                 ]
             ], 200);
         } catch (Exception $e) {

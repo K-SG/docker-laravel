@@ -83,7 +83,7 @@ class Schedule extends Model
     {   
         $query = self::select([
             'user_id',
-            'schedules.id',
+            'schedules.id as schedule_id',
             'schedule_date',
             'start_time',
             'end_time',
