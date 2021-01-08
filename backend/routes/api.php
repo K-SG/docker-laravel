@@ -17,6 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/auth/token', 'App\Http\Controllers\Api\AuthTokenController@index');
 Route::post('/users', 'App\Http\Controllers\Api\CreateUserController@index');
 
-Route::put('/schedules/{schedule_id}', 'App\Http\Controllers\Api\EditScheduleController@put');
-
+Route::put('/schedules/{id}', 'App\Http\Controllers\Api\EditScheduleController@update');
 Route::get('mylogin','App\Http\Controllers\LoginController@topPage');

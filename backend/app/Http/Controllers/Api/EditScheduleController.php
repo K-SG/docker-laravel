@@ -30,18 +30,24 @@ class EditScheduleController extends ApiController
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function put(EditScheduleRequest $request,int $schedule_id)
+    public function update(EditScheduleRequest $request,int $id)
     {
-
         try {
-            $schedule = Schedule::editschedule([
-                'schedule_id' => $schedule_id,
-                'schedule_date' => $request->schedule_date,
-                'start_time' => $request->start_time,
-                'end_time' => $request->end_time,
-                'place' => $request->place,
-                'title' => $request->title,
-                'content' => $request->content,
+            $schedule = Schedule::editSchedule([
+                // 'schedule_id' => $id,
+                // 'schedule_date' => $request->schedule_date,
+                // 'start_time' => $request->start_time,
+                // 'end_time' => $request->end_time,
+                // 'place' => $request->place,
+                // 'title' => $request->title,
+                // 'content' => $request->content,
+                'schedule_id' => 30,
+                'schedule_date' => '2021-01-02',
+                'start_time' => '13:00:00',
+                'end_time' => '14:00:00',
+                'place' => 2,
+                'title' => 'お腹減った',
+                'content' => 'お腹減ったったったったったったった',
             ]);
             return response()->json([
                 'success' => true,

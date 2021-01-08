@@ -44,10 +44,10 @@ class EditScheduleRequest extends FormRequest
         return [
             'title.required' => 'タイトルを入力してね',
             'title.max' => 'タイトルが長すぎるよ。100文字いないにしてね',
-            'schedule_date.required' => 'メールアドレスを入力してね',
-            'place.required' => 'パスワードを入力してね',
-            'start_time.required' => 'パスワードを短すぎるよ。8文字以上にしてね',
-            'end_time.required' => 'パスワードを短すぎるよ。8文字以上にしてね',
+            'schedule_date.required' => '日付を入力してね',
+            'place.required' => '場所を選択してね',
+            'start_time.required' => '開始時間を入力してね',
+            'end_time.required' => '終了時間を入力してね',
             'content.max' => '内容が長すぎるよ。1440文字以内にしてね',
         ];
     }
