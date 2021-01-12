@@ -41,20 +41,6 @@ class EditScheduleController extends ApiController
                 $request->place,
                 $request->title,
                 $request->content
-                // ['schedule_id' => $id,
-                // 'schedule_date' => $request->schedule_date,
-                // 'start_time' => $request->start_time,
-                // 'end_time' => $request->end_time,
-                // 'place' => $request->place,
-                // 'title' => $request->title,
-                // 'content' => $request->content,]
-                // 'schedule_id' => 30,
-                // 'schedule_date' => '2021-01-02',
-                // 'start_time' => '13:00:00',
-                // 'end_time' => '14:00:00',
-                // 'place' => 2,
-                // 'title' => 'お腹減った',
-                // 'content' => 'お腹減ったったったったったったった',
             );
             if (is_null($schedule)) {
                 return response()->json([
