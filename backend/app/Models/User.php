@@ -60,4 +60,9 @@ class User extends Authenticatable
         return $db_items;
     }
 
+    public function scopeSelectById($query, $userId)
+    {
+        return $query->where('id', $userId);
+    }
+
 }

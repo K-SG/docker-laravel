@@ -18,7 +18,7 @@ class ScheduleDetailController extends Controller
     {
         try{
             
-            $user = user::getUserInfoMax4ExcludeMe($id)->first();
+            $user = User::scopeSelectById($id)->first();
             if (is_null($user)) {
                 return response()->json([
                     'success' => false,
@@ -44,7 +44,7 @@ class ScheduleDetailController extends Controller
         }
 
 
-        $user = user::getUserInfoMax4ExcludeMe($id)->first();
+        $user = User::scopeSelectById($id)->first();
         if (is_null($user)) {
             throw new BadRequestException();
         }
