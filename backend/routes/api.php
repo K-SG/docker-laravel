@@ -19,3 +19,4 @@ Route::post('/users', 'App\Http\Controllers\Api\CreateUserController@index');
 Route::get('mylogin','App\Http\Controllers\LoginController@topPage');
 
 Route::get('/schedules/{id}', 'App\Http\Controllers\Api\ScheduleDetailController@detail');
+Route::get('/calendar', 'App\Http\Controllers\Api\CalendarController@calendar');
