@@ -12,13 +12,13 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 
 use App\Models\Schedule;
 
-class ScheduleDetailController extends Controller
+class CreateScheduleController extends Controller
 {
-    public function create()
+    public function create(Request $request)
     {
         try{
             
-            $schedule = Schedule::getScheduleByScheduleId($id)->first();
+            $schedule = Schedule::isBooking($schedule_date, $user_id, 0, $start_time, $end_time);
             if (is_null($schedule)) {
                 return response()->json([
                     'success' => false,
