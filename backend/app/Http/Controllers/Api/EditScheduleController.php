@@ -49,9 +49,7 @@ class EditScheduleController extends ApiController
                     'message' => "お探しのページが見つからなかったよ。"//$e,
                 ], 404);
             }
-            return response()->json(["schedule" => $schedule]);
             $schedule = Schedule::getScheduleByScheduleId($id)->first();
-
             return response()->json([
                 'success' => true,
                 'code' => 200,

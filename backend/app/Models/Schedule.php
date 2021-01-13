@@ -100,12 +100,13 @@ class Schedule extends Model
     
     public function scopescheduleDelete($query,$schedule_id)
     {
+        $result =
         $query
         ->where('id', $schedule_id)
         ->update([
             'delete_flag' => '1',
         ]);
-        return $query;
+        return $result;
     }
 
     public function scopeEditschedule($query, $schedule_id, $schedule_date, $start_time, $end_time, $place, $title, $content)

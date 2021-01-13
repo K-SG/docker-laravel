@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::group(['middleware' => 'auth:api'], function(){
+// Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/auth/token', 'App\Http\Controllers\Api\AuthTokenController@index');
     Route::post('/users', 'App\Http\Controllers\Api\CreateUserController@index');
     
@@ -26,7 +26,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/show-schedules/search-by-day', 'App\Http\Controllers\Api\ShowScheduleController@show_all');
     
     Route::get('/calendar', 'App\Http\Controllers\Api\CalendarController@calendar');
-});
+// });
 
 
 Route::post('/login', 'App\Http\Controllers\Api\LoginController@login');

@@ -33,13 +33,16 @@ class DeleteScheduleController extends ApiController
      */
     public function delete(int $id)
     {
-         //return response()->json(["schedule" => $schedule]);
+
+        //db内にこのレコードのデータ歩かないかをフォームリクエストにある
+        //softdalete Laravel標準の論理削除
+        //
         try {
             //scheduleの中身がからなのでエラーをキャッチしません？？
             $schedule = Schedule::Scheduledelete(
                 $id
             );
-            if (is_null($schedule)) {
+            if (is_null($schedule) || $schedule == 0) {
                 return response()->json([
                     'success' => false,
                     'code' => 404,
