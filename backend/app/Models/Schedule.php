@@ -13,7 +13,7 @@ class Schedule extends Model
     public static function getFirstScheduleByUserIdWithPeriod($userId, $period)
     {
 
-        $db_items = DB::select('select schedule_date as jsonDate, start_time, min(title) as title 
+        $db_items = DB::select('select schedule_date, start_time, min(title) as title 
                                 from schedules
                                 where user_id = ? 
                                 and delete_flag = 0 
@@ -83,7 +83,7 @@ class Schedule extends Model
     {   
         $query = self::select([
             'user_id',
-            'schedules.id as schedule_id',
+            'schedules.id as schedules_id',
             'schedule_date',
             'start_time',
             'end_time',

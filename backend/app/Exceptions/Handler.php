@@ -49,6 +49,12 @@ class Handler extends ExceptionHandler
     protected function renderHttpException(HttpExceptionInterface $e)
     {
         $status = $e->getStatusCode();
-        return response()->view("error.error", ['exception' => $e], $status);
+
+        return response()->json([
+            'success' => true,
+            'code' => $status,
+            'message' => $e,            
+        ],$status);
+        //return response()->view("error.error", ['exception' => $e], $status);
     }
 }

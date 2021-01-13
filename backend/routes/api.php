@@ -17,8 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/auth/token', 'App\Http\Controllers\Api\AuthTokenController@index');
 Route::post('/users', 'App\Http\Controllers\Api\CreateUserController@index');
 
-Route::put('/schedules/{id}', 'App\Http\Controllers\Api\EditScheduleController@update');
 Route::get('mylogin','App\Http\Controllers\LoginController@topPage');
 
+Route::get('/schedules/{id}', 'App\Http\Controllers\Api\ScheduleDetailController@detail');
+Route::put('/schedules/{id}', 'App\Http\Controllers\Api\EditScheduleController@update');
 Route::delete('/schedules/{id}', 'App\Http\Controllers\Api\DeleteScheduleController@delete');
+
 Route::get('/schedules/search-by-day', 'App\Http\Controllers\Api\ShowScheduleController@show_all');
+
+Route::get('/calendar', 'App\Http\Controllers\Api\CalendarController@calendar');
