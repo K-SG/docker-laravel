@@ -83,7 +83,7 @@ class Schedule extends Model
     {   
         $query = self::select([
             'user_id',
-            'schedules.id',
+            'schedules.id as schedule_id',
             'schedule_date',
             'start_time',
             'end_time',
@@ -112,6 +112,7 @@ class Schedule extends Model
     {
         $query
         ->where('id', $schedule_id)
+        ->where('delete_flag',0)
         ->update([
             'schedule_date' => $schedule_date,
             'start_time' => $start_time,

@@ -24,7 +24,7 @@ textarea::placeholder {
 .schedule-regist-area-inner {
 	width: 50vw;
 	position: absolute;
-	top: 0vw;
+	top: 2vw;
 	left: 2.0vw;
 	z-index: 11;
 	padding-top: 1.5vw;
