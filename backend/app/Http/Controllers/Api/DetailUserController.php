@@ -18,7 +18,7 @@ class DetailUserController extends Controller
     {
         try{
             
-            $user = User::scopeSelectById($id)->first();
+            $user = User::scopeSelectById($id);
             if (is_null($user)) {
                 return response()->json([
                     'success' => false,
@@ -44,7 +44,7 @@ class DetailUserController extends Controller
         }
 
 
-        $user = User::scopeSelectById($id)->first();
+        $user = User::scopeSelectById($id);
         if (is_null($user)) {
             throw new BadRequestException();
         }
