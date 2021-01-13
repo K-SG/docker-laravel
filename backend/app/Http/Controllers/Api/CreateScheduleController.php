@@ -17,7 +17,14 @@ class CreateScheduleController extends Controller
     public function create(Request $request)
     {
         try{
-            
+
+            $schedule_date = $request->schedule_date;
+            $start_time = $request->start_time;
+            $end_time = $request->end_time;
+
+            $user = Auth::user();
+            $user_id = $user->id;
+
             $schedule = Schedule::isBooking($schedule_date, $user_id, 0, $start_time, $end_time);
             if (is_null($schedule)) {
                 return response()->json([
@@ -31,13 +38,13 @@ class CreateScheduleController extends Controller
                 'code' => 200,
                 'data' => 
                         [
-                            'id' => $schedule->schedules_id,
-                            'title' => $schedule->title,
-                            'schedule_date' => $schedule->schedule_date,
-                            'place' => $schedule->place,
-                            'start_time' => $schedule->start_time,
-                            'end_time' => $schedule->end_time,
-                            'content' => $schedule->content,
+                            'id' => $request->schedules_id,
+                            'title' => $request->title,
+                            'schedule_date' => $request->schedule_date,
+                            'place' => $request->place,
+                            'start_time' => $request->start_time,
+                            'end_time' => $request->end_time,
+                            'content' => $request->content,
                         ]
             ],200);
         }catch(Exception $e){
@@ -49,11 +56,11 @@ class CreateScheduleController extends Controller
         }
 
 
-        $schedule = Schedule::getScheduleByScheduleId($id)->first();
+        $schedule = Schedule::getScheduleByScheduleId($request->schedules_id)->first();
         if (is_null($schedule)) {
             throw new BadRequestException();
         }
-        return view('schedule.schedule_detail', ['schedule' => $schedule]);
+        return view('calendar.calendar', ['schedule' => $schedule]);
     }
 
 }
