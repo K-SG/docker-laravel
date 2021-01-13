@@ -9,7 +9,6 @@ use Exception;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-
 use App\Models\User;
 
 class DetailUserController extends Controller
@@ -48,7 +47,7 @@ class DetailUserController extends Controller
         if (is_null($user)) {
             throw new BadRequestException();
         }
-        return view('user.user_detail', ['user' => $user]);
+        return view('user.user_detail');
     }
 
 }
