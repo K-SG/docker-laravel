@@ -19,4 +19,4 @@ Route::post('/users', 'App\Http\Controllers\Api\CreateUserController@index');
 Route::get('mylogin','App\Http\Controllers\LoginController@topPage');
 
 Route::get('/schedules/{id}', 'App\Http\Controllers\Api\ScheduleDetailController@detail');
-Route::get('/user/{id}', 'App\Http\Controllers\Api\DetailUserController@detail');
+Route::get('/users/{id}', 'App\Http\Controllers\Api\DetailUserController@detail');
