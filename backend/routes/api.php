@@ -19,3 +19,4 @@ Route::post('/users', 'App\Http\Controllers\Api\CreateUserController@index');
 
 Route::put('/schedules/{id}', 'App\Http\Controllers\Api\EditScheduleController@update');
 Route::get('mylogin','App\Http\Controllers\LoginController@topPage');
+Route::delete('/schedules/{id}', 'App\Http\Controllers\Api\DeleteScheduleController@delete');
