@@ -22,29 +22,22 @@ class CreateScheduleController extends Controller
             $start_time = $request->start_time;
             $end_time = $request->end_time;
 
-            $user = Auth::user();
-            $user_id = $user->id;
+            $user_id = 1;
 
             $schedule = Schedule::isBooking($schedule_date, $user_id, 0, $start_time, $end_time);
-            if (is_null($schedule)) {
-                return response()->json([
-                    'success' => false,
-                    'code' => 404,
-                    'message' => "お探しのページが見つからなかったよ。"//$e,
-                ], 404);
-            }
+            
             return response()->json([
                 'success' => true,
                 'code' => 200,
                 'data' => 
                         [
-                            'id' => $request->schedules_id,
                             'title' => $request->title,
                             'schedule_date' => $request->schedule_date,
                             'place' => $request->place,
                             'start_time' => $request->start_time,
                             'end_time' => $request->end_time,
                             'content' => $request->content,
+                            'delete_flag' => 0,
                         ]
             ],200);
         }catch(Exception $e){
