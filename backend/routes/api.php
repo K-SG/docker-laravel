@@ -25,6 +25,6 @@ Route::delete('/schedules/{id}', 'App\Http\Controllers\Api\DeleteScheduleControl
 
 Route::get('/show-schedules/search-by-day', 'App\Http\Controllers\Api\ShowScheduleController@show_all');
 
-Route::get('/calendar', 'App\Http\Controllers\Api\CalendarController@calendar');
+Route::middleware('auth:api')->get('/calendar', 'App\Http\Controllers\Api\CalendarController@calendar');
 
 Route::get('/users/{id}', 'App\Http\Controllers\Api\DetailUserController@detail');

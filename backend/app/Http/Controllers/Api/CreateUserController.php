@@ -10,6 +10,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Support\Str;
 
 class CreateUserController extends ApiController
 {
@@ -36,6 +37,7 @@ class CreateUserController extends ApiController
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
+                'api_token' => Str::random(60),
             ]);
             return response()->json([
                 'success' => true,
