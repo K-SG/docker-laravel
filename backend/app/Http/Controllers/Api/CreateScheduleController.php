@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 
 use App\Exceptions\BadRequestException;
+use App\Http\Requests\CreateScheduleRequest;
 use Exception;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -14,7 +15,7 @@ use App\Models\Schedule;
 
 class CreateScheduleController extends Controller
 {
-    public function create(Request $request)
+    public function create(CreateScheduleRequest $request)
     {
         try{
 
@@ -25,6 +26,24 @@ class CreateScheduleController extends Controller
             $user_id = 1;
 
             $schedule = Schedule::isBooking($schedule_date, $user_id, 0, $start_time, $end_time);
+
+            if (empty($schedule)) {
+                $schedule = new Schedule;
+                //データベースに値を送信
+                $schedule->user_id = $user_id;
+                $schedule->schedule_date = $schedule_date;
+                $schedule->start_time = $start_time;
+                $schedule->end_time = $end_time;
+                $schedule->place = $request->place;
+                $schedule->title = $request->title;
+                $schedule->content = $request->content;
+                $schedule->delete_flag = 0;
+            if ($schedule->save()) {
+                $result =['result'=>'success'];
+            };
+            } else {
+                $result =['result'=>'booking'];
+            } 
             
             return response()->json([
                 'success' => true,
