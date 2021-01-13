@@ -12,7 +12,7 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 
 use App\Models\User;
 
-class ScheduleDetailController extends Controller
+class DetailUserController extends Controller
 {
     public function detail(int $id)
     {
