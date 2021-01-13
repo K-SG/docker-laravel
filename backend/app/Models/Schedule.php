@@ -13,7 +13,7 @@ class Schedule extends Model
     public static function getFirstScheduleByUserIdWithPeriod($userId, $period)
     {
 
-        $db_items = DB::select('select schedule_date, start_time, min(title) as title 
+        $db_items = DB::select('select schedule_date as jsonDate, start_time, min(title) as title 
                                 from schedules
                                 where user_id = ? 
                                 and delete_flag = 0 
@@ -83,7 +83,7 @@ class Schedule extends Model
     {   
         $query = self::select([
             'user_id',
-            'schedules.id as schedules_id',
+            'schedules.id as schedule_id',
             'schedule_date',
             'start_time',
             'end_time',
@@ -110,7 +110,8 @@ class Schedule extends Model
 
     public function scopeEditschedule($query, $schedule_id, $schedule_date, $start_time, $end_time, $place, $title, $content)
     {
-        $query
+        $result = $query
+        // $query
         ->where('id', $schedule_id)
         ->where('delete_flag',0)
         ->update([
@@ -121,6 +122,6 @@ class Schedule extends Model
             'title' => $title,
             'content'=> $content,
         ]);
-        return $query;
+        return $result;
     }
 }

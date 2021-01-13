@@ -42,17 +42,16 @@ class EditScheduleController extends ApiController
                 $request->title,
                 $request->content
             );
-            if (is_null($schedule)) {
+            if ($schedule == 0) {
                 return response()->json([
                     'success' => false,
                     'code' => 404,
                     'message' => "お探しのページが見つからなかったよ。"//$e,
                 ], 404);
             }
-           
+            return response()->json(["schedule" => $schedule]);
             $schedule = Schedule::getScheduleByScheduleId($id)->first();
 
-            //return response()->json(["schedule" => $schedule]);
             return response()->json([
                 'success' => true,
                 'code' => 200,
