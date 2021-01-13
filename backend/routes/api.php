@@ -23,6 +23,6 @@ Route::get('/schedules/{id}', 'App\Http\Controllers\Api\ScheduleDetailController
 Route::put('/schedules/{id}', 'App\Http\Controllers\Api\EditScheduleController@update');
 Route::delete('/schedules/{id}', 'App\Http\Controllers\Api\DeleteScheduleController@delete');
 
-Route::get('/schedules/search-by-day', 'App\Http\Controllers\Api\ShowScheduleController@show_all');
+Route::get('/show-schedules/search-by-day', 'App\Http\Controllers\Api\ShowScheduleController@show_all');
 
 Route::get('/calendar', 'App\Http\Controllers\Api\CalendarController@calendar');
