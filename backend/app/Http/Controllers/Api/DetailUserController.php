@@ -16,15 +16,9 @@ class DetailUserController extends Controller
     public function detail(int $id)
     {
         try{
-            
-            $user = User::scopeSelectById($id);
-            if (is_null($user)) {
-                return response()->json([
-                    'success' => false,
-                    'code' => 404,
-                    'message' => "お探しのページが見つからなかったよ。"//$e,
-                ], 404);
-            }
+
+            $user = User::selectById($id);
+
             return response()->json([
                 'success' => true,
                 'code' => 200,
@@ -42,8 +36,7 @@ class DetailUserController extends Controller
             ], 500));
         }
 
-
-        $user = User::scopeSelectById($id);
+        $user = User::selectById($id);
         if (is_null($user)) {
             throw new BadRequestException();
         }
