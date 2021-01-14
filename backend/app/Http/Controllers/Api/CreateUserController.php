@@ -33,11 +33,12 @@ class CreateUserController extends ApiController
     {
 
         try{
+            $api_token = Str::random(60);
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
-                'api_token' => Str::random(60),
+                'api_token' => $api_token,
             ]);
             return response()->json([
                 'success' => true,
@@ -45,7 +46,8 @@ class CreateUserController extends ApiController
                 'data' => 
                         [
                             'name' => $user->name,
-                            'email' => $user->email
+                            'email' => $user->email,
+                            'token' => $api_token,
                         ]
             ],201);
         }catch(Exception $e){

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -65,6 +66,14 @@ class User extends Authenticatable
     {
         $result = DB::select('select * from users where id = ?', [$id]);
         return $result;
+    }
+
+    public static function createApiToken($email){
+        $api_token = Str::random(60);
+        $result = DB::table('users')
+                    ->where('email',$email)
+                    ->update(['api_token'=>$api_token]);
+        return $api_token;
     }
 
 }
