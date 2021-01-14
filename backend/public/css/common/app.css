@@ -26,9 +26,10 @@ header{
 ul.top-head {
 	width:100vw;
 	background-color:#DE9B50;
-	height: 9vh;
+	/* height: 9vh; */
 	margin: 0;
-	padding:0;
+	padding:1.5vh;
+	clear:both;
 }
 
 
@@ -41,10 +42,10 @@ li.top-head-img{
 	vertical-align:middle;
 	display: inline-block;
 	text-align: center;
-	font-size:3.5vh;
-	padding-top:3vh;
+	/* padding-top:2vh; */
+	/* padding-bottom:0vh; */
 	margin: 0;
-	font-size : min(4.5vh,2.5vw);
+	font-size : min(4vh,2.5vw);
 }
 
 
@@ -65,8 +66,8 @@ opacity: 0.5;
 }
 
 li.system-name{
-	padding-bottom:2vh;
-	padding-left: 2vh;;
+	/* padding-bottom:2vh; */
+	padding-left: 2vh;
 
 }
 
@@ -75,7 +76,7 @@ li.system-name{
 {
 	background-repeat : no-repeat;
 	width: 20%;
-	margin-top:-30%;
+	margin-top:-5%;
 	margin-bottom:-4%;
 }
 
@@ -97,7 +98,6 @@ li.company-name{
 	padding-right: 0;
 	padding-left: 0;
 	padding-top: 0;
-	height:6vh;
 	padding-right:2vw;
 }
 
@@ -110,6 +110,8 @@ ul.nav {
   width:100vw;
   background-color :rgba(222, 155, 80, 0.5);
   color:#FFFFFF;
+  /* height:7vh; */
+  clear:both;
  }
 
 ul.nav li {
@@ -123,10 +125,11 @@ ul.nav li a {
 	display: block;
 	text-decoration:none;
 	color:#FFFFFF;
-	padding-top:2vh;
-   	padding-bottom:2vh;
+	padding-top:1.5vh;
+   	padding-bottom:1.5vh;
    	padding-right:2vh;
-   	padding-left:2vh;
+	padding-left:2vh;
+	float:left;
 }
 
 ul.nav li:hover {
@@ -142,8 +145,7 @@ ul.nav li:last-child {
 
 .nav .nav-right-user{
 	float: right;
-	padding-top:2vh;
-	padding-right: 1vh;
+	padding:1.7vh;
 	font-size: min(2.5vh,2vw);
 	color:#FFFFFF;
 }
@@ -157,12 +159,12 @@ ul.nav li:last-child {
 	height: auto;
 }
 .nav .nav-right-img img {
-	padding-top:0.5vh;
+	padding-top:1.5vh;
+	padding-right:2.5vh;
 }
 
 .nav .nav-right {
 	float: right;
-padding-top:1vh;
 }
 
 .nav .nav-right li{

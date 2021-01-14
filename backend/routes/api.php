@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/auth/token', 'App\Http\Controllers\Api\AuthTokenController@index');
+Route::post('/users', 'App\Http\Controllers\Api\CreateUserController@index');
+Route::get('mylogin','App\Http\Controllers\LoginController@topPage');
+
+Route::get('/schedules/{id}', 'App\Http\Controllers\Api\ScheduleDetailController@detail');
+Route::get('/users/{id}', 'App\Http\Controllers\Api\DetailUserController@detail');
+Route::post('/schedules', 'App\Http\Controllers\Api\CreateScheduleController@create');
