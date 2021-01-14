@@ -17,7 +17,7 @@ class DetailUserController extends Controller
     {
         try{
 
-            $user = User::selectById($id);
+            $user = User::getUserInfomationById($id);
 
             return response()->json([
                 'success' => true,
@@ -36,7 +36,7 @@ class DetailUserController extends Controller
             ], 500));
         }
 
-        $user = User::selectById($id);
+        $user = User::getUserInfomationById($id);
         if (is_null($user)) {
             throw new BadRequestException();
         }
