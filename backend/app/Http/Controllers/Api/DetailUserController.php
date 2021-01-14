@@ -17,8 +17,14 @@ class DetailUserController extends Controller
     {
         try{
 
-            $user = User::getUserInfomationById($id);
-
+            $user = User::getUserInfomationById($id)->first();
+            if (is_null($user)) {
+                return response()->json([
+                    'success' => false,
+                    'code' => 404,
+                    'message' => "お探しのページが見つからなかったよ。"//$e,
+                ], 404);
+            }
             return response()->json([
                 'success' => true,
                 'code' => 200,
