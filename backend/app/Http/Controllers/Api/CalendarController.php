@@ -25,9 +25,9 @@ class CalendarController extends Controller
             $input_date = new DateTime($input_date_str);
 
             //token処理やってからuser_id取ろう
-            //$user = Auth::user();
-            //$user_id = $user->id; 
-            $user_id = 1;
+            $user = Auth::user();
+            $user_id = $user->id; 
+            //$user_id = 1;
 
             $period = [
                 'date_first' => $input_date->format('Y-m-01'),
