@@ -38,7 +38,7 @@ class DeleteScheduleRequest extends FormRequest
     public function messages()
     {
         return [
-            'id.exists' => '予定が必要だよ',
+            'id.exists' => '予定が存在しないよ',
         ];
     }
 
