@@ -18,6 +18,16 @@ Route::get('/auth/token', 'App\Http\Controllers\Api\AuthTokenController@index');
 Route::post('/users', 'App\Http\Controllers\Api\CreateUserController@index');
 Route::get('mylogin','App\Http\Controllers\LoginController@topPage');
 
+Route::get('mylogin','App\Http\Controllers\LoginController@topPage');
+
 Route::get('/schedules/{id}', 'App\Http\Controllers\Api\ScheduleDetailController@detail');
+Route::put('/schedules/{id}', 'App\Http\Controllers\Api\EditScheduleController@update');
+Route::delete('/schedules/{id}', 'App\Http\Controllers\Api\DeleteScheduleController@delete');
+
+Route::get('/show-schedules/search-by-day', 'App\Http\Controllers\Api\ShowScheduleController@show_all');
+
+Route::get('/calendar', 'App\Http\Controllers\Api\CalendarController@calendar');
+
 Route::get('/users/{id}', 'App\Http\Controllers\Api\DetailUserController@detail');
+
 Route::post('/schedules', 'App\Http\Controllers\Api\CreateScheduleController@create');

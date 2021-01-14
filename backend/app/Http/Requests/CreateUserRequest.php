@@ -7,7 +7,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Contracts\Validation\Validator; 
+use Illuminate\Contracts\Validation\Validator;
 
 
 class CreateUserRequest extends FormRequest
@@ -48,12 +48,12 @@ class CreateUserRequest extends FormRequest
             'password.max' => 'パスワードが長すぎるよ。20文字以下にしてね',
             'password.min' => 'パスワードを短すぎるよ。8文字以上にしてね',
             'password.regex' => 'パスワードが不正だよ。大文字小文字と英数字すべて含めてね。',
-            
         ];
     }
 
-    protected function failedValidation(Validator $validator) {
-        
+    protected function failedValidation(Validator $validator)
+    {
+
         throw new HttpResponseException(response()->json([
             'success' => false,
             'code' => 400,

@@ -60,4 +60,13 @@ class User extends Authenticatable
         return $db_items;
     }
 
+    public static function getUserInfomationById($id)
+    {
+        $user = self::select(['name', 'email'])
+            ->where('id', $id)
+            ->get();
+        
+        return $user;
+    }
+
 }

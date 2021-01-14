@@ -158,10 +158,16 @@ ul.nav li:last-child {
 	width:2.5vw;
 	height: auto;
 }
+<<<<<<< HEAD
+/* .nav .nav-right-img img {
+	padding-top:0.5vh;
+} */
+=======
 .nav .nav-right-img img {
 	padding-top:1.5vh;
 	padding-right:2.5vh;
 }
+>>>>>>> origin/updateScheduleAPI
 
 .nav .nav-right {
 	float: right;
@@ -204,7 +210,7 @@ ul.nav li:last-child {
 
 
 img.logout-icon {
-	padding-top:1vh;
+	padding-top:1.5vh;
 	width: 100%;
 	cursor:pointer;
 }

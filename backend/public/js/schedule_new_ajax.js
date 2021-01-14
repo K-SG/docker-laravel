@@ -25,11 +25,10 @@ function schedule_insert() {
     $.ajax({
       type    : "POST",          //GETかPOSTか
       url     : "schedule_create",  //送信先のURL
-      data    : request,        
+      data    : request,        //jsonを渡す
       async   : true,           //true:非同期(デフォルト), false:同期
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-        'x-jp-co-intra-mart-ajax-request-from-imui-form-util': 'true'
     },
       success : function(data) {
         //通信が成功した場合に受け取るメッセージ
