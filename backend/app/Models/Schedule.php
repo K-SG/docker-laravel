@@ -5,14 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Schedule extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     public static function getFirstScheduleByUserIdWithPeriod($userId, $period)
     {
-
+        //27行目をdeleted_atにしてnullにしました。softdeleteのせい
         $db_items = DB::select('select schedule_date as jsonDate, start_time, min(title) as title 
                                 from schedules
                                 where user_id = ? 
@@ -22,7 +24,7 @@ class Schedule extends Model
                                     select schedule_date,min(start_time) 
                                     from schedules 
                                     where user_id = ? 
-                                    and delete_flag = 0 
+                                    and deleted_at != null 
                                     group by schedule_date) 
                                 group by schedule_date,start_time', 
                                 [$userId, $period['date_first'], $period['date_end'], $userId]);
@@ -108,6 +110,7 @@ class Schedule extends Model
         ]);
         return $result;
     }
+    
 
     public function scopeEditschedule($query, $schedule_id, $schedule_date, $start_time, $end_time, $place, $title, $content)
     {
