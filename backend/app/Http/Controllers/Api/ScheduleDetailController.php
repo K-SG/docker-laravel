@@ -19,7 +19,7 @@ class ScheduleDetailController extends Controller
         try{
             
             $schedule = Schedule::getScheduleByScheduleId($id)->first();
-            if (is_null($schedule) || $schedule == 0) {
+            if (is_null($schedule)) {
                 return response()->json([
                     'success' => false,
                     'code' => 404,

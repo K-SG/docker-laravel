@@ -19,9 +19,9 @@ class DeleteScheduleRequest extends FormRequest
      */
     public function authorize()
     {
+        // $id = $this->route('id');
         return true;
     }
-
     /**
      * Get the validation rules that apply to the request.
      *
