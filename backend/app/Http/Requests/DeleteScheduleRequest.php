@@ -8,6 +8,10 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+
+
 
 
 class DeleteScheduleRequest extends FormRequest
@@ -29,15 +33,22 @@ class DeleteScheduleRequest extends FormRequest
      */
     public function rules()
     {
-        // return [
-        //     'date' => 'required|date|date_format:Y-m-d',
-        // ];
-        return ['id' => 'exists:schedules,id,deleted_at,NULL'];
+
+        return ['id' => 'required|exists:schedules,deleted_at,NULL'];
+    }
+
+
+    public function all($keys = null) 
+    {
+       $data = parent::all($keys);
+       $data['token'] = $this->route('token');
+       return $data;
     }
 
     public function messages()
     {
         return [
+            'id.required' => '予定が必要だよ',
             'id.exists' => '予定が存在しないよ',
         ];
     }
