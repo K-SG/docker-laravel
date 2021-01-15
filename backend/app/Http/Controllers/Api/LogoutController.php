@@ -24,6 +24,9 @@ class LogoutController extends ApiController
 
         // return response()->json(['message' => 'Successfully logged out']);
 
+        //藤本さん
+        // $request->user()->update(['api_token' => null]);
+
         $user = Auth::user();
         $api_token = $user->api_token;
         $user->update(['api_token' => null]);

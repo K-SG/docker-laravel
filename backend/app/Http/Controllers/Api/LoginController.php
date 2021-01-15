@@ -23,6 +23,10 @@ class LoginController extends ApiController
 
         if (Auth::attempt(['email' => $email, 'password' => $password])) 
         {
+            //藤本さん
+            // $user = Auth::user();
+            // $user->update(['api_token' => Str::random(60)]);
+
             $api_token = User::createApiToken($email);
             return response()->json([
                 'success' => true,

@@ -36,11 +36,13 @@ Route::group(['middleware' => 'auth:api'], function(){
 
     Route::get('/users/{id}', 'App\Http\Controllers\Api\DetailUserController@detail');
 
+    Route::delete('logout', 'App\Http\Controllers\Api\LogoutController@logout');
+
 });
 
 //個別にmiddlewareを指定する時はこうする
 //Route::middleware('auth:api')->get('/calendar', 'App\Http\Controllers\Api\CalendarController@calendar');
 
 
-Route::middleware('auth:api')->delete('logout', 'App\Http\Controllers\Api\LogoutController@logout');
+//Route::middleware('auth:api')->delete('logout', 'App\Http\Controllers\Api\LogoutController@logout');
 

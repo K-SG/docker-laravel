@@ -2,9 +2,11 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
+
 
 class Handler extends ExceptionHandler
 {
@@ -57,4 +59,19 @@ class Handler extends ExceptionHandler
         ],$status);
         //return response()->view("error.error", ['exception' => $e], $status);
     }
+
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        return $request->expectsJson()
+                    ? response()->json(
+                        [
+                            'success' => false,
+                            'code' => 401, 
+                            'message' => '認証できなかったよ'
+                        ], 401)
+                    : redirect()->guest($exception->redirectTo() ?? route('login'));
+    }
+
 }
+
+
