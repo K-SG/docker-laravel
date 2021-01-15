@@ -14,22 +14,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/auth/token', 'App\Http\Controllers\Api\AuthTokenController@index');
+//Route::get('/auth/token', 'App\Http\Controllers\Api\AuthTokenController@index');
 Route::post('/users', 'App\Http\Controllers\Api\CreateUserController@index');
-Route::get('mylogin','App\Http\Controllers\LoginController@topPage');
+//Route::get('mylogin','App\Http\Controllers\LoginController@topPage');
 
-Route::get('mylogin','App\Http\Controllers\LoginController@topPage');
+//Route::get('mylogin','App\Http\Controllers\LoginController@topPage');
 Route::post('login','App\Http\Controllers\Api\LoginController@login');
 
-Route::get('/schedules/{id}', 'App\Http\Controllers\Api\ScheduleDetailController@detail');
-Route::put('/schedules/{id}', 'App\Http\Controllers\Api\EditScheduleController@update');
-Route::delete('/schedules/{id}', 'App\Http\Controllers\Api\DeleteScheduleController@delete');
+Route::get('/auth_error','App\Http\Controllers\Api\LoginController@error');
 
-Route::get('/show-schedules/search-by-day', 'App\Http\Controllers\Api\ShowScheduleController@show_all');
+Route::group(['middleware' => 'auth:api'], function(){
 
-Route::middleware('auth:api')->get('/calendar', 'App\Http\Controllers\Api\CalendarController@calendar');
+    Route::post('/schedules', 'App\Http\Controllers\Api\CreateScheduleController@create');
+    Route::get('/schedules/{id}', 'App\Http\Controllers\Api\ScheduleDetailController@detail');
+    Route::put('/schedules/{id}', 'App\Http\Controllers\Api\EditScheduleController@update');
+    Route::delete('/schedules/{id}', 'App\Http\Controllers\Api\DeleteScheduleController@delete');
+    
+    Route::get('/show-schedules/search-by-day', 'App\Http\Controllers\Api\ShowScheduleController@show_all');
 
-Route::get('/users/{id}', 'App\Http\Controllers\Api\DetailUserController@detail');
+    Route::get('/calendar', 'App\Http\Controllers\Api\CalendarController@calendar');
 
-Route::post('/schedules', 'App\Http\Controllers\Api\CreateScheduleController@create');
+    Route::get('/users/{id}', 'App\Http\Controllers\Api\DetailUserController@detail');
+
+});
+
+//個別にmiddlewareを指定する時はこうする
+//Route::middleware('auth:api')->get('/calendar', 'App\Http\Controllers\Api\CalendarController@calendar');
+
 
