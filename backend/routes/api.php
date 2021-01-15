@@ -33,3 +33,5 @@ Route::get('/users/{id}', 'App\Http\Controllers\Api\DetailUserController@detail'
 
 Route::post('/schedules', 'App\Http\Controllers\Api\CreateScheduleController@create');
 
+Route::middleware('auth:api')->delete('logout', 'App\Http\Controllers\Api\LogoutController@logout');
+

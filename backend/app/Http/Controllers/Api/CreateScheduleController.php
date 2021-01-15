@@ -23,7 +23,7 @@ class CreateScheduleController extends Controller
             $start_time = $request->start_time;
             $end_time = $request->end_time;
 
-            $user_id = 1;
+            $user_id = 4;
 
             $schedule = Schedule::isBooking($schedule_date, $user_id, 0, $start_time, $end_time);
 
