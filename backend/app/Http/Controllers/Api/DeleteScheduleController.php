@@ -13,6 +13,8 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use App\Http\Controllers\Api\Content;
+
 
 class DeleteScheduleController extends ApiController
 {
@@ -31,22 +33,13 @@ class DeleteScheduleController extends ApiController
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function delete(int $id)
+    public function delete(DeleteScheduleRequest $request)
     {
-         //return response()->json(["schedule" => $schedule]);
-        try {
-            //scheduleの中身がからなのでエラーをキャッチしません？？
-            $schedule = Schedule::Scheduledelete(
-                $id
-            );
-            if (is_null($schedule)) {
-                return response()->json([
-                    'success' => false,
-                    'code' => 404,
-                    'message' => "お探しのページが見つからなかったよ。"//$e,
-                ], 404);
-            }
-            // return response()->json(["schedule" => $schedule]);
+        $id = $request->id;
+        //db内にこのレコードのデータ歩かないかをフォームリクエストにある
+        //softdalete Laravel標準の論理削除
+        try{
+            $schedule = Schedule::find($id)->delete();
             return response()->json([
                 'success' => true,
                 'code' => 200,
@@ -57,7 +50,7 @@ class DeleteScheduleController extends ApiController
             throw new HttpResponseException(response()->json([
                 'success' => false,
                 'code' => 500,
-                'message' => $e,//'エラーが発生したよ',
+                'message' => 'エラーが発生したよ',
             ], 500));
         }
     }
