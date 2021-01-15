@@ -12,6 +12,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Support\Facades\Auth;
 
 class EditScheduleController extends ApiController
 {
@@ -34,6 +35,18 @@ class EditScheduleController extends ApiController
     {
         $id = $request->id;
         try {
+
+            $user_id = Auth::user()->id;
+            $result = Schedule::where('user_id',$user_id)->where('id',$id)->get()->first();
+            //return $result;   
+            if(is_null($result)){
+                return response()->json([
+                    'success' => false,
+                    'code' => 403,
+                    'message' => "認可されてないよ"
+                ], 403);
+            }
+
             $schedule = Schedule::editSchedule(
                 $id,
                 $request->schedule_date,
