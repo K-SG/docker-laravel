@@ -34,7 +34,7 @@ class DeleteScheduleRequest extends FormRequest
      */
     public function rules()
     {
-        
+
         return ['id' => 'required|exists:schedules,id,deleted_at,NULL'];
     }
 

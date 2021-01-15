@@ -21,6 +21,7 @@ class EditScheduleRequest extends FormRequest
     {
         return true;
     }
+    
 
     /**
      * Get the validation rules that apply to the request.
@@ -30,6 +31,7 @@ class EditScheduleRequest extends FormRequest
     public function rules()
     {
         return [
+            'id' => 'required|exists:schedules,id,deleted_at,NULL',
             'title' => 'required|max:100',
             'schedule_date' => 'required',
             'place' => 'required',
@@ -39,9 +41,24 @@ class EditScheduleRequest extends FormRequest
         ];
     }
 
+    public function validationData()
+    {
+        // dd($this->all(), $this->route()->parameters());
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'schedule_date' => $this->schedule_date,
+            'place' => $this->place,
+            'start_time' => $this->start_time,
+            'end_time' => $this->end_time
+        ];
+    }
+
     public function messages()
     {
         return [
+            'id.required' => '予定が必要だよ',
+            'id.exists' => '予定が存在しないよ',
             'title.required' => 'タイトルを入力してね',
             'title.max' => 'タイトルが長すぎるよ。100文字いないにしてね',
             'schedule_date.required' => '日付を入力してね',
@@ -57,8 +74,8 @@ class EditScheduleRequest extends FormRequest
 
         throw new HttpResponseException(response()->json([
             'success' => false,
-            'code' => 400,
+            'code' => 404,
             'message' => $validator->errors()->toArray(),
-        ], 400));
+        ], 404));
     }
 }
