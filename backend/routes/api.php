@@ -42,3 +42,5 @@ Route::group(['middleware' => 'auth:api'], function(){
 //Route::middleware('auth:api')->get('/calendar', 'App\Http\Controllers\Api\CalendarController@calendar');
 
 
+Route::middleware('auth:api')->delete('logout', 'App\Http\Controllers\Api\LogoutController@logout');
+
