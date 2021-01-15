@@ -33,28 +33,13 @@ class DeleteScheduleController extends ApiController
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function delete(DeleteScheduleRequest $request, $id)
+    public function delete(DeleteScheduleRequest $request)
     {
-
+        $id = $request->id;
         //db内にこのレコードのデータ歩かないかをフォームリクエストにある
         //softdalete Laravel標準の論理削除
-        //
-        try {
-            //scheduleの中身がからなのでエラーをキャッチしません？？
-            // $schedule = Schedule::Scheduledelete(
-            //     $id
-            // );
+        try{
             $schedule = Schedule::find($id)->delete();
-            // return response()->json(["schedule" => $schedule]);
-
-            // if (is_null($schedule) || $schedule == 0) {
-            //     return response()->json([
-            //         'success' => false,
-            //         'code' => 404,
-            //         'message' => "お探しのページが見つからなかったよ。"//$e,
-            //     ], 404);
-            // }
-            
             return response()->json([
                 'success' => true,
                 'code' => 200,
@@ -65,7 +50,7 @@ class DeleteScheduleController extends ApiController
             throw new HttpResponseException(response()->json([
                 'success' => false,
                 'code' => 500,
-                'message' => 'エラーが発生したよ',//'エラーが発生したよ',
+                'message' => 'エラーが発生したよ',
             ], 500));
         }
     }
