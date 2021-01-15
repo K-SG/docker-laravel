@@ -5,15 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Schedule extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     public static function getFirstScheduleByUserIdWithPeriod($userId, $period)
     {
-
-        $db_items = DB::select('select schedule_date, start_time, min(title) as title 
+        //27行目をdeleted_atにしてnullにしました。softdeleteのせい
+        $db_items = DB::select('select schedule_date as jsonDate, start_time, min(title) as title 
                                 from schedules
                                 where user_id = ? 
                                 and delete_flag = 0 
@@ -22,7 +24,7 @@ class Schedule extends Model
                                     select schedule_date,min(start_time) 
                                     from schedules 
                                     where user_id = ? 
-                                    and delete_flag = 0 
+                                    and deleted_at != null 
                                     group by schedule_date) 
                                 group by schedule_date,start_time', 
                                 [$userId, $period['date_first'], $period['date_end'], $userId]);
@@ -83,7 +85,7 @@ class Schedule extends Model
     {   
         $query = self::select([
             'user_id',
-            'schedules.id as schedules_id',
+            'schedules.id as schedule_id',
             'schedule_date',
             'start_time',
             'end_time',
@@ -100,17 +102,20 @@ class Schedule extends Model
     
     public function scopescheduleDelete($query,$schedule_id)
     {
+        $result =
         $query
         ->where('id', $schedule_id)
         ->update([
             'delete_flag' => '1',
         ]);
-        return $query;
+        return $result;
     }
+    
 
     public function scopeEditschedule($query, $schedule_id, $schedule_date, $start_time, $end_time, $place, $title, $content)
     {
-        $query
+        $result = $query
+        // $query
         ->where('id', $schedule_id)
         ->where('delete_flag',0)
         ->update([
@@ -121,6 +126,6 @@ class Schedule extends Model
             'title' => $title,
             'content'=> $content,
         ]);
-        return $query;
+        return $result;
     }
 }
