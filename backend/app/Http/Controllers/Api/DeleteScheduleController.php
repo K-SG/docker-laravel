@@ -33,7 +33,7 @@ class DeleteScheduleController extends ApiController
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function delete(DeleteScheduleRequest $id)
+    public function delete(DeleteScheduleRequest $request, $id)
     {
 
         //db内にこのレコードのデータ歩かないかをフォームリクエストにある
@@ -45,7 +45,7 @@ class DeleteScheduleController extends ApiController
             //     $id
             // );
             $schedule = Schedule::find($id)->delete();
-            return response()->json(["schedule" => $schedule]);
+            // return response()->json(["schedule" => $schedule]);
 
             // if (is_null($schedule) || $schedule == 0) {
             //     return response()->json([
@@ -65,7 +65,7 @@ class DeleteScheduleController extends ApiController
             throw new HttpResponseException(response()->json([
                 'success' => false,
                 'code' => 500,
-                'message' => $e,//'エラーが発生したよ',
+                'message' => 'エラーが発生したよ',//'エラーが発生したよ',
             ], 500));
         }
     }

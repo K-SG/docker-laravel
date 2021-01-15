@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Input;
 
 
 
+
 class DeleteScheduleRequest extends FormRequest
 {
     /**
@@ -33,17 +34,18 @@ class DeleteScheduleRequest extends FormRequest
      */
     public function rules()
     {
-
-        return ['id' => 'required|exists:schedules,deleted_at,NULL'];
+        
+        return ['id' => 'required|exists:schedules,id,deleted_at,NULL'];
     }
 
-
-    public function all($keys = null) 
+    public function validationData()
     {
-       $data = parent::all($keys);
-       $data['token'] = $this->route('token');
-       return $data;
+        // dd($this->all(), $this->route()->parameters());
+        return [
+            'id' => $this->id
+        ];
     }
+
 
     public function messages()
     {
@@ -57,8 +59,8 @@ class DeleteScheduleRequest extends FormRequest
         
         throw new HttpResponseException(response()->json([
             'success' => false,
-            'code' => 400,
+            'code' => 404,
             'message' => $validator->errors()->toArray(),
-        ], 400));
+        ], 404));
     }
 }
