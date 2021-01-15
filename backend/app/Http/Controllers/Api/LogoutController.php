@@ -12,27 +12,23 @@ class LogoutController extends ApiController
 
     public function logout()
     {
-        // Auth::logout();
-  
-        // return response()->json([
-        //         'success' => true,
-        //         'code' => 200,
-        //         'data' => $api_token,            
-        //     ],200);
+        try {
 
-        // auth()->logout();
+            $user = Auth::user();
+            $user->update(['api_token' => null]);
 
-        // return response()->json(['message' => 'Successfully logged out']);
-
-        $user = Auth::user();
-        $api_token = $user->api_token;
-        $user->update(['api_token' => null]);
-
-        return response()->json([
-            'success' => true,
-            'code' => 200,
-            'data' => $user->api_token,            
-        ],200);
+            return response()->json([
+                'success' => true,
+                'code' => 200,          
+            ],200);
+        
+        }catch (Exception $e){
+            throw new HttpResponseException(response()->json([
+                'success' => false,
+                'code' => 500,
+                'message' => $e,//'エラーが発生したよ',
+            ], 500));
+        }
 
     }
 
