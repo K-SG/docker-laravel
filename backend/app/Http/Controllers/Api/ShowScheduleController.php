@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use PhpParser\Node\Expr\Cast\String_;
 use DateTime;
+use Illuminate\Support\Facades\Auth;
 
 class ShowScheduleController extends ApiController
 {
@@ -42,12 +43,17 @@ class ShowScheduleController extends ApiController
             $input_date_str = $request->date;
             $input_date = new DateTime($input_date_str);
 
-            //$user = Auth::user();
+            // $user = Auth::user();
             //$user_id = $user->id; 
-            // $my_id = Auth::user()->id;
-            // $my_name = Auth::user()->name;
-            $user_id = 5;
-            $user_name = "nakaneeee";
+            $user_id = Auth::user()->id;
+            $user_name = Auth::user()->name;
+            // $user = Auth::user();
+            // $user_id = $user->id;
+            // $user_name =　$user->name;
+
+            
+            // $user_id = 5;
+            // $user_name = "nakaneeee";
             $user_list = User::getUserInfoMax4ExcludeMe($user_id);
 
             $period = [
