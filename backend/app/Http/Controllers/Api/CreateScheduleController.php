@@ -9,6 +9,7 @@ use App\Http\Requests\CreateScheduleRequest;
 use Exception;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Support\Facades\Auth;
 
 
 use App\Models\Schedule;
@@ -23,7 +24,8 @@ class CreateScheduleController extends Controller
             $start_time = $request->start_time;
             $end_time = $request->end_time;
 
-            $user_id = 4;
+            $user = Auth::user();
+            $user_id = $user->id; 
 
             $schedule = Schedule::isBooking($schedule_date, $user_id, 0, $start_time, $end_time);
 
