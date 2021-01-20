@@ -40,6 +40,13 @@ Route::group(['middleware' => 'auth:api'], function(){
 
 });
 
+//test用
+Route::get('/test_get1','App\Http\Controllers\Api\TestController@test_get1');
+Route::get('/test_get2','App\Http\Controllers\Api\TestController@test_get2');
+Route::post('/test_post1','App\Http\Controllers\Api\TestController@test_post1');
+Route::post('/test_post2','App\Http\Controllers\Api\TestController@test_post2');
+
+
 //個別にmiddlewareを指定する時はこうする
 //Route::middleware('auth:api')->get('/calendar', 'App\Http\Controllers\Api\CalendarController@calendar');
 
