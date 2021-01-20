@@ -24,10 +24,8 @@ class CalendarController extends Controller
             $input_date_str = $request->date ?? 'now';
             $input_date = new DateTime($input_date_str);
 
-            //token処理やってからuser_id取ろう
             $user = Auth::user();
             $user_id = $user->id; 
-            //$user_id = 1;
 
             $period = [
                 'date_first' => $input_date->format('Y-m-01'),
@@ -38,11 +36,6 @@ class CalendarController extends Controller
             ];
 
             $db_items = Schedule::getFirstScheduleByUserIdWithPeriod($user_id, $period);
-            
-            // $items = [
-            //     'schedule_list' => json_encode($db_items),
-            //     'period' => $period,
-            // ];
 
             return response()->json([
                 'success' => true,
@@ -58,19 +51,4 @@ class CalendarController extends Controller
             ], 500));
         }
     }
-
-
-    // public function isValidRequestForCalendar($request){
-
-    //     $validator = Validator::make($request->all(), [
-    //         'date' => 'date_format:Y-m-d',
-    //     ]);
-    //     if ($validator->fails()) {
-    //         return false;
-    //     }
-
-    //     return true;
-    // }
-
-
 }

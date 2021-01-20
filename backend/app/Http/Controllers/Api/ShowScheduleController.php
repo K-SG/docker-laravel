@@ -43,42 +43,22 @@ class ShowScheduleController extends ApiController
             $input_date_str = $request->date;
             $input_date = new DateTime($input_date_str);
 
-            // $user = Auth::user();
-            //$user_id = $user->id; 
             $user_id = Auth::user()->id;
             $user_name = Auth::user()->name;
-            // $user = Auth::user();
-            // $user_id = $user->id;
-            // $user_name =　$user->name;
-
-            
-            // $user_id = 5;
-            // $user_name = "nakaneeee";
             $user_list = User::getUserInfoMax4ExcludeMe($user_id);
 
             $period = [
                 'date' => $input_date->format('Y-m-d'),
             ];
-            // return response()->json(["user_list" => $user_list]);
 
             array_unshift($user_list, array('id' => $user_id, 'name' => $user_name));//先頭に追加
             
             $schedule_list = [];  
-            // foreach($user_list as $user){
-            //     $db_items = Schedule::getScheduleByUserIdWithPeriod($user['id'], $period);
-            //     array_push($schedule_list, $db_items);
-            // }
             foreach($user_list as $user){
                 $db_items = Schedule::getScheduleByUserIdWithPeriod($user['id'], $period);
                 $all_items = [ 'name'=>$user['name'], 'schedules'=>$db_items];
                 array_push($schedule_list, $all_items);
             }
-            
-            // return response()->json(
-            //     [
-            //         "schedule_list" => $schedule_list
-            //     ]);
-
             return response()->json([
                 'success' => true,
                 'code' => 200,
