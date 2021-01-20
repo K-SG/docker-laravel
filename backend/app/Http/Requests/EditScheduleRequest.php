@@ -75,7 +75,7 @@ class EditScheduleRequest extends FormRequest
         throw new HttpResponseException(response()->json([
             'success' => false,
             'code' => 404,
-            'message' => $validator->errors()->toArray(),
+            'message' => "ページがみつからないよ",
         ], 404));
     }
 }

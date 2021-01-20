@@ -34,7 +34,7 @@ class LoginController extends ApiController
                 return response()->json([
                     'success' => true,
                     'code' => 200,
-                    'data' => $api_token,            
+                    'data' => ['token'=>$api_token],            
                 ],200);
             } else {
                 $popFlag = 2;
