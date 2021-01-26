@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 use App\Models\KrononUser;
 use App\Models\User;
@@ -18,7 +19,7 @@ class LoginController extends ApiController
         return view('auth.login');
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
         $email = $request->email;
         $password = $request->password;
@@ -37,8 +38,11 @@ class LoginController extends ApiController
                     'data' => ['token'=>$api_token],            
                 ],200);
             } else {
-                $popFlag = 2;
-                return view('auth.login', ['email' => $email, 'popFlag' => $popFlag]);
+                return response()->json([
+                    'success' => false,
+                    'code' => 400,
+                    'message' => "入力内容が間違っているよ"//$e,
+                ], 400);
             }
         }catch (Exception $e){
             throw new HttpResponseException(response()->json([
