@@ -45,10 +45,23 @@ class ShowScheduleRequest extends FormRequest
 
     protected function failedValidation(Validator $validator) {
         
+        $messages = "";
+        $counter = 0;
+        foreach($validator->errors()->toArray() as $messageArray){
+            foreach($messageArray as $message){
+                if($counter==0){
+                    $messages .= $message;
+                    $counter++;
+                }else{
+                    $messages .= "\n".$message;
+                }
+            }   
+        }
+
         throw new HttpResponseException(response()->json([
             'success' => false,
             'code' => 400,
-            'message' => $validator->errors()->toArray(),
+            'message' => $messages,//$validator->errors()->toArray(),
         ], 400));
     }
 }

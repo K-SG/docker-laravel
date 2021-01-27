@@ -57,25 +57,46 @@ class EditScheduleRequest extends FormRequest
     public function messages()
     {
         return [
-            'id.required' => '予定が必要だよ',
-            'id.exists' => '予定が存在しないよ',
-            'title.required' => 'タイトルを入力してね',
-            'title.max' => 'タイトルが長すぎるよ。100文字いないにしてね',
-            'schedule_date.required' => '日付を入力してね',
-            'place.required' => '場所を選択してね',
-            'start_time.required' => '開始時間を入力してね',
-            'end_time.required' => '終了時間を入力してね',
-            'content.max' => '内容が長すぎるよ。1440文字以内にしてね',
+            'id.required' => '予定が必要だよ。',
+            'id.exists' => '予定が存在しないよ。',
+            'title.required' => 'タイトルを入力してね。',
+            'title.max' => 'タイトルが長すぎるよ。100文字以内にしてね。',
+            'schedule_date.required' => '日付を入力してね。',
+            'place.required' => '場所を選択してね。',
+            'start_time.required' => '開始時間を入力してね。',
+            'end_time.required' => '終了時間を入力してね。',
+            'content.max' => '内容が長すぎるよ。1440文字以内にしてね。',
         ];
     }
 
     protected function failedValidation(Validator $validator)
     {
 
-        throw new HttpResponseException(response()->json([
-            'success' => false,
-            'code' => 404,
-            'message' => "ページがみつからないよ",
-        ], 404));
+        $messages = "";
+        $counter = 0;
+        foreach($validator->errors()->toArray() as $messageArray){
+            foreach($messageArray as $message){
+                if($counter==0){
+                    $messages .= $message;
+                    $counter++;
+                }else{
+                    $messages .= "\n".$message;
+                }
+            }   
+        }
+        //idが存在しない場合は404
+        if(array_key_exists('id',$validator->errors()->toArray())){
+            throw new HttpResponseException(response()->json([
+                'success' => false,
+                'code' => 404,
+                'message' => "ページがみつからないよ",
+            ], 404));
+        }else{
+            throw new HttpResponseException(response()->json([
+                'success' => false,
+                'code' => 400,
+                'message' => $messages,//$validator->errors()->toArray(),
+            ], 400));
+        }
     }
 }
