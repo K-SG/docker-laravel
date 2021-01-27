@@ -32,10 +32,15 @@ class LoginController extends ApiController
                 // $user->update(['api_token' => Str::random(60)]);
     
                 $api_token = User::createApiToken($email);
+                $user = Auth::user();   
                 return response()->json([
                     'success' => true,
                     'code' => 200,
-                    'data' => ['token'=>$api_token],            
+                    'data' => [
+                        'name' => $user->name,
+                        'email' => $user->email,
+                        'token' => $api_token,
+                    ]  ,          
                 ],200);
             } else {
                 return response()->json([
@@ -48,7 +53,7 @@ class LoginController extends ApiController
             throw new HttpResponseException(response()->json([
                 'success' => false,
                 'code' => 500,
-                'message' => '問題が発生したよ',
+                'message' => $e,//'問題が発生したよ',
             ], 500));
         }
     }

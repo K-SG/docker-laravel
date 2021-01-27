@@ -71,6 +71,7 @@ class User extends Authenticatable
         return $user;
     }
 
+    
     public static function createApiToken($email){
         $api_token = Str::random(60);
         $result = DB::table('users')
