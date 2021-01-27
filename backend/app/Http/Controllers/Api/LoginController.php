@@ -48,7 +48,7 @@ class LoginController extends ApiController
             throw new HttpResponseException(response()->json([
                 'success' => false,
                 'code' => 500,
-                'message' => $e,//'エラーが発生したよ',
+                'message' => '問題が発生したよ',
             ], 500));
         }
     }
