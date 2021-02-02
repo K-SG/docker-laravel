@@ -31,6 +31,9 @@ class LoginController extends ApiController
                 // $user = Auth::user();
                 // $user->update(['api_token' => Str::random(60)]);
     
+                //タイムアウトチェックよう
+                sleep(1000);
+
                 $api_token = User::createApiToken($email);
                 $user = Auth::user();   
                 return response()->json([
