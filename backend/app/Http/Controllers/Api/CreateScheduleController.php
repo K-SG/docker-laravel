@@ -40,27 +40,37 @@ class CreateScheduleController extends Controller
                 $schedule->title = $request->title;
                 $schedule->content = $request->content;
                 $schedule->delete_flag = 0;
-            if ($schedule->save()) {
-                $result =['result'=>'success'];
-            };
+                if ($schedule->save()) {
+                    //$result =['result'=>'success'];
+                    return response()->json([
+                        'success' => true,
+                        'code' => 200,
+                        'data' => 
+                                [
+                                    'title' => $request->title,
+                                    'schedule_date' => $request->schedule_date,
+                                    'place' => $request->place,
+                                    'start_time' => $request->start_time,
+                                    'end_time' => $request->end_time,
+                                    'content' => $request->content,
+                                    'delete_flag' => 0,
+                                ]
+                    ],200);
+                };
             } else {
-                $result =['result'=>'booking'];
+                //$result =['result'=>'booking'];
+                return response()->json([
+                    'success' => false,
+                    'code' => 400,
+                    'message' => "予定が被っているよ。",//$validator->errors()->toArray(),
+                ], 400);
             } 
             
-            return response()->json([
-                'success' => true,
-                'code' => 200,
-                'data' => 
-                        [
-                            'title' => $request->title,
-                            'schedule_date' => $request->schedule_date,
-                            'place' => $request->place,
-                            'start_time' => $request->start_time,
-                            'end_time' => $request->end_time,
-                            'content' => $request->content,
-                            'delete_flag' => 0,
-                        ]
-            ],200);
+            return response()->json(['success' => false,
+                'code' => 500,
+                'message' => "問題が発生しちゃったよ。"//$e,
+            ], 500);
+
         }catch(Exception $e){
             throw new HttpResponseException(response()->json([
                 'success' => false,

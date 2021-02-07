@@ -31,7 +31,7 @@ class CreateScheduleRequest extends FormRequest
             'schedule_date' => 'required|date_format:"Y-m-d"',
             'start_time' => 'required|date_format:H:i',
             'end_time' => 'required|date_format:H:i|after:start_time',
-            'place' => 'required',
+            'place' => 'required|integer|between:0,2',
         ];
     }
 
@@ -48,7 +48,8 @@ class CreateScheduleRequest extends FormRequest
             'end_time.date_format' => '正しい時間を入力してね',
             'end_time.after' => '開始時間よりも後の時間を入力してね',
             'place.required' => '入力されていない項目があるよ',
-            
+            'place.integer' => '整数値で入力してね',
+            'place.between' => '0から2の整数値で入力してね',
         ];
     }
 
