@@ -31,7 +31,7 @@ class ScheduleDetailController extends Controller
                 'code' => 200,
                 'data' => 
                         [
-                            'id' => $schedule->id,
+                            'schedule_id' => $schedule->id,
                             'title' => $schedule->title,
                             'schedule_date' => $schedule->schedule_date,
                             'place' => $schedule->place,
