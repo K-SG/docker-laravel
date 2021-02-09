@@ -11,6 +11,7 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 
 
 use App\Models\Schedule;
+use App\Models\User;
 
 class ScheduleDetailController extends Controller
 {
@@ -26,11 +27,14 @@ class ScheduleDetailController extends Controller
                     'message' => "お探しのページが見つからなかったよ。"//$e,
                 ], 404);
             }
+            $user_id = $schedule->user_id;
+            $user = User::getUserInfomationById($user_id)->first();
             return response()->json([
                 'success' => true,
                 'code' => 200,
                 'data' => 
                         [
+                            'name' => $user->name,
                             'schedule_id' => $schedule->id,
                             'title' => $schedule->title,
                             'schedule_date' => $schedule->schedule_date,
