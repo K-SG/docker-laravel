@@ -18,7 +18,7 @@ class Schedule extends Model
         $db_items = DB::select('select schedule_date as date, start_time, min(title) as title 
                                 from schedules
                                 where user_id = ? 
-                                and delete_flag = 0 
+                                and deleted_at is null
                                 and schedule_date between ? and ? 
                                 and (schedule_date,start_time) in (
                                     select schedule_date,min(start_time) 
@@ -28,7 +28,7 @@ class Schedule extends Model
                                     group by schedule_date) 
                                 group by schedule_date,start_time', 
                                 [$userId, $period['date_first'], $period['date_end'], $userId]);
-
+            
         return $db_items;
     }
     //かぶっている予定を取得したい
@@ -37,7 +37,7 @@ class Schedule extends Model
         $schedule = DB::select('select * from schedules 
                                 where schedule_date = ? 
                                 and user_id = ? 
-                                and delete_flag = 0 
+                                and deleted_at is null 
                                 and not ((? <= start_time) or (end_time <= ?))', [$schedule_date, $user_id, $end_time, $start_time]);
 
         return $schedule;
@@ -60,7 +60,8 @@ class Schedule extends Model
             'place'])
         ->where('user_id','=',$userId)
         ->where('schedule_date','=',$period['date'])
-        ->where('delete_flag','=',0)
+        // ->where('delete_flag','=',0)
+        ->whereNull('deleted_at')
         ->orderBy('start_time','asc')
         ->join('users','users.id','=','schedules.user_id')
         ->get()->toArray();
@@ -74,10 +75,10 @@ class Schedule extends Model
         $schedule = DB::select('select * from schedules 
                                 where schedule_date = ? 
                                 and user_id = ? 
-                                and delete_flag = 0 
+                                and deleted_at is null 
                                 and id <> ?
                                 and not ((? <= start_time) or (end_time <= ?))', [$schedule_date, $user_id, $schedule_id, $end_time, $start_time]);
-
+        // dd($schedule);
         return $schedule;
     }
     
@@ -94,22 +95,22 @@ class Schedule extends Model
             'content',
             'name',])
             ->where('schedules.id',$schedule_id)
-            ->where('delete_flag',0)
+            ->whereNull('deleted_at')
             ->join('users','users.id','=','schedules.user_id')
             ->get();
         return $query;
     }
     
-    public function scopescheduleDelete($query,$schedule_id)
-    {
-        $result =
-        $query
-        ->where('id', $schedule_id)
-        ->update([
-            'delete_flag' => '1',
-        ]);
-        return $result;
-    }
+    // public function scopescheduleDelete($query,$schedule_id)
+    // {
+    //     $result =
+    //     $query
+    //     ->where('id', $schedule_id)
+    //     ->update([
+    //         'delete_flag' => '1',
+    //     ]);
+    //     return $result;
+    // }
     
 
     public function scopeEditschedule($query, $schedule_id, $schedule_date, $start_time, $end_time, $place, $title, $content)
@@ -117,7 +118,7 @@ class Schedule extends Model
         $result = $query
         // $query
         ->where('id', $schedule_id)
-        ->where('delete_flag',0)
+        ->whereNull('deleted_at')
         ->update([
             'schedule_date' => $schedule_date,
             'start_time' => $start_time,

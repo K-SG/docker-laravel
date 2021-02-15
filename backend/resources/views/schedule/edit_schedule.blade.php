@@ -21,18 +21,18 @@
       <div class="loose-leaf"><img src="{{ asset('img/loose_leaf.svg') }}" alt="loose-leaf" id="loose-leaf"></div>
       <div class="schedule-regist-area-inner">
 	    <div class="schedule-regist-font-lev0">予定修正</div>
-	    <input type="hidden" name="scheduleId" value="{{$schedule->id}}" id="set-schedule-id">
+	    <input type="hidden" name="scheduleId" value="{{$schedule->id ?? ''}}" id="set-schedule-id">
 	    <div class="schedule-regist-border"></div>
         <div class="schedule-regist-area-1">
 		  <div class="schedule-regist-area-1-block">
 		    <div class="schedule-regist-font-lev1">日付<span>*</span></div>
-		    <input type="hidden" value="{{$schedule->schedule_date}}" id="set-date">
-		    <div class="schedule-regist-date-area"><input name="scheduleDate" id="date" type="date" value="{{$schedule->schedule_date}}" /></div>
+		    <input type="hidden" value="{{$schedule->schedule_date ?? ''}}" id="set-date">
+		    <div class="schedule-regist-date-area"><input name="scheduleDate" id="date" type="date" value="{{$schedule->schedule_date ?? ''}}" /></div>
 		  </div>
 		  <div class="schedule-regist-area-1-block">
 		    <div class="schedule-regist-font-lev1">開始時刻<span>*</span></div>
 		    <div class="schedule-regist-time">
-		      <input type="hidden" value="{{$schedule->start_time}}" id="set-start-time">
+		      <input type="hidden" value="{{$schedule->start_time ?? ''}}" id="set-start-time">
 			  <select name="startTimeHour" id="starthour">
 			    <option value="8">8</option>
 			    <option value="9">9</option>
@@ -64,7 +64,7 @@
 		  <div class="schedule-regist-area-1-block">
 		    <div class="schedule-regist-font-lev1">終了時刻<span>*</span></div>
 	        <div class="schedule-regist-time">
-		      <input type="hidden" value="{{$schedule->end_time}}" id="set-end-time">
+		      <input type="hidden" value="{{$schedule->end_time ?? ''}}" id="set-end-time">
 		      <select name="endTimeHour" id="endhour"  onchange="selectboxChange();">
 		        <option value="8">8</option>
 			    <option value="9">9</option>
@@ -98,7 +98,7 @@
 	    <div class="schedule-regist-area-2">
 		  <div class="schedule-regist-font-lev1">場所<span>*</span></div>
 		  <div class="schedule-regist-place">
-		    <input type="hidden" value="{{$schedule->place}}" id="set-place">
+		    <input type="hidden" value="{{$schedule->place ?? ''}}" id="set-place">
 			<select name="place" id="edit-place">
 			  <option value="0">オフィス</option>
 			  <option value="1">在宅</option>
@@ -109,14 +109,14 @@
 		<div class="schedule-regist-area-3">
 		  <div class="schedule-regist-font-lev1">タイトル<span>*</span></div>
 		  <div class="schedule-regist-title">
-			<textarea name="title" id="title" rows="1" cols="40" maxlength="100" placeholder="予定のタイトルを100字以内で入力してください">{{$schedule->title}}</textarea>
+			<textarea name="title" id="title" rows="1" cols="40" maxlength="100" placeholder="予定のタイトルを100字以内で入力してください">{{$schedule->title ?? ''}}</textarea>
 		  </div>
 	    </div>
 
 		<div class="schedule-regist-area-4">
 		  <div class="schedule-regist-font-lev1">内容</div>
 		  <div class="schedule-regist-content">
-			<textarea name="content" id="content" rows="13" cols="40" maxlength="1440" placeholder="予定の内容を1440字以内で入力してください">{{$schedule->content}}</textarea>
+			<textarea name="content" id="content" rows="13" cols="40" maxlength="1440" placeholder="予定の内容を1440字以内で入力してください">{{$schedule->content ?? ''}}</textarea>
 	      </div>
 	    </div>
       </div>
@@ -164,7 +164,7 @@
 		  <p>内容は保存されないよ！</p>
 		  <h2 class="message-title">本当に戻る？</h2>
 	    </div>
-	    <a href="schedule_detail?schedule_id={{$schedule->id}}"><div class="ok-button">OK</div></a>
+	    <a href="schedule_detail?schedule_id={{$schedule->id ?? ''}}"><div class="ok-button">OK</div></a>
 	    <div class="ng-button close-popup">キャンセル</div>
 	    <img src="{{ asset('img/star/star_angry.png') }}" class="pop-img-top star-angry">
 	  </div>

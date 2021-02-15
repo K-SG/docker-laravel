@@ -137,7 +137,7 @@ console.log(json);
           // 今月の日にだけ表示
           if (!date.isDisabled) {
         	  // 予定リストの日と考えている日が一致したらその予定タイトルを表示
-        	  if (obj.jsonDate == year + "-" + ("0" + (month + 1)).slice(-2) + "-" + check) {
+        	  if (obj.date == year + "-" + ("0" + (month + 1)).slice(-2) + "-" + check) {
 
 	            // 追加する要素の作成
 	            var newElement2 = document.createElement("p"); // p要素作成

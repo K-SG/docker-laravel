@@ -31,6 +31,7 @@ class InputScheduleController extends Controller
 
         //予定が重複していないか確認
         $schedule = Schedule::isBooking($schedule_date, $user_id, 0, $start_time, $end_time);
+        // dd($schedule);
 
         if (empty($schedule)) {
             $schedule = new Schedule;

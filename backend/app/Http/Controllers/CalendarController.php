@@ -37,6 +37,7 @@ class CalendarController extends Controller
         ];
 
         $db_items = Schedule::getFirstScheduleByUserIdWithPeriod($user_id, $period);
+        // dd($db_items);
         
         $items = [
             'schedule_list' => json_encode($db_items),
