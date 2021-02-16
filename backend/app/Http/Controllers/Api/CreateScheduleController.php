@@ -27,6 +27,12 @@ class CreateScheduleController extends Controller
             $user = Auth::user();
             $user_id = $user->id; 
 
+            $time = date_create($start_time);
+            $start_time = date_format($time, 'H:i:s');
+            
+            $time = date_create($end_time);
+            $end_time = date_format($time, 'H:i:s');
+
             $schedule = Schedule::isBooking($schedule_date, $user_id, 0, $start_time, $end_time);
 
             if (empty($schedule)) {

@@ -78,7 +78,6 @@ class Schedule extends Model
                                 and deleted_at is null 
                                 and id <> ?
                                 and not ((? <= start_time) or (end_time <= ?))', [$schedule_date, $user_id, $schedule_id, $end_time, $start_time]);
-        // dd($schedule);
         return $schedule;
     }
     

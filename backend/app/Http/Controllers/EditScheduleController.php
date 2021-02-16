@@ -24,8 +24,13 @@ class EditScheduleController extends Controller
     {
         $schedule_id = $request->scheduleId;
         $schedule_date = $request->scheduleDate;
-        $start_time = $request->startTimeHour . ":" . $request->startTimeMin . ":" . "00";
-        $end_time = $request->endTimeHour . ":" . $request->endTimeMin . ":" . "00";
+        
+        $start_hour = sprintf('%02d', $request->startTimeHour);
+        $start_time = $start_hour . ":" . $request->startTimeMin . ":" . "00";
+
+        $end_hour = sprintf('%02d', $request->endTimeHour);
+        $end_time = $end_hour . ":" . $request->endTimeMin . ":" . "00";
+
         $user = Auth::user();
         $user_id = $user->id;
         //予定が重複していないか確認

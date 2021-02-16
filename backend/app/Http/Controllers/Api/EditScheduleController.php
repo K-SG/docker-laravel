@@ -46,7 +46,13 @@ class EditScheduleController extends ApiController
                     'message' => "認可されてないよ"
                 ], 403);
             }
-            $schedule = Schedule::isBooking($request->schedule_date, $user_id, $id, $request->start_time, $request->end_time);
+            $time = date_create($request->start_time);
+            $start_time = date_format($time, 'H:i:s');
+            
+            $time = date_create($request->end_time);
+            $end_time = date_format($time, 'H:i:s');
+            
+            $schedule = Schedule::isBooking($request->schedule_date, $user_id, $id, $start_time, $end_time);
             if (empty($schedule)) {
                 $schedule = new Schedule;
                 //データベースに値を送信

@@ -23,15 +23,19 @@ class InputScheduleController extends Controller
        
         //Ajax通信でPOSTされたデータを受け取る
         $schedule_date = $_POST['schedule_date'];
-        $start_time = $_POST['start_hour'] . ":" . $_POST['start_minutes'] . ":" . "00";
-        $end_time = $_POST['end_hour'] . ":" . $_POST['end_minutes'] . ":" . "00";
-        
+
+        $start_hour = sprintf('%02d', $_POST['start_hour']);
+        $start_time = $start_hour . ":" . $_POST['start_minutes'] . ":" . "00";
+
+        $end_hour = sprintf('%02d', $_POST['end_hour']);
+        $end_time = $end_hour . ":" . $_POST['end_minutes'] . ":" . "00";
+        // $result =['result'=>$schedule_date];
         $user = Auth::user();
         $user_id = $user->id;
 
         //予定が重複していないか確認
         $schedule = Schedule::isBooking($schedule_date, $user_id, 0, $start_time, $end_time);
-        // dd($schedule);
+        // $result =['result'=>$start_time];
 
         if (empty($schedule)) {
             $schedule = new Schedule;
