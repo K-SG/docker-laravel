@@ -46,16 +46,27 @@ class EditScheduleController extends ApiController
                     'message' => "認可されてないよ"
                 ], 403);
             }
-
-            $schedule = Schedule::editSchedule(
-                $id,
-                $request->schedule_date,
-                $request->start_time,
-                $request->end_time,
-                $request->place,
-                $request->title,
-                $request->content
-            );
+            $schedule = Schedule::isBooking($request->schedule_date, $user_id, $id, $request->start_time, $request->end_time);
+            if (empty($schedule)) {
+                $schedule = new Schedule;
+                //データベースに値を送信
+                $schedule = Schedule::editSchedule(
+                    $id,
+                    $request->schedule_date,
+                    $request->start_time,
+                    $request->end_time,
+                    $request->place,
+                    $request->title,
+                    $request->content
+                );
+            }else{
+                return response()->json([
+                    'success' => false,
+                    'code' => 400,
+                    'message' => "予定が被っているよ。",//$validator->errors()->toArray(),
+                ], 400);
+            }
+    
             $schedule = Schedule::getScheduleByScheduleId($id)->first();
             return response()->json([
                 'success' => true,
