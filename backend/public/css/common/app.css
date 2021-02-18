@@ -136,8 +136,6 @@ ul.nav li:hover {
 	background-color:#d98425;
 }
 
-
-
 ul.nav li:last-child {
   width:50vh;
   text-align: center;
@@ -146,7 +144,7 @@ ul.nav li:last-child {
 .nav .nav-right-user{
 	float: right;
 	padding:1.7vh;
-	font-size: min(2.5vh,2vw);
+	font-size: min(3vh,2vw);
 	color:#FFFFFF;
 }
 
@@ -158,16 +156,11 @@ ul.nav li:last-child {
 	width:2.5vw;
 	height: auto;
 }
-<<<<<<< HEAD
-/* .nav .nav-right-img img {
-	padding-top:0.5vh;
-} */
-=======
+
 .nav .nav-right-img img {
 	padding-top:1.5vh;
 	padding-right:2.5vh;
 }
->>>>>>> origin/updateScheduleAPI
 
 .nav .nav-right {
 	float: right;
@@ -178,7 +171,6 @@ ul.nav li:last-child {
 }
 .nav .nav-right-img {
 	padding-top:0vh;
-
   }
 
 .nav .nav-right-img a{

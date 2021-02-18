@@ -24,9 +24,8 @@
                 <a type="button" class="logout-button"><img class="logout-icon" alt="ログアウト" src="{{ asset('img/logout_icon.png') }}"></a>
               </div>
               <div class="nav-right-user">{{ Auth::user()->name }}としてログイン中</div>
-              <div class="nav-right-user" aria-labelledby="navbarDropdown">
-             </div>
-            </div>
+              <div class="nav-right-user" aria-labelledby="navbarDropdown"></div>
+          </div>
           </ul>
         </div>
         <form id="logout-form" action="../mylogout" method="POST" class="d-none">
