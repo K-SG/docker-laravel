@@ -19,8 +19,8 @@ class InputScheduleController extends Controller
     public function scheduleCreateAjax(Request $request)
     {
 
-        $result =['result'=>'error'];//成功：success、予定重複：booking、予期せぬエラー：error、
-       
+        $result = ['result' => 'error']; //成功：success、予定重複：booking、予期せぬエラー：error、
+
         //Ajax通信でPOSTされたデータを受け取る
         $schedule_date = $_POST['schedule_date'];
 
@@ -49,17 +49,15 @@ class InputScheduleController extends Controller
             $schedule->content = $_POST['content'];
             $schedule->delete_flag = 0;
             if ($schedule->save()) {
-                $result =['result'=>'success'];
+                $result = ['result' => 'success'];
             };
         } else {
-            $result =['result'=>'booking'];
-        } 
+            $result = ['result' => 'booking'];
+        }
 
-         // ヘッダーの設定
-         header('Content-type:application/json; charset=utf8');
-         // JSON形式にして返却
-         echo json_encode($result);
-        
+        // ヘッダーの設定
+        header('Content-type:application/json; charset=utf8');
+        // JSON形式にして返却
+        echo json_encode($result);
     }
-
 }

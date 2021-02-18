@@ -1,16 +1,18 @@
-function schedule_insert() {
+function schedule_edit() {
 
+    const schedule_id = document.getElementById("set-schedule-id").value;
     const schedule_date = document.getElementById("date").value;
     const start_hour = document.getElementById("starthour").value;
     const start_minutes = document.getElementById("startminutes").value;
     const end_hour = document.getElementById("endhour").value;
     const end_minutes = document.getElementById("endminutes").value;
-    const new_place = document.getElementById("new-place").value;
+    const new_place = document.getElementById("set-place").value;
     const title = document.getElementById("title").value;
     const content = document.getElementById("content").value;
 
     //リクエストJSON
     var request = {
+        schedule_id: schedule_id,
         schedule_date: schedule_date,
         start_hour: start_hour,
         start_minutes: start_minutes,
@@ -20,11 +22,10 @@ function schedule_insert() {
         title: title,
         content: content,
     };
-
     //ajaxでservletにリクエストを送信
     $.ajax({
         type: "POST", //GETかPOSTか
-        url: "schedule_create", //送信先のURL
+        url: "edit_schedule", //送信先のURL
         data: request, //jsonを渡す
         async: true, //true:非同期(デフォルト), false:同期
         headers: {
@@ -57,8 +58,11 @@ function schedule_insert() {
         },
 
         error: function(XMLHttpRequest, textStatus, errorThrown) {
+            // console.log(errorThrown);
+            // console.log(XMLHttpRequest);
+            // console.log(textStatus);
             //エラーページに遷移させたいよ
-            throw new AjaxException("inputScheduleAjaxError");
+            //throw new AjaxException("inputScheduleAjaxError");
             //window.location.href=`error`;
 
         }

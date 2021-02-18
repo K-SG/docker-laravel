@@ -5,6 +5,7 @@
 @section('link')
     @parent
     <link rel="stylesheet" href="{{ asset('css/schedule_new.css') }}">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
 
@@ -230,5 +231,6 @@
 
 @section('js_link')
 	@parent
+	<script src="{{ asset('js/schedule_edit_ajax.js') }}"></script>
     <script src="{{ asset('js/schedule_edit.js') }}"></script>
 @endsection

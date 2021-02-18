@@ -21,8 +21,8 @@ Route::get('user/calendar', 'App\Http\Controllers\CalendarController@calendar')-
 Route::get('user/schedule_show_all', 'App\Http\Controllers\ScheduleController@show_all')->middleware('auth');
 Route::get('user/schedule_detail', 'App\Http\Controllers\ScheduleDetailController@detail')->middleware('auth');
 Route::post('user/schedule_delete', 'App\Http\Controllers\ScheduleDetailController@delete');
-Route::get('mylogin','App\Http\Controllers\LoginController@topPage');
-Route::post('mylogin','App\Http\Controllers\LoginController@login');
+Route::get('mylogin', 'App\Http\Controllers\LoginController@topPage');
+Route::post('mylogin', 'App\Http\Controllers\LoginController@login');
 Auth::routes();
 Route::post('mylogout', 'App\Http\Controllers\LogoutController@logout')->middleware('auth');
 Route::get('user/input_schedule', 'App\Http\Controllers\InputScheduleController@inputSchedule')->middleware('auth');

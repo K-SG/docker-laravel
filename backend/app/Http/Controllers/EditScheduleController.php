@@ -22,14 +22,18 @@ class EditScheduleController extends Controller
 
     public function editComplete(Request $request)
     {
-        $schedule_id = $request->scheduleId;
-        $schedule_date = $request->scheduleDate;
-        
-        $start_hour = sprintf('%02d', $request->startTimeHour);
-        $start_time = $start_hour . ":" . $request->startTimeMin . ":" . "00";
 
-        $end_hour = sprintf('%02d', $request->endTimeHour);
-        $end_time = $end_hour . ":" . $request->endTimeMin . ":" . "00";
+        $result = ['result' => 'error']; //成功：success、予定重複：booking、予期せぬエラー：error、
+
+
+        $schedule_id = $_POST['schedule_id'];
+        $schedule_date = $_POST['schedule_date'];
+
+        $start_hour = sprintf('%02d', $_POST['start_hour']);
+        $start_time = $start_hour . ":" . $_POST['start_minutes'] . ":" . "00";
+
+        $end_hour = sprintf('%02d', $_POST['end_hour']);
+        $end_time = $end_hour . ":" . $_POST['end_minutes'] . ":" . "00";
 
         $user = Auth::user();
         $user_id = $user->id;
@@ -37,18 +41,23 @@ class EditScheduleController extends Controller
         $schedule = Schedule::isBooking($schedule_date, $user_id, $schedule_id, $start_time, $end_time);
 
         if (empty($schedule)) {
-            $place = $request->place;
-            $title = $request->title;
-            $content = $request->content;
+            $place = $_POST['new_place'];
+            $title = $_POST['title'];
+            $content = $_POST['content'];
             $schedule = new Schedule;
             //データベースに値を送信
             Schedule::editSchedule($schedule_id, $schedule_date, $start_time, $end_time, $place, $title, $content);
 
-            return redirect('/user/calendar');
+            $result = ['result' => 'success'];
+            //return redirect('/user/calendar');
         } else {
-            return view('schedule.edit_schedule');
+            //return view('schedule.edit_schedule');
+            $result = ['result' => 'booking'];
         }
-        
-    }
 
+        // ヘッダーの設定
+        header('Content-type:application/json; charset=utf8');
+        // JSON形式にして返却
+        echo json_encode($result);
+    }
 }
